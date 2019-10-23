@@ -1,0 +1,109 @@
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
+import { Link } from "react-router-dom";
+import fire from "./config/firebase";
+
+
+class SignUp extends Component{
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.signup = this.signup.bind(this);
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+
+  handleChange(e) {
+    console.log(e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  signup(e) {
+
+    e.preventDefault();
+    console.log("passed signup")
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(u => {})
+      .then(u => {
+        console.log(u);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+  }
+
+  render(){
+    return (
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="6">
+            <MDBCard>
+              <MDBCardBody>
+                <form>
+                  <p className="h4 text-center py-4">Sign up</p>
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Your name"
+                      icon="user"
+                      group
+                      name = "email"
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      value = {this.state.email}
+                      onChange= {this.handleChange}
+                      label="Your email"
+                      icon="envelope"
+                      group
+                      name = "email"
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      label="Confirm your email"
+                      icon="exclamation-triangle"
+                      group
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      value = {this.state.password}
+                      onChange= {this.handleChange}
+                      label="Your password"
+                      icon="lock"
+                      group
+                      name = "password"
+                      type="password"
+                      validate
+                    />
+                  </div>
+                  <div className="text-center py-4 mt-3">
+                    <MDBBtn color="orange"  type="submit" onClick = {this.signup}>
+                      Register
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    );
+  }
+}
+
+
+export default SignUp;

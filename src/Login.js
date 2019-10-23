@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import fire from "./config/firebase";
+import SignUp from "./Signup"
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
+
 
 class Login extends Component {
   constructor(props) {
@@ -10,16 +14,19 @@ class Login extends Component {
     this.signup = this.signup.bind(this);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      showsignup: false
     };
   }
 
   handleChange(e) {
+    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   login(e) {
     e.preventDefault();
+    console.log(this.state.email);
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -30,6 +37,10 @@ class Login extends Component {
   }
 
   signup(e) {
+    this.setState({
+      showsignup: true
+    });
+    /*
     e.preventDefault();
     fire
       .auth()
@@ -40,11 +51,58 @@ class Login extends Component {
       })
       .catch(error => {
         console.log(error);
-      });
+      });*/
+
   }
+
   render() {
     return (
-      <div className="col-md-6">
+          <MDBContainer>
+            <MDBRow>
+              <MDBCol md="6">
+                <form>
+                  <p className="h5 text-center mb-4">Sign in</p>
+                  <div className="grey-text">
+                    <MDBInput
+                      value = {this.state.email}
+                      onChange= {this.handleChange}
+                      label="Type your email"
+                      icon="envelope"
+                      group
+                      name = "email"
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      value = {this.state.password}
+                      onChange= {this.handleChange}
+                      label="Type your password"
+                      icon="lock"
+                      group
+                      name = "password"
+                      type="password"
+                      validate
+                    />
+                  </div>
+                  <div className="d-inline">
+                    <MDBBtn type = "submit" onClick={this.login} >
+                      Login
+                    </MDBBtn>
+                  </div>
+                  <div className="d-inline">
+                    <MDBBtn color = "indigo" onClick={this.signup}>
+                      SignUp
+                    </MDBBtn>
+                    {this.state.showsignup ? <SignUp/> : null}
+                  </div>
+                </form>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+
+    /*  <div className="col-md-6">
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -76,16 +134,7 @@ class Login extends Component {
           </div>
           <button type="submit" onClick={this.login} class="btn btn-primary">
             Login
-          </button>
-          <button
-            onClick={this.signup}
-            style={{ marginLeft: "25px" }}
-            className="btn btn-success"
-          >
-            Signup
-          </button>
-        </form>
-      </div>
+          </button>*/
     );
   }
 }

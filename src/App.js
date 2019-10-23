@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import "./App.css";
 import fire from "./config/firebase";
 import Home from "./Home";
 import Login from "./Login";
+import SignUp from "./Signup";
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 class App extends Component {
   constructor() {
