@@ -11,6 +11,7 @@ class SignUp extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.signup = this.signup.bind(this);
     this.state = {
+      name: "",
       email: "",
       password: "",
     };
@@ -34,8 +35,13 @@ class SignUp extends Component{
       })
       .catch(error => {
         console.log(error);
+        alert(error);
       });
-
+      fire.firestore().doc(`/users/${this.state.email}`).set({
+        name: this.state.name,
+        password: this.state.password,
+        // wallet: 1000
+      });
   }
 
   render(){
@@ -49,22 +55,24 @@ class SignUp extends Component{
                   <p className="h4 text-center py-4">Sign up</p>
                   <div className="grey-text">
                     <MDBInput
+                      value={this.state.name}
+                      onChange={this.handleChange}
                       label="Your name"
                       icon="user"
                       group
-                      name = "email"
+                      name="name"
                       type="text"
                       validate
                       error="wrong"
                       success="right"
                     />
                     <MDBInput
-                      value = {this.state.email}
-                      onChange= {this.handleChange}
+                      value={this.state.email}
+                      onChange={this.handleChange}
                       label="Your email"
                       icon="envelope"
                       group
-                      name = "email"
+                      name="email"
                       type="email"
                       validate
                       error="wrong"
@@ -80,18 +88,18 @@ class SignUp extends Component{
                       success="right"
                     />
                     <MDBInput
-                      value = {this.state.password}
-                      onChange= {this.handleChange}
+                      value={this.state.password}
+                      onChange={this.handleChange}
                       label="Your password"
                       icon="lock"
                       group
-                      name = "password"
+                      name="password"
                       type="password"
                       validate
                     />
                   </div>
                   <div className="text-center py-4 mt-3">
-                    <MDBBtn color="orange"  type="submit" onClick = {this.signup}>
+                    <MDBBtn color="orange" type="submit" onClick={this.signup}>
                       Register
                     </MDBBtn>
                   </div>
