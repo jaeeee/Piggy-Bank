@@ -32,7 +32,7 @@ class Login extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {})
       .catch(error => {
-        console.log(error);
+        alert(error);
       });
   }
 
@@ -57,52 +57,55 @@ class Login extends Component {
 
   render() {
     return (
-          <MDBContainer>
-            <MDBRow>
-              <MDBCol md="6">
-                <form>
-                  <p className="h5 text-center mb-4">Sign in</p>
-                  <div className="grey-text">
-                    <MDBInput
-                      value = {this.state.email}
-                      onChange= {this.handleChange}
-                      label="Type your email"
-                      icon="envelope"
-                      group
-                      name = "email"
-                      type="email"
-                      validate
-                      error="wrong"
-                      success="right"
-                    />
-                    <MDBInput
-                      value = {this.state.password}
-                      onChange= {this.handleChange}
-                      label="Type your password"
-                      icon="lock"
-                      group
-                      name = "password"
-                      type="password"
-                      validate
-                    />
-                  </div>
-                  <div className="d-inline">
-                    <MDBBtn type = "submit" onClick={this.login} >
-                      Login
-                    </MDBBtn>
-                  </div>
-                  <div className="d-inline">
-                    <MDBBtn color = "indigo" onClick={this.signup}>
-                      SignUp
-                    </MDBBtn>
-                    {this.state.showsignup ? <SignUp/> : null}
-                  </div>
-                </form>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="12">
+            <MDBCard style={{ width: "44rem", height: "24rem", padding: "50px" }}>
+              <form>
+                <p className="h5 text-center mb-4">Sign in</p>
+                <div className="grey-text">
+                  <MDBInput
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    label="Type your email"
+                    icon="envelope"
+                    group
+                    name="email"
+                    type="email"
+                    validate
+                    error="wrong"
+                    success="right"
+                  />
+                  <MDBInput
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    label="Type your password"
+                    icon="lock"
+                    group
+                    name="password"
+                    type="password"
+                    validate
+                  />
+                </div>
+                <div className="d-inline">
+                  <MDBBtn type="submit" onClick={this.login}>
+                    Login
+                  </MDBBtn>
+                </div>
+                <div className="d-inline">
+                  <MDBBtn color="indigo" onClick={this.signup}>
+                    SignUp
+                  </MDBBtn>
+                  {this.state.showsignup ? <SignUp /> : null}
+                </div>
+              </form>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+      // </div>
 
-    /*  <div className="col-md-6">
+      /*  <div className="col-md-6">
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
