@@ -1,23 +1,106 @@
 import React, {Component} from "react";
 import fire from "./config/firebase";
 
-
-class Expenses extends React.Component {
+class ExpenseForm extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			expenses: [
-				{
-					purchase: Array(4).fill(null)
-				}
-			],
-			expenseNumber: 0
-		};
+			purchase: Array(4).fill(null)
+		}
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSubmit = this.handleSubmit(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	handleSubmit(event){
+		return;
+	}
 	handleInputChange(event){
+		const purchase = this.state.purchase.slice();
+		const target = event.target;
+		const value = event.value;
+		const name = target.name;
+
+		if(name === "name"){
+			this.setState({
+				purchase: purchase[0] = value
+			});
+		}
+		else if(name === "amount"){
+			this.setState({
+				purchase: purchase[1] = value
+			});
+		}
+		else if(name === "category"){
+			this.setState({
+				purchase: purchase[2] = value
+			});
+		}
+		else if(name === "date"){
+			this.setState({
+				purchase: purchase[3] = value
+			});
+		}
+	}
+
+	getPurchase(){
+		return this.state.purchase;
+	}
+
+	render(){
+		return(
+			<form onSubmit = {this.handleSubmit}>
+				<label>
+					Name:
+					<input
+						name = "name"
+						type = "textarea"
+						value = {this.state.purchase[0]}
+						onChange = {() => this.handleInputChange} />
+				</label>
+				<br />
+				<label>
+					Amount:
+					<input
+						name = "amount"
+						type = "textarea"
+						value = {this.state.purchase[1]}
+						onChange = {() => this.handleInputChange} />
+				</label>
+				<br />
+				<label>
+					Category:
+					<input
+						name = "category"
+						type = "textarea"
+						value = {this.state.purchase[2]}
+						onChange = {() => this.handleInputChange} />
+				</label>
+				<br />
+				<label>
+					Date:
+					<input
+						name = "date"
+						type = "textarea"
+						value = {this.state.purchase[3]}
+						onChange = {() => this.handleChange} />
+				</label>
+				<br />
+				<input type = "submit" value = "Submit" />
+			</form>
+		);
+	}
+}
+
+class Expenses extends React.Component {
+	/*constructor(props){
+		super(props);
+		this.state = {
+			expenses: Array(1).fill(null),
+			expenseNumber: 0
+		}
+	}
+
+	/*handleInputChange(event){
 		const expenses = this.state.expenses.slice();
 		const expenseNumber = this.state.expenseNumber;
 		const target = event.target;
@@ -52,16 +135,17 @@ class Expenses extends React.Component {
 	}
 
 	renderExpenseForm(){
-		var expenseNumber = this.state.expenseNumber;
+		//var expenseNumber = this.state.expenseNumber;
+		console.log("in form rendering");
 		return (
-			<form onSubmit = {this.handleSubmit}>
+			<form onSubmit = {() => this.handleSubmit()}>
 				<label>
 					Name:
 					<input
 						name = "name"
 						type = "textarea"
-						value = {this.state.expenses[expenseNumber][0]}
-						onChange = {this.handleInputChange} />
+						value = "Name"
+						onChange = {() => this.handleInputChange()} />
 				</label>
 				<br />
 				<label>
@@ -69,8 +153,8 @@ class Expenses extends React.Component {
 					<input
 						name = "amount"
 						type = "number"
-						value = {this.state.expenses[expenseNumber][1]}
-						onChange = {this.handleInputChange} />
+						value = "$0"
+						onChange = {() => this.handleInputChange()} />
 				</label>
 				<br />
 				<label>
@@ -78,8 +162,8 @@ class Expenses extends React.Component {
 					<input
 						name = "category"
 						type = "textarea"
-						value = {this.state.expenses[expenseNumber][2]}
-						onChange = {this.handleInputChange} />
+						value = "e.g. Shopping"
+						onChange = {() => this.handleInputChange()} />
 				</label>
 				<br />
 				<label>
@@ -87,8 +171,8 @@ class Expenses extends React.Component {
 					<input
 						name = "date"
 						type = "textarea"
-						value = {this.state.expenses[expenseNumber][3]}
-						onChange = {this.handleInputChange} />
+						value = "MM/DD/YY"
+						onChange = {() => this.handleInputChange()} />
 				</label>
 				<br />
 				<input type = "submit" value = "Submit" />
@@ -111,7 +195,8 @@ class Expenses extends React.Component {
 				<h1>This Month's Expenses</h1>
 				
 				<div>
-				<button onClick={() => this.renderExpenseForm()}>Add Expense</button>
+				<ExpenseForm />
+				<button>Add Expense</button>
 				</div>
 			</div>
 		);
