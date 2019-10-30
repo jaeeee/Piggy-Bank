@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 import { Link } from "react-router-dom";
 import fire from "./config/firebase";
-import { ModalHeader, Modal, Button, ButtonToolbar } from 'react-bootstrap';
-require("react-bootstrap/ModalHeader");
 
-class SignUp extends Component{
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -14,99 +20,9 @@ class SignUp extends Component{
     this.state = {
       name: "",
       email: "",
-      password: "",
+      password: ""
     };
   }
-
-  MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-     <MDBContainer>
-          <MDBRow>
-            <MDBCol md="6">
-              <MDBCard>
-                <MDBCardBody>
-                  <form>
-                    <p className="h4 text-center py-4">Sign up</p>
-                    <div className="grey-text">
-                      <MDBInput
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                        label="Your name"
-                        icon="user"
-                        group
-                        name="name"
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      <MDBInput
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        label="Your email"
-                        icon="envelope"
-                        group
-                        name="email"
-                        type="email"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      <MDBInput
-                        label="Confirm your email"
-                        icon="exclamation-triangle"
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      <MDBInput
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        label="Your password"
-                        icon="lock"
-                        group
-                        name="password"
-                        type="password"
-                        validate
-                      />
-                    </div>
-                    <div className="text-center py-4 mt-3">
-                      <MDBBtn
-                        color="orange"
-                        type="submit"
-                        onClick={this.signup}
-                      >
-                        Register
-                      </MDBBtn>
-                    </div>
-                  </form>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
-
 
   handleChange(e) {
     console.log(e.target.value);
@@ -114,9 +30,8 @@ class SignUp extends Component{
   }
 
   signup(e) {
-
     e.preventDefault();
-    console.log("passed signup")
+    console.log("passed signup");
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -128,26 +43,83 @@ class SignUp extends Component{
         console.log(error);
         alert(error);
       });
-      fire.firestore().doc(`/users/${this.state.email}`).set({
+    fire
+      .firestore()
+      .doc(`/users/${this.state.email}`)
+      .set({
         name: this.state.name,
-        password: this.state.password,
+        password: this.state.password
         // wallet: 1000
       });
   }
 
-  render(){
+  render() {
     return (
-      <ButtonToolbar>
-        <this.MyVerticallyCenteredModal
-          // show={modalShow}
-          // value={this.state.name}
-          // onChange={this.handleChange}
-          // onHide={() => setModalShow(false)}
-        />
-      </ButtonToolbar>
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="6">
+            <MDBCard>
+              <MDBCardBody>
+                <form>
+                  <p className="h4 text-center py-4">Sign up</p>
+                  <div className="grey-text">
+                    <MDBInput
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      label="Your name"
+                      icon="user"
+                      group
+                      name="name"
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      label="Your email"
+                      icon="envelope"
+                      group
+                      name="email"
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      label="Confirm your email"
+                      icon="exclamation-triangle"
+                      group
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                      label="Your password"
+                      icon="lock"
+                      group
+                      name="password"
+                      type="password"
+                      validate
+                    />
+                  </div>
+                  <div className="text-center py-4 mt-3">
+                    <MDBBtn color="orange" type="submit" onClick={this.signup}>
+                      Register
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
-
 
 export default SignUp;
