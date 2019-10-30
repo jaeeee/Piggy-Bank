@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import "./App.css";
 import fire from "./config/firebase";
 import Home from "./Home";
 import Login from "./Login";
-import "bootstrap/dist/css/bootstrap.min.css";
+import SignUp from "./Signup";
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 class App extends Component {
   constructor() {
@@ -32,7 +35,11 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">{this.state.user ? <Home /> : <Login />}</div>;
+    
+    return( 
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
+            <div className="App">{this.state.user ? <Home /> : <Login />}</div>
+    </div>);
   }
 }
 
