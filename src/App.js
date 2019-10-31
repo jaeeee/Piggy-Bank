@@ -5,7 +5,7 @@ import fire from "./config/firebase";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./Signup";
-import homepage from "./homepage";
+// import homepage from "./homepage";
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import Chevron from "./Chevron";

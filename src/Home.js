@@ -26,11 +26,14 @@ class Home extends Component {
       <div>
         <MDBContainer>
           <MDBCard>
-            <Homepage />
+            <MDBCardBody>
+              <Homepage />
+              <MDBBtn onClick={this.logout}>Logout</MDBBtn>
+              {/* <button onClick={this.logout}>Logout</button> */}
+            </MDBCardBody>
           </MDBCard>
         </MDBContainer>
         {/* <Home />  */}
-        {/* <button onClick={this.logout}>Logout</button> */}
       </div>
     );
   }
