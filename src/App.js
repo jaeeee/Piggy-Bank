@@ -4,6 +4,7 @@ import "./App.css";
 import fire from "./config/firebase";
 import Home from "./Home";
 import Login from "./Login";
+import Navbar from "./Navbar";
 import SignUp from "./Signup";
 // import homepage from "./homepage";
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -37,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-    
+
     return( 
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
             <div className="App">{this.state.user ? <Home /> : <Login />}</div>);
