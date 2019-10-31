@@ -41,7 +41,7 @@ class App extends Component {
 
     return( 
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
-            <div className="App">{this.state.user ? <Home /> : <Login />}</div>);
+            <div className="App">{this.state.user ? <Home /> : <Login />}</div>
     </div>);
   }
 }
