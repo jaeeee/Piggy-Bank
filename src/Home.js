@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "./config/firebase";
 import Homepage from './homepage';
+import Navbar from "./Navbar";
 import {
   MDBContainer,
   MDBRow,
@@ -24,6 +25,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <MDBContainer>
           <MDBCard>
             <MDBCardBody>
