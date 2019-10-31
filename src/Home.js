@@ -1,5 +1,15 @@
 import React, { Component } from "react";
 import fire from "./config/firebase";
+import Homepage from './homepage';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 class Home extends Component {
   constructor(props) {
@@ -14,8 +24,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to Home</h1>
-        <button onClick={this.logout}>Logout</button>
+        <MDBContainer>
+          <MDBCard>
+            <Homepage />
+          </MDBCard>
+        </MDBContainer>
+        {/* <Home />  */}
+        {/* <button onClick={this.logout}>Logout</button> */}
       </div>
     );
   }

@@ -5,8 +5,10 @@ import fire from "./config/firebase";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./Signup";
+import homepage from "./homepage";
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import Chevron from "./Chevron";
 
 class App extends Component {
   constructor() {
@@ -38,7 +40,7 @@ class App extends Component {
     
     return( 
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
-            <div className="App">{this.state.user ? <Home /> : <Login />}</div>
+            <div className="App">{this.state.user ? <Home /> : <Login />}</div>);
     </div>);
   }
 }
