@@ -2,6 +2,7 @@ import React, { Component, useState, useRef } from "react";
 import ReactDOM from 'react-dom';
 import './homepage.css';
 import Chevron from "./Chevron";
+import Register from './SampleForm';
 
 
 function Accordion(props) {
@@ -44,29 +45,29 @@ function Accordion(props) {
   class Homepage extends React.Component {
     
    render(){
-       return(
-           <div>
-             <Accordion
-              title="Overview"
-              content="
+       return (
+         <div>
+           <Register />
+           <Accordion
+             title="Overview"
+             content="
                 <p>
                   You spent too much money today <br/>
                   thats not good <br/>
                   spend less <br/>
                   tomorrow 
                 </p>"
-                />
-              <Accordion
-              title="Wallet"
-              content="
+           />
+           <Accordion
+             title="Wallet"
+             content="
                 <p>
                  Look at my money $$$ <br/>
                  $1,000,000 <br/>
                  I'm rich!!!
                 </p>"
-                />
-           </div>
-           
+           />
+         </div>
        );
    }
   }

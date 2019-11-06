@@ -12,5 +12,12 @@ import firebase from 'firebase';
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  // this.db = firebase.firestore();
+const db = firebase.firestore();
+
+export { db };
+
+  // export default db;
+  // export { db };
 
 export default firebase;
