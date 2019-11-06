@@ -18,94 +18,8 @@ class SignUp extends Component{
     };
   }
 
-  MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-     <MDBContainer>
-          <MDBRow>
-            <MDBCol md="6">
-              <MDBCard>
-                <MDBCardBody>
-                  <form>
-                    <p className="h4 text-center py-4">Sign up</p>
-                    <div className="grey-text">
-                      <MDBInput
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                        label="Your name"
-                        icon="user"
-                        group
-                        name="name"
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      <MDBInput
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        label="Your email"
-                        icon="envelope"
-                        group
-                        name="email"
-                        type="email"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      <MDBInput
-                        label="Confirm your email"
-                        icon="exclamation-triangle"
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      <MDBInput
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        label="Your password"
-                        icon="lock"
-                        group
-                        name="password"
-                        type="password"
-                        validate
-                      />
-                    </div>
-                    <div className="text-center py-4 mt-3">
-                      <MDBBtn
-                        color="orange"
-                        type="submit"
-                        onClick={this.signup}
-                      >
-                        Register
-                      </MDBBtn>
-                    </div>
-                  </form>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
+
+
 
 
   handleChange(e) {
@@ -137,14 +51,75 @@ class SignUp extends Component{
 
   render(){
     return (
-      <ButtonToolbar>
-        <this.MyVerticallyCenteredModal
-          // show={modalShow}
-          // value={this.state.name}
-          // onChange={this.handleChange}
-          // onHide={() => setModalShow(false)}
-        />
-      </ButtonToolbar>
+      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', }}>
+       <MDBContainer>
+            <MDBRow>
+              <MDBCol md="6">
+                <MDBCard>
+                  <MDBCardBody>
+                    <form>
+                      <p className="h4 text-center py-4">Sign up</p>
+                      <div className="grey-text">
+                        <MDBInput
+                          value={this.state.name}
+                          onChange={this.handleChange}
+                          label="Your name"
+                          icon="user"
+                          group
+                          name="name"
+                          type="text"
+                          validate
+                          error="wrong"
+                          success="right"
+                        />
+                        <MDBInput
+                          value={this.state.email}
+                          onChange={this.handleChange}
+                          label="Your email"
+                          icon="envelope"
+                          group
+                          name="email"
+                          type="email"
+                          validate
+                          error="wrong"
+                          success="right"
+                        />
+                        <MDBInput
+                          label="Confirm your email"
+                          icon="exclamation-triangle"
+                          group
+                          type="text"
+                          validate
+                          error="wrong"
+                          success="right"
+                        />
+                        <MDBInput
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                          label="Your password"
+                          icon="lock"
+                          group
+                          name="password"
+                          type="password"
+                          validate
+                        />
+                      </div>
+                      <div className="text-center py-4 mt-3">
+                        <MDBBtn
+                          color="orange"
+                          type="submit"
+                          onClick={this.signup}
+                        >
+                          Register
+                        </MDBBtn>
+                      </div>
+                    </form>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </div>
     );
   }
 }

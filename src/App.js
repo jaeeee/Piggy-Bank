@@ -5,6 +5,15 @@ import fire from "./config/firebase";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./Signup";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 
@@ -35,11 +44,26 @@ class App extends Component {
   }
 
   render() {
-    
-    return( 
+
+    return(
+      <Router>
+        <Switch>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+        </Switch>
+
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
-            <div className="App">{this.state.user ? <Home /> : <Login />}</div>
-    </div>);
+            <div className="App">{this.state.user ? <Redirect to="/home" /> :  <Redirect to="/" />}</div>
+          </div>;
+      </Router>
+    );
   }
 }
 
