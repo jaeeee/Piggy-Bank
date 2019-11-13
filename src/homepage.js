@@ -47,7 +47,7 @@ function Accordion(props) {
    render(){
        return (
          <div>
-           <SampleForm />
+           {/* <SampleForm /> */}
 
            <Accordion 
              title="Overview"

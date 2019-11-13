@@ -44,7 +44,7 @@
   transform: rotate(180deg);
   margin-left: auto;
   transition: transform 0.3s ease-in-out;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 /* Style to rotate icon when state is active */
@@ -57,12 +57,12 @@
   overflow: hidden;
   background-color: white;
   transition: max-height 0.6s ease-in-out;
-  padding: 2px;
+  /* padding: 2px; */
 }
 
 /* Style the accordion text */
 .accordion_text {
-  padding: 5px;
+  /* padding: 5px; */
   text-align: center;
   font-family: Comfortaa;
   font-weight: 400;
