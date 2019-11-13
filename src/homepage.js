@@ -63,8 +63,6 @@ function Accordion(props) {
         //  console.log(fire.auth().currentUser);
        return (
          <div>
-           <SampleForm />
-
            <Accordion 
              title="Overview"
              content="
@@ -84,10 +82,8 @@ function Accordion(props) {
                  I'm rich!!!
                 </p>"
            />
-           <Accordion
-            title="Calculator"
-            content=""
-           />
+             <SampleForm />
+
          </div>
        );
    }
