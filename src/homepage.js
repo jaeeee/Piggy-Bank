@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './homepage.css';
 import Chevron from "./Chevron";
 import SampleForm from './SampleForm';
+import fire from "./config/firebase";
 
 
 function Accordion(props) {
+  // tester: fire.auth().currentUser.email
   //setActive is the variable and setActiveState is the function that changes that variable
   const [setActive, setActiveState] = useState("notActive"); //useState allows for state variables inside of functions
   const [setHeight, setHeightState] = useState("0px");
@@ -43,11 +45,25 @@ function Accordion(props) {
  }
 
   class Homepage extends React.Component {
-    
+    constructor(props) {
+      super(props);
+      this.state = {
+      fuck_you: "",
+      };
+    }
+    // var user = firebase.auth().currentUser;
+    // console.log(fire.auth().currentUser);
+    // console.log("hi");
    render(){
+    //  if (fire.auth().currentUser != null) {
+    //    console.log(fire.auth().currentUser.email);
+    //  }
+    //  this.state.fuck_you = (fire.auth().currentUser.email);
+    //  const FUCK_YOU = fire.auth().currentUser.email;
+        //  console.log(fire.auth().currentUser);
        return (
          <div>
-           {/* <SampleForm /> */}
+           <SampleForm />
 
            <Accordion 
              title="Overview"
@@ -67,6 +83,10 @@ function Accordion(props) {
                  $1,000,000 <br/>
                  I'm rich!!!
                 </p>"
+           />
+           <Accordion
+            title="Calculator"
+            content=""
            />
          </div>
        );

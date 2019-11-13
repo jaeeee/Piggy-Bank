@@ -68,9 +68,9 @@ const Navbar = () => {
           <ListItem button component="a" href="http://google.com">
             <ListItemText primary="Ask Piggy" />
           </ListItem>
-          <ListItem button component="a" href="http://google.com">
+          {/* <ListItem button component="a" href="http://google.com">
             <ListItemText primary="Logout" />
-          </ListItem>
+          </ListItem> */}
         </List>
       </Drawer>
     </div>

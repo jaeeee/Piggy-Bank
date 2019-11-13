@@ -26,7 +26,7 @@ class App extends Component {
 
   authListener() {
     fire.auth().onAuthStateChanged(user => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         this.setState({ user });
         localStorage.setItem("user", user.uid);
@@ -38,7 +38,8 @@ class App extends Component {
   }
 
   render() {
-
+            console.log("hi");
+            console.log(this.state.user);
     return( 
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
             <div className="App">{this.state.user ? <Home /> : <Login />}</div>
