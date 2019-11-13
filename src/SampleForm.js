@@ -10,8 +10,11 @@ class SampleForm extends React.Component {
     this.state = {
       // user: this.props.user,
       formValues: {
+
         name: "",
-        role: ""
+        role: "",
+        cats: []
+
       },
       formErrors: {
         name: "",
@@ -49,10 +52,10 @@ class SampleForm extends React.Component {
       ...this.state.formValues,
       uid: new Date().getTime()
     };
-    // const  
+    // const
     db.collection("sample_data")
-    // db.collection(JSON.stringify(user)) 
-      .doc(data.uid)  
+    // db.collection(JSON.stringify(user))
+      .doc(user)
       .set(data)
       .then(() => {
         // NotificationManager.success("A new user has been added", "Success");
@@ -86,7 +89,15 @@ class SampleForm extends React.Component {
     }
   };
 
-  handleChange = ({ target }) => {
+  handleChangeName = ({ target }) => {
+    const { formValues } = this.state;
+    formValues[target.name] = target.value;
+    this.setState({ formValues });
+    this.handleValidation(target);
+    this.state.formValues.cats.push(target.value)
+    //console.log(this.state.formValues.cats)
+  };
+  handleChangeRole = ({ target }) => {
     const { formValues } = this.state;
     formValues[target.name] = target.value;
     this.setState({ formValues });
@@ -135,8 +146,8 @@ class SampleForm extends React.Component {
                     formErrors.name ? "is-invalid" : ""
                   }`}
                   placeholder="Enter category name"
-                  onChange={this.handleChange}
                   value={formValues.name}
+                  onChange={this.handleChangeName }
                 />
                 <div className="invalid-feedback">{formErrors.name}</div>
               </div>
@@ -149,7 +160,7 @@ class SampleForm extends React.Component {
                     formErrors.role ? "is-invalid" : ""
                   }`}
                   placeholder="Enter amount spent"
-                  onChange={this.handleChange}
+                  onChange={this.handleChangeRole}
                   value={formValues.role}
                 />
                 <div className="invalid-feedback">{formErrors.role}</div>
