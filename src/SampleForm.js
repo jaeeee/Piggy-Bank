@@ -2,7 +2,7 @@ import React from "react";
 import { NotificationManager } from "react-notifications";
 import { db } from "./config/firebase";
 
-class Register extends React.Component {
+class SampleForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -143,4 +143,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default SampleForm;

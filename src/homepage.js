@@ -2,7 +2,7 @@ import React, { Component, useState, useRef } from "react";
 import ReactDOM from 'react-dom';
 import './homepage.css';
 import Chevron from "./Chevron";
-import Register from './SampleForm';
+import SampleForm from './SampleForm';
 
 
 function Accordion(props) {
@@ -47,7 +47,7 @@ function Accordion(props) {
    render(){
        return (
          <div>
-           <Register />
+           <SampleForm />
            <Accordion
              title="Overview"
              content="
