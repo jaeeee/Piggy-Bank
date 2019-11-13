@@ -2,6 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -47,7 +50,13 @@ const Navbar = () => {
         anchor="left"
       >
         <div className={classes.toolbar} />
-        <Divider />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" noWrap>
+              Piggy Bank
+            </Typography>
+          </Toolbar>
+        </AppBar>
         {/* <List>
           {['Home', 'Expenses', 'Visual Log', 'Ask Piggy', 'Logout'].map((text, index) => (
             <ListItem button key={text}>
@@ -73,6 +82,7 @@ const Navbar = () => {
           </ListItem> */}
         </List>
       </Drawer>
+      <Drawer />
     </div>
     // <div style={{ height: "800px", position: "relative" }}>
     //       <Layout fixedDrawer>

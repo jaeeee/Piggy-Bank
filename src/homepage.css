@@ -13,7 +13,7 @@
   /* background-color: #F8B0B1; */
   color: #707070;
   cursor: pointer;
-  padding: 5px;
+  /* padding: 5px; */
   width: 100%;
   border: none;
   outline: none;
@@ -26,7 +26,7 @@
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .accordion:hover,
 .accordion:hover.active {
-  background-color: #def7fc;
+  background-color: #e0fdff;
 }
 
 /* Style the accordion content title */
