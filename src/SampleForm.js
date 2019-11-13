@@ -49,10 +49,8 @@ class SampleForm extends React.Component {
       ...this.state.formValues,
       uid: new Date().getTime()
     };
-    // const  
     db.collection("sample_data")
-    // db.collection(JSON.stringify(user)) 
-      .doc(data.uid)  
+      .doc(data.uid.toString())  
       .set(data)
       .then(() => {
         // NotificationManager.success("A new user has been added", "Success");
