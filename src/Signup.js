@@ -98,7 +98,7 @@ class SignUp extends Component {
                           error="wrong"
                           success="right"
                         />
-                        <MDBInput
+                        {/* <MDBInput
                           label="Confirm your email"
                           icon="exclamation-triangle"
                           group
@@ -106,7 +106,7 @@ class SignUp extends Component {
                           validate
                           error="wrong"
                           success="right"
-                        />
+                        /> */}
                         <MDBInput
                           value={this.state.password}
                           onChange={this.handleChange}
