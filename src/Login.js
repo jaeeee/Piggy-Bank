@@ -57,88 +57,55 @@ class Login extends Component {
 
   render() {
     return (
-      <MDBContainer>
-        <MDBRow>
-          <MDBCol md="12">
-            <MDBCard style={{ width: "44rem", height: "24rem", padding: "50px" }}>
-              <form>
-                <p className="h5 text-center mb-4">Sign in</p>
-                <div className="grey-text">
-                  <MDBInput
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                    label="Type your email"
-                    icon="envelope"
-                    group
-                    name="email"
-                    type="email"
-                    validate
-                    error="wrong"
-                    success="right"
-                  />
-                  <MDBInput
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    label="Type your password"
-                    icon="lock"
-                    group
-                    name="password"
-                    type="password"
-                    validate
-                  />
-                </div>
-                <div className="d-inline">
-                  <MDBBtn type="submit" onClick={this.login}>
-                    Login
-                  </MDBBtn>
-                </div>
-                <div className="d-inline">
-                  <MDBBtn color="indigo" onClick={this.signup}>
-                    SignUp
-                  </MDBBtn>
-                  {this.state.showsignup ? <SignUp /> : null}
-                </div>
-              </form>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      // </div>
-
-      /*  <div className="col-md-6">
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input
-              value={this.state.email}
-              onChange={this.handleChange}
-              type="email"
-              name="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-            <small id="emailHelp" class="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-              name="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-            />
-          </div>
-          <button type="submit" onClick={this.login} class="btn btn-primary">
-            Login
-          </button>*/
-    );
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol md="12">
+              <MDBCard
+                style={{ width: "44rem", height: "24rem", padding: "50px" }}
+              >
+                <form>
+                  <p className="h5 text-center mb-4">Sign in</p>
+                  <div className="grey-text">
+                    <MDBInput
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      label="Type your email"
+                      icon="envelope"
+                      group
+                      name="email"
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                      label="Type your password"
+                      icon="lock"
+                      group
+                      name="password"
+                      type="password"
+                      validate
+                    />
+                  </div>
+                  <div className="d-inline">
+                    <MDBBtn type="submit" onClick={this.login}>
+                      Login
+                    </MDBBtn>
+                  </div>
+                  <div className="d-inline">
+                    <MDBBtn color="indigo" onClick={this.signup}>
+                      SignUp
+                    </MDBBtn>
+                    {this.state.showsignup ? <SignUp /> : null}
+                  </div>
+                </form>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+          );
   }
 }
 export default Login;

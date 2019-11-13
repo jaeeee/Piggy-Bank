@@ -24,8 +24,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <Navbar />
+                        // {/* No header, and the drawer stays open on larger screens (fixed drawer). */}
+        <div>
+          <Navbar />
         <MDBContainer>
           <MDBCard>
             <MDBCardBody>
