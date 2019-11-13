@@ -28,7 +28,7 @@ class Register extends React.Component {
       uid: new Date().getTime()
     };
     db.collection("sample_data")
-      .doc(data.uid.toString())
+      .doc("daniel.kwong.h@gmail.com")
       .set(data)
       .then(() => {
         NotificationManager.success("A new user has been added", "Success");
