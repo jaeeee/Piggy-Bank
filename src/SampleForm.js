@@ -67,6 +67,8 @@ class SampleForm extends React.Component {
       });
   };
 
+
+
   handleSubmit = event => {
     event.preventDefault();
     this.setState({ isSubmitting: true });
@@ -74,28 +76,31 @@ class SampleForm extends React.Component {
     if (Object.values(formValidity).every(Boolean)) {
       this.addUser();
     } else {
+      this.state.formValues.cats.push(this.state.formValues.name);
+      const { formValues } = this.state;
       for (let key in formValues) {
         let target = {
           name: key,
           value: formValues[key]
         };
+        this.setState({ formValues });
         this.handleValidation(target);
       }
       // NotificationManager.error(
       //   "Please check on the validation message below form fields",
       //   "Validation error"
       // );
-      this.setState({ isSubmitting: false });
     }
   };
 
+
   handleChangeName = ({ target }) => {
+    this.state.formValues.cats.push(this.state.formValues.name);
     const { formValues } = this.state;
     formValues[target.name] = target.value;
     this.setState({ formValues });
     this.handleValidation(target);
-    this.state.formValues.cats.push(target.value)
-    //console.log(this.state.formValues.cats)
+    console.log(this.state.formValues.cats)
   };
   handleChangeRole = ({ target }) => {
     const { formValues } = this.state;
@@ -109,6 +114,7 @@ class SampleForm extends React.Component {
     const fieldValidationErrors = this.state.formErrors;
     const validity = this.state.formValidity;
     const isImage = name === "image";
+
 
     if (!isImage) {
       validity[name] = value.length > 0;
