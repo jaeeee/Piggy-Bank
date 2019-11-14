@@ -16,149 +16,13 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 //Form Dialog files
 import Button from '@material-ui/core/Button';
-<<<<<<< HEAD
-=======
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
->>>>>>> 20ef9f917e8e06c795c3a85c49102f62425abca8
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-<<<<<<< HEAD
-
-var expenses;
-//var numExpenses = expenses.length;
-function createExpense(name, amount, category, date){
-	return {name, amount, category, date};
-}
-//expenses = [createExpense('Example', 1000, 'fun', '1/1/0001')];
-function addExpense(name, amount, category, date){
-	if(expenses[0].name === 'Example'){
-		expenses = [createExpense(name, amount, category, date)];
-	}else{
-		expenses.push(createExpense(name, amount, category, date));
-	}
-}
-
-function Accordion(){
-	const useStyles = makeStyles(theme => ({
-		root: {
-			width: '100%',
-		},
-		heading: {
-			fontSize: theme.typography.pxToRem(15),
-			fontWeight: theme.typography.fontWeightRegular,
-		},
-	}));
-
-	const classes = useStyles();
-
-	return (
-		<div className={classes.root}>
-			<ExpansionPanel>
-				<ExpansionPanelSummary
-					expandIcon={<ExpandMoreIcon />}
-					aria-controls="panel1a-content"
-					id="panel1a-header"
-				>
-					<Typography className={classes.heading}>
-						This Month's Expenses
-					</Typography>
-				</ExpansionPanelSummary>
-				<ExpansionPanelDetails>
-					<Typography>
-						<ExpenseTable />
-					</Typography>
-				</ExpansionPanelDetails>
-			</ExpansionPanel>
-		</div>
-	);
-}
-
-function ExpenseTable(){
-	const useStyles = makeStyles({
-		root: {
-			width: '100%',
-			overflowX: 'auto',
-		},
-		table: {
-			minWidth: 650,
-		},
-	});
-	
-	expenses = [createExpense('Whole Foods', 45, 'Groceries', '11/6/2019')];
-	expenses.push(createExpense('Movie', 30, 'Entertainment', '10/31/2019'));
-	expenses.push(createExpense('Disneyland', 300, 'Leisure', '11/10/2019'));
-	//addExpense('Whole Foods', 45, 'Groceries', '11/6/2019');
-	//addExpense('Movie', 30, 'Entertainment', '10/31/2019');
-	//addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
-	const classes = useStyles();
-
-	return (
-		<Paper className={classes.root}>
-			<Table className={classes.table} aria-label="Expenses">
-				<TableHead>
-					<TableRow>
-						<TableCell>Expense</TableCell>
-						<TableCell align="right">Amount</TableCell>
-						<TableCell align="right">Category</TableCell>
-						<TableCell align="right">Date</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{expenses.map(expenses => (
-						<TableRow key = {expenses.index}>
-							<TableCell component="th" scope="row">
-								{expenses.name}
-							</TableCell>
-							<TableCell align="right">{expenses.amount}</TableCell>
-							<TableCell align="right">{expenses.category}</TableCell>
-							<TableCell align="right">{expenses.date}</TableCell>
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		</Paper>
-	);
-}
-
-function ExpenseFormDialog(){
-	const[open, setOpen] = React.useState(false);
-
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
-	const handleClose = () => {
-		setOpen(false);
-	};
-
-	return (
-		<div>
-			<Button variant="outlined" color="primary" onClick={handleClickOpen}>
-				Add Expense
-			</Button>
-			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-				<DialogTitle id="form-dialog-title">New Expense</DialogTitle>
-				<DialogContent>
-					<DialogContentText>
-						insert expenses form here
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleClose} color="primary">
-						Cancel
-					</Button>
-					<Button onClick={handleClose} color="primary">
-						Add
-					</Button>
-				</DialogActions>
-			</Dialog>
-		</div>
-	)
-}
-=======
 //actual form files
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
@@ -166,7 +30,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
->>>>>>> 20ef9f917e8e06c795c3a85c49102f62425abca8
 
 var expenses;
 //var numExpenses = expenses.length;
@@ -216,7 +79,6 @@ function Accordion(){
 		</div>
 	);
 }
-
 function ExpenseTable(){
 	const useStyles = makeStyles({
 		root: {
@@ -235,7 +97,6 @@ function ExpenseTable(){
 	//addExpense('Movie', 30, 'Entertainment', '10/31/2019');
 	//addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
 	const classes = useStyles();
-
 	return (
 		<Paper className={classes.root}>
 			<Table className={classes.table} aria-label="Expenses">
@@ -263,18 +124,13 @@ function ExpenseTable(){
 		</Paper>
 	);
 }
-
-<<<<<<< HEAD
-=======
 function ExpenseFormDialog(){
 	const useStyles = makeStyles(theme => ({
 		fab: {
 			margin: theme.spacing(1)
 		}
 	}));
-
 	const[open, setOpen] = React.useState(false);
-
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -290,9 +146,6 @@ function ExpenseFormDialog(){
 			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">New Expense</DialogTitle>
 				<DialogContent>
-					<DialogContentText>
-						insert expense form here
-					</DialogContentText>
 					<ExpenseForm />
 				</DialogContent>
 				<DialogActions>
@@ -307,7 +160,6 @@ function ExpenseFormDialog(){
 		</div>
 	)
 }
-
 function ExpenseForm(){
 	const useStyles = makeStyles(theme => ({
 		root: {
@@ -382,8 +234,6 @@ function ExpenseForm(){
 	);
 	
 }
-
->>>>>>> 20ef9f917e8e06c795c3a85c49102f62425abca8
 class Expenses extends React.Component {
 	
 	render(){
@@ -396,5 +246,4 @@ class Expenses extends React.Component {
 		);
 	}
 }
-
 export default Expenses;
