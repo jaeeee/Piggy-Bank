@@ -16,11 +16,17 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 //Form Dialog files
 import Button from '@material-ui/core/Button';
+<<<<<<< HEAD
+=======
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+>>>>>>> 20ef9f917e8e06c795c3a85c49102f62425abca8
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+<<<<<<< HEAD
 
 var expenses;
 //var numExpenses = expenses.length;
@@ -152,97 +158,232 @@ function ExpenseFormDialog(){
 		</div>
 	)
 }
+=======
+//actual form files
+import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+>>>>>>> 20ef9f917e8e06c795c3a85c49102f62425abca8
 
-class ExpenseForm extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			purchase: Array(4).fill(null)
-		}
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	handleSubmit(event){
-		return;
-	}
-	handleInputChange(event){
-		const purchase = this.state.purchase.slice();
-		const target = event.target;
-		const value = event.value;
-		const name = target.name;
-
-		if(name === "name"){
-			this.setState({
-				purchase: purchase[0] = value
-			});
-		}
-		else if(name === "amount"){
-			this.setState({
-				purchase: purchase[1] = value
-			});
-		}
-		else if(name === "category"){
-			this.setState({
-				purchase: purchase[2] = value
-			});
-		}
-		else if(name === "date"){
-			this.setState({
-				purchase: purchase[3] = value
-			});
-		}
-	}
-
-	getPurchase(){
-		return this.state.purchase;
-	}
-
-	render(){
-		return(
-			<form onSubmit = {this.handleSubmit}>
-				<label>
-					Name:
-					<input
-						name = "name"
-						type = "textarea"
-						value = {this.state.purchase[0]}
-						onChange = {() => this.handleInputChange} />
-				</label>
-				<br />
-				<label>
-					Amount:
-					<input
-						name = "amount"
-						type = "textarea"
-						value = {this.state.purchase[1]}
-						onChange = {() => this.handleInputChange} />
-				</label>
-				<br />
-				<label>
-					Category:
-					<input
-						name = "category"
-						type = "textarea"
-						value = {this.state.purchase[2]}
-						onChange = {() => this.handleInputChange} />
-				</label>
-				<br />
-				<label>
-					Date:
-					<input
-						name = "date"
-						type = "textarea"
-						value = {this.state.purchase[3]}
-						onChange = {() => this.handleChange} />
-				</label>
-				<br />
-				<input type = "submit" value = "Submit" />
-			</form>
-		);
+var expenses;
+//var numExpenses = expenses.length;
+function createExpense(name, amount, category, date){
+	return {name, amount, category, date};
+}
+//expenses = [createExpense('Example', 1000, 'fun', '1/1/0001')];
+function addExpense(name, amount, category, date){
+	if(expenses[0].name === 'Example'){
+		expenses = [createExpense(name, amount, category, date)];
+	}else{
+		expenses.push(createExpense(name, amount, category, date));
 	}
 }
 
+function Accordion(){
+	const useStyles = makeStyles(theme => ({
+		root: {
+			width: '100%',
+		},
+		heading: {
+			fontSize: theme.typography.pxToRem(15),
+			fontWeight: theme.typography.fontWeightRegular,
+		},
+	}));
+
+	const classes = useStyles();
+
+	return (
+		<div className={classes.root}>
+			<ExpansionPanel>
+				<ExpansionPanelSummary
+					expandIcon={<ExpandMoreIcon />}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
+				>
+					<Typography className={classes.heading}>
+						This Month's Expenses
+					</Typography>
+				</ExpansionPanelSummary>
+				<ExpansionPanelDetails>
+					<Typography>
+						<ExpenseTable />
+					</Typography>
+				</ExpansionPanelDetails>
+			</ExpansionPanel>
+		</div>
+	);
+}
+
+function ExpenseTable(){
+	const useStyles = makeStyles({
+		root: {
+			width: '100%',
+			overflowX: 'auto',
+		},
+		table: {
+			minWidth: 650,
+		},
+	});
+	
+	expenses = [createExpense('Whole Foods', 45, 'Groceries', '11/6/2019')];
+	expenses.push(createExpense('Movie', 30, 'Entertainment', '10/31/2019'));
+	expenses.push(createExpense('Disneyland', 300, 'Leisure', '11/10/2019'));
+	//addExpense('Whole Foods', 45, 'Groceries', '11/6/2019');
+	//addExpense('Movie', 30, 'Entertainment', '10/31/2019');
+	//addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
+	const classes = useStyles();
+
+	return (
+		<Paper className={classes.root}>
+			<Table className={classes.table} aria-label="Expenses">
+				<TableHead>
+					<TableRow>
+						<TableCell>Expense</TableCell>
+						<TableCell align="right">Amount</TableCell>
+						<TableCell align="right">Category</TableCell>
+						<TableCell align="right">Date</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{expenses.map(expenses => (
+						<TableRow key = {expenses.index}>
+							<TableCell component="th" scope="row">
+								{expenses.name}
+							</TableCell>
+							<TableCell align="right">{expenses.amount}</TableCell>
+							<TableCell align="right">{expenses.category}</TableCell>
+							<TableCell align="right">{expenses.date}</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+		</Paper>
+	);
+}
+
+<<<<<<< HEAD
+=======
+function ExpenseFormDialog(){
+	const useStyles = makeStyles(theme => ({
+		fab: {
+			margin: theme.spacing(1)
+		}
+	}));
+
+	const[open, setOpen] = React.useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
+	const classes = useStyles();
+	return (
+		<div>
+			<Fab color="primary" aria-label="add" className={classes.fab} onClick={handleClickOpen}>
+				<AddIcon />
+			</Fab>
+			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+				<DialogTitle id="form-dialog-title">New Expense</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						insert expense form here
+					</DialogContentText>
+					<ExpenseForm />
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose} color="primary">
+						Cancel
+					</Button>
+					<Button onClick={handleClose} color="primary">
+						Add
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</div>
+	)
+}
+
+function ExpenseForm(){
+	const useStyles = makeStyles(theme => ({
+		root: {
+			display: 'flex',
+			flexWrap: 'wrap',
+		},
+		margin: {
+			margin: theme.spacing(1),
+		},
+		withoutLabel: {
+			marginTop: theme.spacing(3),
+		},
+		textField: {
+			width: 200,
+		},
+		menu: {
+			width: 200,
+		},
+	}));
+	//category choices
+	/*const categories = [
+		{value: }
+	];*/
+	const classes = useStyles();
+	const [values, setValues] = React.useState({
+		name: '',
+		amount: '',
+		category: '',
+		date: '',
+	});
+	const handleChange = prop => event => {
+		setValues({ ...values, [prop]: event.target.value })
+	}
+	return(
+		<div>
+			<FormControl className={classes.margin, classes.textField}>
+				<InputLabel htmlFor="standard-adornment-name">Name</InputLabel>
+				<Input
+					id="standard-adornment-name"
+					value={values.name}
+					onChange={handleChange('name')}
+				/>
+			</FormControl>
+			<FormControl className={classes.margin, classes.textField}>
+				<InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+				<Input
+					id="standard-adornment-amount"
+					value={values.amount}
+					onChange={handleChange('amount')}
+					startAdornment={<InputAdornment position="start">$</InputAdornment>}
+				/>
+			</FormControl>
+			<FormControl className={classes.margin, classes.textField}>
+				<InputLabel htmlFor="standard-adornment-category">Category</InputLabel>
+				<Input
+					id="standard-adornment-category"
+					value={values.category}
+					onChange={handleChange('category')}
+				/>
+			</FormControl>
+			<TextField
+				id="date"
+				label="Date of Expense"
+				type="date"
+				placeholder="YYYY-MM-DD"
+				className={classes.textField}
+				InputLabelProps={{
+					shrink: true,
+				}}
+			/>
+		</div>
+	);
+	
+}
+
+>>>>>>> 20ef9f917e8e06c795c3a85c49102f62425abca8
 class Expenses extends React.Component {
 	
 	render(){
