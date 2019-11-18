@@ -8,8 +8,15 @@ import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Switch,
+//   Link,
+//   Redirect
+// } from "react-router-dom";
 // import {Link} from 'react-router-dom';
-import { Link } from "@material-ui/core";
+// import { Link } from "@material-ui/core";
 // import { Layout, Drawer, Navigation, Content } from "react-mdl";
 
 const drawerWidth = 240;
@@ -77,9 +84,6 @@ const Navbar = () => {
           <ListItem button component="a" href="http://google.com">
             <ListItemText primary="Ask Piggy" />
           </ListItem>
-          {/* <ListItem button component="a" href="http://google.com">
-            <ListItemText primary="Logout" />
-          </ListItem> */}
         </List>
       </Drawer>
       <Drawer />

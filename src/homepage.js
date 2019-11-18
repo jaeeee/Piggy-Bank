@@ -4,6 +4,8 @@ import './homepage.css';
 import Chevron from "./Chevron";
 import SampleForm from './SampleForm';
 import fire from "./config/firebase";
+import {db} from './config/firebase';
+import SpendingLog from './SpendingLog';
 
 
 function Accordion(props) {
@@ -82,8 +84,10 @@ function Accordion(props) {
                  I'm rich!!!
                 </p>"
            />
+           {/* <h3>Spending Log</h3> */}
+<SpendingLog />
+            
              <SampleForm />
-
          </div>
        );
    }
