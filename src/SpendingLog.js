@@ -84,7 +84,7 @@ export class SpendingLog extends Component {
       // alert("SUP"),
       <div>
         {/* <MDBCard> */}
-        <h4>Spending Log</h4>
+        {/* <h4>Spending Log</h4> */}
         {/* alert({this.state.Spendings}); */}
         {this.state.Spendings.map(v => {
           return <p>Amount: {v.amount}</p>;
