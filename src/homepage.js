@@ -6,9 +6,9 @@ import SampleForm from './SampleForm';
 import fire from "./config/firebase";
 import {db} from './config/firebase';
 import SpendingLog from './SpendingLog';
+import {Card, Button, Accordion} from 'react-bootstrap';
 
-
-function Accordion(props) {
+function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
   //setActive is the variable and setActiveState is the function that changes that variable
   const [setActive, setActiveState] = useState("notActive"); //useState allows for state variables inside of functions
@@ -65,7 +65,7 @@ function Accordion(props) {
         //  console.log(fire.auth().currentUser);
        return (
          <div>
-           <Accordion 
+           <Accordion_OG
              title="Overview"
              content="
                 <p>
@@ -75,7 +75,7 @@ function Accordion(props) {
                   tomorrow 
                 </p>"
            />
-           <Accordion
+           <Accordion_OG
              title="Wallet"
              content="
                 <p>
@@ -84,10 +84,42 @@ function Accordion(props) {
                  I'm rich!!!
                 </p>"
            />
+           <Accordion>
+             <Card>
+               <Card.Header>
+                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                   Submit Spending
+                 </Accordion.Toggle>
+               </Card.Header>
+               <Accordion.Collapse eventKey="0">
+                 <Card.Body>
+            <SampleForm />
+                 </Card.Body>
+               </Accordion.Collapse>
+             </Card>
+             <Card>
+               <Card.Header>
+                 <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                   Spending Log
+                 </Accordion.Toggle>
+               </Card.Header>
+               <Accordion.Collapse eventKey="1">
+                 <Card.Body>
+                   <SpendingLog />
+                 </Card.Body>
+               </Accordion.Collapse>
+             </Card>
+           </Accordion>
+           <br></br>
            {/* <h3>Spending Log</h3> */}
-<SpendingLog />
-            
-             <SampleForm />
+           {/* <Accordion
+            title="Spending Log"
+            <SpendingLog />
+            /> */}
+           {/* // <SpendingLog /> */}
+           {/* /> */}
+
+           {/* <SampleForm /> */}
          </div>
        );
    }
