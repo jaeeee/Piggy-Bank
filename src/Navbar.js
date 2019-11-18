@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Collapse from '@material-ui/core/Collapse';
 // import {
 //   BrowserRouter as Router,
 //   Route,
@@ -48,45 +49,47 @@ const Navbar = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" noWrap>
-              Piggy Bank
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        {/* <List>
+      {/* <Collapse timeout="auto" unmountOnExit> */}
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          anchor="left"
+        >
+          <div className={classes.toolbar} />
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <Typography variant="h6" noWrap>
+                Piggy Bank
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          {/* <List>
           {['Home', 'Expenses', 'Visual Log', 'Ask Piggy', 'Logout'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List> */}
-        <List>
-          <ListItem button component="a" href="http://google.com">
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button component="a" href="http://google.com">
-            <ListItemText primary="Expenses" />
-          </ListItem>
-          <ListItem button component="a" href="http://google.com">
-            <ListItemText primary="Visual Log" />
-          </ListItem>
-          <ListItem button component="a" href="http://google.com">
-            <ListItemText primary="Ask Piggy" />
-          </ListItem>
-        </List>
-      </Drawer>
-      <Drawer />
+          <List>
+            <ListItem button component="a" href="http://google.com">
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem button component="a" href="http://google.com">
+              <ListItemText primary="Expenses" />
+            </ListItem>
+            <ListItem button component="a" href="http://google.com">
+              <ListItemText primary="Visual Log" />
+            </ListItem>
+            <ListItem button component="a" href="http://google.com">
+              <ListItemText primary="Ask Piggy" />
+            </ListItem>
+          </List>
+        </Drawer>
+        <Drawer />
+      {/* </Collapse> */}
     </div>
     // <div style={{ height: "800px", position: "relative" }}>
     //       <Layout fixedDrawer>
