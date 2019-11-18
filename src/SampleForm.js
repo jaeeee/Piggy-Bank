@@ -22,7 +22,7 @@ class SampleForm extends React.Component {
       },
       formValidity: {
         name: false,
-        role: false
+        role: false,
       },
       isSubmitting: false
     };
@@ -76,7 +76,7 @@ class SampleForm extends React.Component {
     if (Object.values(formValidity).every(Boolean)) {
       this.addUser();
     } else {
-      this.state.formValues.cats.push(this.state.formValues.name);
+      console.log("")
       const { formValues } = this.state;
       for (let key in formValues) {
         let target = {
@@ -93,14 +93,18 @@ class SampleForm extends React.Component {
     }
   };
 
-
+  handleAppendCat = ({ target }) => {
+    const { formValues } = this.state;
+    formValues[target.name] = target.value;
+    this.state.formValues.cats.push(target.value);
+    this.setState({ formValues });
+    this.handleValidation(target);
+  };
   handleChangeName = ({ target }) => {
-    this.state.formValues.cats.push(this.state.formValues.name);
     const { formValues } = this.state;
     formValues[target.name] = target.value;
     this.setState({ formValues });
     this.handleValidation(target);
-    console.log(this.state.formValues.cats)
   };
   handleChangeRole = ({ target }) => {
     const { formValues } = this.state;
@@ -116,7 +120,7 @@ class SampleForm extends React.Component {
     const isImage = name === "image";
 
 
-    if (!isImage) {
+    if (!isImage && name ) {
       validity[name] = value.length > 0;
       fieldValidationErrors[name] = validity[name]
         ? ""
@@ -175,6 +179,9 @@ class SampleForm extends React.Component {
                 type="submit"
                 className="btn btn-primary btn-block"
                 disabled={isSubmitting}
+                name = "name"
+                value={formValues.name}
+                onClick={this.handleAppendCat}
               >
                 {isSubmitting ? "Please wait..." : "Submit"}
               </button>
