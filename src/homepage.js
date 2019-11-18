@@ -93,6 +93,7 @@ function Accordion_OG(props) {
                </Card.Header>
                <Accordion.Collapse eventKey="0">
                  <Card.Body>
+                   <h4>Submit Spending</h4>
             <SampleForm />
                  </Card.Body>
                </Accordion.Collapse>
