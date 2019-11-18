@@ -6,8 +6,8 @@ export class SpendingLog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    user: null,
-    loading: true,
+    // user: null,
+    // loading: true,
     Spendings: []
     }
   };
