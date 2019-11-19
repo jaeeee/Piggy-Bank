@@ -8,6 +8,8 @@ import {db} from './config/firebase';
 import SpendingLog from './SpendingLog';
 import {Card, Button, Accordion} from 'react-bootstrap';
 
+import Calculator from "./Calculator";
+
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
   //setActive is the variable and setActiveState is the function that changes that variable
@@ -63,7 +65,11 @@ function Accordion_OG(props) {
     //  this.state.fuck_you = (fire.auth().currentUser.email);
     //  const FUCK_YOU = fire.auth().currentUser.email;
         //  console.log(fire.auth().currentUser);
-       return (
+	   return(
+		<div>
+		<Calculator />
+		</div>);
+/*          return (
          <div>
            <Accordion_OG
              title="Overview"
@@ -93,7 +99,7 @@ function Accordion_OG(props) {
                </Card.Header>
                <Accordion.Collapse eventKey="0">
                  <Card.Body>
-                   {/* <h4>Submit Spending</h4> */}
+                   //{ <h4>Submit Spending</h4>}
             <SampleForm />
                  </Card.Body>
                </Accordion.Collapse>
@@ -112,17 +118,14 @@ function Accordion_OG(props) {
              </Card>
            </Accordion>
            <br></br>
-           {/* <h3>Spending Log</h3> */}
-           {/* <Accordion
-            title="Spending Log"
-            <SpendingLog />
-            /> */}
-           {/* // <SpendingLog /> */}
-           {/* /> */}
+           //{ <h3>Spending Log</h3>}
+           //{ <Accordion
+           //{ // <SpendingLog />}
+           //{ /> }
 
-           {/* <SampleForm /> */}
+           //{ <SampleForm /> }
          </div>
-       );
+       );  */
    }
   }
 
