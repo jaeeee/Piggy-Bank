@@ -85,11 +85,17 @@ export class SpendingLog extends Component {
 
   render() {
     //  console.log("State: " {this.state.Spendings});
+    //<p>Category: {this.state.cat.map((x, i) => [x, this.state.spending[i]])}</p>
+    const items = []
+    const zipped = this.state.cat.map((x, i) => [x, this.state.spending[i]])
+    for (const [index, value] of zipped.entries()) {
+      items.push(<li>Category:{value[0]}, Spending: ${value[1]}</li>)
+    }
+    console.log(items);
     return (
-      // alert("SUP"),
+      // alert("SUP")
       <div>
-        <p>Category: {this.state.cat.map((x, i) => [x, this.state.spending[i]])}</p>
-        
+        {items}
       </div>
     );
   }
