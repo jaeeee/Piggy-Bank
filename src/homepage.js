@@ -9,6 +9,7 @@ import SpendingLog from './SpendingLog';
 import {Card, Button, Accordion} from 'react-bootstrap';
 import Expenses from './Expenses';
 import Budget from './Budget';
+import Calculator from './Calculator';
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -52,7 +53,7 @@ function Accordion_OG(props) {
     constructor(props) {
       super(props);
       this.state = {
-      fuck_you: "",
+      // fuck_you: "",
       };
     }
     // var user = firebase.auth().currentUser;
@@ -97,7 +98,7 @@ function Accordion_OG(props) {
                <Accordion.Collapse eventKey="0">
                  <Card.Body>
                    {/* <h4>Submit Spending</h4> */}
-            <SampleForm />
+                   <SampleForm />
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
@@ -111,6 +112,20 @@ function Accordion_OG(props) {
                  <Card.Body>
                    {/* <Expenses/> */}
                    <SpendingLog />
+                 </Card.Body>
+               </Accordion.Collapse>
+             </Card>
+             <Card>
+               <Card.Header>
+                 <Accordion.Toggle as={Button} variant="link" eventKey="2">
+                   Calculator
+                 </Accordion.Toggle>
+               </Card.Header>
+               <Accordion.Collapse eventKey="2">
+                 <Card.Body>
+                   <Calculator />
+                   {/* <Expenses/> */}
+                   {/* <SpendingLog /> */}
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
