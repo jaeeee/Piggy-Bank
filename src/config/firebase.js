@@ -29,18 +29,28 @@ import firebase from 'firebase';
      measurementId: "G-VDJS8GGM8B"
    };*/
 
-   //BACKUP PIGGY DATABASE 2
-   var firebaseConfig = {
-    apiKey: "AIzaSyB-3c-A7D9wL760suIlG1rpuaoHyCMnkcA",
-    authDomain: "piggybankbackup2.firebaseapp.com",
-    databaseURL: "https://piggybankbackup2.firebaseio.com",
-    projectId: "piggybankbackup2",
-    storageBucket: "piggybankbackup2.appspot.com",
-    messagingSenderId: "735217764135",
-    appId: "1:735217764135:web:70c868ce0316074a32cb02",
-    measurementId: "G-HZCM51BE1D"
-  };
+  //  //BACKUP PIGGY DATABASE 2
+  //  var firebaseConfig = {
+  //   apiKey: "AIzaSyB-3c-A7D9wL760suIlG1rpuaoHyCMnkcA",
+  //   authDomain: "piggybankbackup2.firebaseapp.com",
+  //   databaseURL: "https://piggybankbackup2.firebaseio.com",
+  //   projectId: "piggybankbackup2",
+  //   storageBucket: "piggybankbackup2.appspot.com",
+  //   messagingSenderId: "735217764135",
+  //   appId: "1:735217764135:web:70c868ce0316074a32cb02",
+  //   measurementId: "G-HZCM51BE1D"
+  // };
 
+  //BACKUP PIGGY 3
+  var firebaseConfig = {
+    apiKey: "AIzaSyBcdCvaA4MwFmUTjUcuPdsbqvCt-bNTJXw",
+    authDomain: "piggy-back3.firebaseapp.com",
+    databaseURL: "https://piggy-back3.firebaseio.com",
+    projectId: "piggy-back3",
+    storageBucket: "piggy-back3.appspot.com",
+    messagingSenderId: "875501784070",
+    appId: "1:875501784070:web:f4819338804975fc678787"
+  };
 
 
   // Initialize Firebase

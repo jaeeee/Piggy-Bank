@@ -114,7 +114,7 @@ testingLOL() {
       // alert("SUP")
       <div>
         {items}
-        <Expenses DATA={this.state.zipped} />
+        {/* <Expenses DATA={this.state.zipped} /> */}
         {/* console.log(this.state.zipped); */}
       </div>
     );
