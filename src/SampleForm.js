@@ -13,7 +13,8 @@ class SampleForm extends React.Component {
 
         name: "",
         role: "",
-        cats: []
+        cats: [],
+        spending: []
 
       },
       formErrors: {
@@ -54,6 +55,7 @@ class SampleForm extends React.Component {
     const temprole = this.state.formValues.role;
     const data = {
       ...this.state.formValues,
+      spending: [temprole],
       uid: new Date().getTime()
     };
 
@@ -62,7 +64,9 @@ class SampleForm extends React.Component {
     console.log(tempname);
     userRef.update({
       name: tempname,
-      cats: fire.firestore.FieldValue.arrayUnion(tempname)
+      role: temprole,
+      cats: fire.firestore.FieldValue.arrayUnion(tempname),
+      spending: fire.firestore.FieldValue.arrayUnion(temprole)
     })
     .then(function(){
       console.log("User data added to doc");
