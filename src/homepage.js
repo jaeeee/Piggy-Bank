@@ -78,7 +78,7 @@ function Accordion_OG(props) {
                   tomorrow 
                 </p>"
            />
-           <Accordion_OG
+           {/* <Accordion_OG
              title="Wallet"
              content="
                 <p>
@@ -86,7 +86,7 @@ function Accordion_OG(props) {
                  $1,000,000 <br/>
                  I'm rich!!!
                 </p>"
-           />
+           /> */}
            <Accordion>
              <Card>
                <Card.Header>

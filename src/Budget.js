@@ -94,14 +94,14 @@ export class Budget extends Component {
                      required
                    />
                  </div>
-                 <br></br>
-                 {/* <input type="email" name="email" placeholder="Full name" /> */}
                  <button
                    class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored  "
                    type="submit"
                  >
                    Save
                  </button>
+                 <br></br>
+                 {/* <input type="email" name="email" placeholder="Full name" /> */}
                </form>
              </div>
            );
