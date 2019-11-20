@@ -89,8 +89,16 @@ export class SpendingLog extends Component {
         {/* <h4>Spending Log</h4> */}
         {/* alert({this.state.Spendings}); */}
         {this.state.Spendings.map(v => {
-          return <p>Amount: {v.amount}</p>;
+          //  {
+            //  .map((value, index) => {
+              //  return <li key={index}>{value}</li>;
+            //  });
+          //  }
+          return <p>Category: {v.cat} <br></br>Spending: {v.spending}</p>
         })}
+
+        
+
         {/* </MDBCard> */}
       </div>
     );
