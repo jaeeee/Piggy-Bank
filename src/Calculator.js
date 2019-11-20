@@ -98,11 +98,11 @@ class Calculator extends Component{
             if(isNaN(ans) || ans==Infinity){
                 ans = "";
             }
-            this.setState({mathString:  "" + ans}); 
+            this.setState({mathString:  "" + ans});
         } catch (e) {
             if (e instanceof SyntaxError) {
                 window.alert("Incorrect equation")
-                this.setState({mathString:  ""}); 
+                this.setState({mathString:  ""});
             }
         }
     }
@@ -166,8 +166,6 @@ class PageFooter extends Component{
             </footer>
         );
     }
-} 
+}
 */
 export default Calculator;
-
-

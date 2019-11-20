@@ -10,7 +10,8 @@ export class SpendingLog extends Component {
     // loading: true,
     Spendings: [],
     cat: [],
-    spending: []
+    spending: [],
+    zipped: []
     }
   };
 
@@ -42,7 +43,7 @@ export class SpendingLog extends Component {
               // cat: doc.data().cats
             // });
             // Spendings.push({
-            //   cat: doc.data().cats, 
+            //   cat: doc.data().cats,
             //   // amount: doc.data().role,
             //   spending: doc.data().spending
             // });
@@ -54,8 +55,8 @@ export class SpendingLog extends Component {
                     cat: ["NONE"],
                     spending: ["NONE"]
                   });
-                } else 
-        this.setState({ 
+                } else
+        this.setState({
           // Spendings: Spendings,
         cat: categories_copy.cat,
         spending: spending_copy.spending });
@@ -73,8 +74,10 @@ export class SpendingLog extends Component {
     // this.state.Spendings = Spendings;
     //  console.log("Data: " + Spendings);
     // console.log(Spendings);
-    console.log(categories_copy);
     console.log(spending_copy);
+    console.log(categories_copy);
+    //let zipped = categories_copy.cat.map((x, i) => [x, spending_copy.spending[i]]);
+    //console.log(zipped);
   }
   // }
 
@@ -85,20 +88,8 @@ export class SpendingLog extends Component {
     return (
       // alert("SUP"),
       <div>
-        {this.state.cat.map(v => {
-          return (
-            // <li>
-            // {" "}
-            <p>Category: {v}</p>
-          );
-        })}
-        {this.state.spending.map(v => {
-          return (
-            // <li>
-            // {" "}
-            <p>Spending: {v}</p>
-          );
-        })}
+        <p>Category: {this.state.cat.map((x, i) => [x, this.state.spending[i]])}</p>
+        
       </div>
     );
   }
