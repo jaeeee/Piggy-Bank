@@ -140,7 +140,8 @@ function Accordion_OG(props) {
              </Card>
            </Accordion>
            <br></br>
-           <Expenses />{/* <h3>Spending Log</h3> */}
+           <Expenses />
+           {/* <h3>Spending Log</h3> */}
            {/* <Accordion
             title="Spending Log"
             <SpendingLog />

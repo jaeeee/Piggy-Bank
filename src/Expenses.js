@@ -94,9 +94,9 @@ function ExpenseTable(){
 	expenses = [createExpense('Whole Foods', 45, 'Groceries', '11/6/2019')];
 	expenses.push(createExpense('Movie', 30, 'Entertainment', '10/31/2019'));
 	expenses.push(createExpense('Disneyland', 300, 'Leisure', '11/10/2019'));
-	//addExpense('Whole Foods', 45, 'Groceries', '11/6/2019');
-	//addExpense('Movie', 30, 'Entertainment', '10/31/2019');
-	//addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
+	// addExpense('Whole Foods', 45, 'Groceries', '11/6/2019');
+	// addExpense('Movie', 30, 'Entertainment', '10/31/2019');
+	// addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
 	const classes = useStyles();
 	return (
 		<Paper className={classes.root}>
@@ -236,9 +236,15 @@ function ExpenseForm(){
 	
 }
 class Expenses extends React.Component {
-	
+	constructor(props) {
+		super(props);
+		this.state = {
+			DATA: []
+		}
+		console.log(this.state.DATA);
+	}
 	render(){
-		
+		// Console.log({this.state.DATA});
 		return (
 			<div>
 				<Accordion />

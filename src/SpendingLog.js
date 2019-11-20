@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "./config/firebase";
 import { db } from "./config/firebase";
+import Expenses from './Expenses';
 
 export class SpendingLog extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export class SpendingLog extends Component {
     spending: [],
     zipped: []
     }
+    this.testingLOL = this.testingLOL.bind(this);
   };
 
   state = { Spendings: [] };
@@ -62,7 +64,6 @@ export class SpendingLog extends Component {
         spending: spending_copy.spending });
         // this.setState({Spendings});
       })
-
       .catch(function(error) {
         // alert("Error fetching user data");
         console.log("Error fetching data: ", error);
@@ -77,17 +78,34 @@ export class SpendingLog extends Component {
     console.log(spending_copy);
     console.log(categories_copy);
     //let zipped = categories_copy.cat.map((x, i) => [x, spending_copy.spending[i]]);
-    //console.log(zipped);
+    // 
+    // console.log(zipped);
+            this.testingLOL();
   }
   // }
 
-
+testingLOL() {
+   const items = []
+    const zipped = this.state.cat.map((x, i) => [x, this.state.spending[i]])
+    for (const [index, value] of zipped.entries()) {
+      items.push(<li>Category: {value[0]}, Spending: ${value[1]}</li>)
+    }
+    this.setState({
+      zipped: items
+    }); 
+    console.log("Just set it to ");
+    console.log(items);
+}
 
   render() {
+            // this.testingLOL();
     //  console.log("State: " {this.state.Spendings});
     //<p>Category: {this.state.cat.map((x, i) => [x, this.state.spending[i]])}</p>
     const items = []
     const zipped = this.state.cat.map((x, i) => [x, this.state.spending[i]])
+//     this.setState({
+// zipped: zipped,
+//     });
     for (const [index, value] of zipped.entries()) {
       items.push(<li>Category: {value[0]}, Spending: ${value[1]}</li>)
     }
@@ -96,6 +114,8 @@ export class SpendingLog extends Component {
       // alert("SUP")
       <div>
         {items}
+        <Expenses DATA={this.state.zipped} />
+        {/* console.log(this.state.zipped); */}
       </div>
     );
   }
