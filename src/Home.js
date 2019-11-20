@@ -73,7 +73,7 @@ class Home extends Component {
               {/* {this.grabName} */}
               <h3>Piggy Bank  { this.state.testing } </h3>
               <Homepage />
-              <MDBBtn onClick={this.logout}>Logout</MDBBtn>
+		      <MDBBtn onClick={this.logout}>Logout</MDBBtn>
               {/* <button onClick={this.logout}>Logout</button> */}
             </MDBCardBody>
           </MDBCard>

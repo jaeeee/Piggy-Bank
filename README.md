@@ -13,5 +13,3 @@ User accounts will be stored in a database attached to their information such as
 ## UML Chart
 
 **![](UML.png)**
-
-
