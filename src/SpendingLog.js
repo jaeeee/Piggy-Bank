@@ -8,44 +8,16 @@ export class SpendingLog extends Component {
     this.state = {
     // user: null,
     // loading: true,
-    Spendings: []
+    Spendings: [],
+    cat: [],
+    spending: []
     }
   };
-  //     // state = { Spendings: []}
-  // constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //         Spendings: []
-  //     }
-  // // state = { Spendings: []};
-  // }
 
   state = { Spendings: [] };
 
-  // getUser() {
-  //   var trial = "";
-  //   trial = fire.auth().currentUser.email;
-  //   return trial;
-  // }
-
-  //  const user = fire.auth().currentUser.email;
   componentDidMount() {
-    // fire.auth().onAuthStateChanged(function(user) {
-    //   if (user) {
-    //     this.setState({ user });
-    //   } else {
-    //     this.setState({ user: null });
-    //   }
-
-    //   if (this.state.loading) {
-    //     this.setState({ loading: false });
-    //   }
-    // });
-    // const user = fire.auth().currentUser.email;
     var Spendings = [];
-    // const user = fire.auth().currentUser;
-    // console.log(this.getUser());
-    // var docRef = db.collection("sample_data").doc("daniel.kwong.h@gmail.com");
     fire
       .firestore()
       .collection("sample_data")
@@ -57,6 +29,7 @@ export class SpendingLog extends Component {
           // console.log(doc.id);
           if (doc.id == fire.auth().currentUser.email) {
             // console.log("nice");
+            // this.setState
             Spendings.push({
               cat: doc.data().cats,
               // amount: doc.data().role,
@@ -80,23 +53,20 @@ export class SpendingLog extends Component {
     console.log(Spendings);
   }
   // }
+
   render() {
     //  console.log("State: " {this.state.Spendings});
     return (
       // alert("SUP"),
-      <div>
+      <div>                                                 
         {/* <MDBCard> */}
         {/* <h4>Spending Log</h4> */}
         {/* alert({this.state.Spendings}); */}
         {this.state.Spendings.map(v => {
-          //  {
-            //  .map((value, index) => {
-              //  return <li key={index}>{value}</li>;
-            //  });
-          //  }
           return <p>Category: {v.cat} <br></br>Spending: {v.spending}</p>
         })}
-
+    {/* tryThis(); */}
+    {/* {this.tryThis()}   */}
         
 
         {/* </MDBCard> */}
