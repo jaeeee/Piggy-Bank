@@ -46,8 +46,65 @@ export class Budget extends Component {
          };
 
         componentDidMount() {
-          this.componentDidUpdate();
+           var budget_copy = 0;
+           var found = 0;
+           fire
+             .firestore()
+             .collection("sample_data")
+             .get()
+             .then(querySnapshot => {
+               querySnapshot.forEach(function(doc) {
+                 if (doc.id == fire.auth().currentUser.email) {
+                  budget_copy = doc.data().budget;
+                   found = 1;
+                 }
+               });
+               if (found == 0) {
+                 this.setState({
+                  display_budget: 'undefined'
+                 });
+               } else
+                 this.setState({
+                  display_budget: budget_copy
+                 });
+             })
+
+             .catch(function(error) {
+               // alert("Error fetching user data");
+               console.log("Error fetching data: ", error);
+             });
+            }
+
+         render() {
+           return (
+             <div>
+               Current budget: {this.state.display_budget}
+               <form onSubmit={this.setBudget}>
+                 <div class="mdl-textfield mdl-js-textfield">
+                   <input
+                     class="mdl-textfield__input"
+                     type="number"
+                     name="budget"
+                     placeholder="Set your budget"
+                     onChange={this.updateInput}
+                     value={this.state.budget}
+                     required
+                   />
+                 </div>
+                 <button
+                   class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored  "
+                   type="submit"
+                 >
+                   Save
+                 </button>
+                 <br></br>
+                 {/* <input type="email" name="email" placeholder="Full name" /> */}
+               </form>
+             </div>
+           );
+        //  }
         }
+
          componentDidUpdate() {
            var budget_copy = 0;
            var found = 0;
