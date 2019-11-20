@@ -69,7 +69,7 @@ function Accordion_OG(props) {
        return (
          <div>
            <Budget />
-           <Accordion_OG
+           {/* <Accordion_OG
              title="Overview"
              content="
                 <p>
@@ -78,7 +78,7 @@ function Accordion_OG(props) {
                   spend less <br/>
                   tomorrow 
                 </p>"
-           />
+           /> */}
            {/* <Accordion_OG
              title="Wallet"
              content="
