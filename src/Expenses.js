@@ -1,6 +1,6 @@
 import React from "react";
 import fire from "./config/firebase";
-import Calculator from './layout/Calculator/Calculator';
+// import Calculator from './layout/Calculator/Calculator';
 //expansion panel files
 import {makeStyles} from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
