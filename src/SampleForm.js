@@ -10,11 +10,11 @@ class SampleForm extends React.Component {
     this.state = {
       // user: this.props.user,
       formValues: {
-
         name: "",
         role: "",
         cats: [],
-        spending: []
+        spending: [],
+        dates: []
 
       },
       formErrors: {
@@ -49,14 +49,27 @@ class SampleForm extends React.Component {
   //   });
   // }
 
+  getFormattedDate(date){
+    var year = date.getFullYear();
+
+    var month = (1 + date.getMonth()).toString();
+    month = month.length > 1 ? month : '0' + month;
+
+    var day = date.getDate().toString();
+    day = day.length > 1 ? day : '0' + day;
+
+    return month + '/' + day + '/' + year;
+  }
+
   addUser = () => {
     const user = fire.auth().currentUser.email;
     const tempname = this.state.formValues.name;
     const temprole = this.state.formValues.role;
+    const tempDate = this.getFormattedDate(new Date());
     const data = {
       ...this.state.formValues,
       spending: [temprole],
-      uid: new Date().getTime()
+      dates: [tempDate]
     };
 
     let userRef = db.collection("sample_data").doc(user);
@@ -66,7 +79,8 @@ class SampleForm extends React.Component {
       name: tempname,
       role: temprole,
       cats: fire.firestore.FieldValue.arrayUnion(tempname),
-      spending: fire.firestore.FieldValue.arrayUnion(temprole)
+      spending: fire.firestore.FieldValue.arrayUnion(temprole),
+      dates: fire.firestore.FieldValue.arrayUnion(tempDate)
     })
     .then(function(){
       console.log("User data added to doc");
@@ -141,8 +155,6 @@ class SampleForm extends React.Component {
         this.setState({ isSubmitting: false });
       });*/
   };
-
-
 
   handleSubmit = event => {
     event.preventDefault();

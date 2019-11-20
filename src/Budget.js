@@ -31,7 +31,7 @@ export class Budget extends Component {
     // db.settings({
     //   // timestampsInSnapshots: true
     // });
-    
+
     let userRef = db
       .collection("sample_data")
       .doc(fire.auth().currentUser.email);
@@ -91,6 +91,7 @@ export class Budget extends Component {
             <input
               class="mdl-textfield__input"
               type="number"
+              step = ".01"
               name="budget"
               placeholder="Set your budget"
               onChange={this.updateInput}
