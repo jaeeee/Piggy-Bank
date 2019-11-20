@@ -13,7 +13,8 @@ class SampleForm extends React.Component {
 
         name: "",
         role: "",
-        cats: []
+        cats: [],
+        spending: []
 
       },
       formErrors: {
@@ -22,10 +23,12 @@ class SampleForm extends React.Component {
       },
       formValidity: {
         name: false,
-        role: false,
+        role: false
       },
-      isSubmitting: false
+      isSubmitting: false,
+      docExists: false
     };
+    //this.addUser = this.addUser.bind(this);
     //  this.authListener = this.authListener.bind(this);
   }
 
@@ -48,11 +51,83 @@ class SampleForm extends React.Component {
 
   addUser = () => {
     const user = fire.auth().currentUser.email;
+    const tempname = this.state.formValues.name;
+    const temprole = this.state.formValues.role;
     const data = {
       ...this.state.formValues,
+      spending: [temprole],
       uid: new Date().getTime()
     };
-    // const
+
+    let userRef = db.collection("sample_data").doc(user);
+
+    console.log(tempname);
+    userRef.update({
+      name: tempname,
+      role: temprole,
+      cats: fire.firestore.FieldValue.arrayUnion(tempname),
+      spending: fire.firestore.FieldValue.arrayUnion(temprole)
+    })
+    .then(function(){
+      console.log("User data added to doc");
+      window.location = "/";
+    })
+    .catch(function(error) {
+      console.log("Error getting document:", error )
+      userRef.set(data)
+      .then(function(){
+        window.location = "/"
+      })
+      .catch(function(error){
+        console.log("There is something really going wrong", error);
+      })
+    });
+
+    /*userRef.get().then(function(doc,tempName) {
+        if (doc.exists) {
+            console.log("User data added to doc");
+            console.log(tempName);
+            doc.update({
+              cats: fire.firestore.FieldValue.arrayUnion(tempName)
+            });
+          }
+
+        }).catch(function(error) {
+        console.log("Error getting document:", error);
+        this.setState({ isSubmitting: false });
+
+        });*/
+
+    /*if(checker){
+        alert("Entered updated field");
+        userRef.update({
+          cats: fire.firestore.FieldValue.arrayUnion(this.state.formValues.name)
+        })
+        .then(() => {
+          // NotificationManager.success("A new user has been added", "Success");
+          window.location = "/";
+          console.log("sucessfully updated")
+        })
+        .catch(error => {
+          console.log("Error updating document:", error);
+          this.setState({ isSubmitting: false });
+        });
+
+    } else{
+      userRef.set(data)
+      .then(() => {
+        // NotificationManager.success("A new user has been added", "Success");
+        window.location = "/";
+        console.log("sucessfully created")
+      })
+      .catch(error => {
+        console.log("Error creating document:", error);
+        this.setState({ isSubmitting: false });
+      });
+
+    }*/
+
+    /*
     db.collection("sample_data")
     // db.collection(JSON.stringify(user))
       .doc(user)
@@ -64,7 +139,7 @@ class SampleForm extends React.Component {
       .catch(error => {
         // NotificationManager.error(error.message, "Create user failed");
         this.setState({ isSubmitting: false });
-      });
+      });*/
   };
 
 
@@ -72,6 +147,7 @@ class SampleForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.setState({ isSubmitting: true });
+    console.log(this.state.isSubmitting);
     const { formValues, formValidity } = this.state;
     if (Object.values(formValidity).every(Boolean)) {
       this.addUser();
@@ -164,7 +240,7 @@ class SampleForm extends React.Component {
               <div className="form-group">
                 <label>Amount Spent</label>
                 <input
-                  type="text"
+                  type="number"
                   name="role"
                   className={`form-control ${
                     formErrors.role ? "is-invalid" : ""

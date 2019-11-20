@@ -40,7 +40,7 @@ class Home extends Component {
         // this.state.testing = documentSnapshot.data().name;
         // final = documentSnapshot.data().name;
         final = documentSnapshot.data().name;
-        // this.setState.testing = "FUCK";
+        // this.setState.testing = "yes";
         // alert("Welcome back, " + final);
         // this.setState.testing = final;
         return final;
@@ -63,7 +63,7 @@ class Home extends Component {
       // console.log(this.grabName());
       this.state.testing = this.grabName();
     return (
- 
+
       // {/* No header, and the drawer stays open on larger screens (fixed drawer). */}
       <div>
         <Navbar />
@@ -71,7 +71,7 @@ class Home extends Component {
           <MDBCard>
             <MDBCardBody>
               {/* {this.grabName} */}
-              <h3>Piggy Bank  { this.state.testing } </h3> 
+              <h3>Piggy Bank  { this.state.testing } </h3>
               <Homepage />
 		      <MDBBtn onClick={this.logout}>Logout</MDBBtn>
               {/* <button onClick={this.logout}>Logout</button> */}

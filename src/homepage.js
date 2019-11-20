@@ -7,8 +7,8 @@ import fire from "./config/firebase";
 import {db} from './config/firebase';
 import SpendingLog from './SpendingLog';
 import {Card, Button, Accordion} from 'react-bootstrap';
-
-import Calculator from "./Calculator";
+import Expenses from './Expenses';
+import Budget from './Budget';
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -65,12 +65,9 @@ function Accordion_OG(props) {
     //  this.state.fuck_you = (fire.auth().currentUser.email);
     //  const FUCK_YOU = fire.auth().currentUser.email;
         //  console.log(fire.auth().currentUser);
-	   return(
-		<div>
-		<Calculator />
-		</div>);
-/*          return (
+       return (
          <div>
+           <Budget />
            <Accordion_OG
              title="Overview"
              content="
@@ -81,7 +78,7 @@ function Accordion_OG(props) {
                   tomorrow 
                 </p>"
            />
-           <Accordion_OG
+           {/* <Accordion_OG
              title="Wallet"
              content="
                 <p>
@@ -89,7 +86,7 @@ function Accordion_OG(props) {
                  $1,000,000 <br/>
                  I'm rich!!!
                 </p>"
-           />
+           /> */}
            <Accordion>
              <Card>
                <Card.Header>
@@ -99,7 +96,7 @@ function Accordion_OG(props) {
                </Card.Header>
                <Accordion.Collapse eventKey="0">
                  <Card.Body>
-                   //{ <h4>Submit Spending</h4>}
+                   {/* <h4>Submit Spending</h4> */}
             <SampleForm />
                  </Card.Body>
                </Accordion.Collapse>
@@ -112,20 +109,25 @@ function Accordion_OG(props) {
                </Card.Header>
                <Accordion.Collapse eventKey="1">
                  <Card.Body>
+                   {/* <Expenses/> */}
                    <SpendingLog />
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
            </Accordion>
            <br></br>
-           //{ <h3>Spending Log</h3>}
-           //{ <Accordion
-           //{ // <SpendingLog />}
-           //{ /> }
+           <Expenses />
+           {/* <h3>Spending Log</h3> */}
+           {/* <Accordion
+            title="Spending Log"
+            <SpendingLog />
+            /> */}
+           {/* // <SpendingLog /> */}
+           {/* /> */}
 
-           //{ <SampleForm /> }
+           {/* <SampleForm /> */}
          </div>
-       );  */
+       );
    }
   }
 

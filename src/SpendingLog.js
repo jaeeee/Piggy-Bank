@@ -6,46 +6,21 @@ export class SpendingLog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    user: null,
-    loading: true,
-    Spendings: []
+    // user: null,
+    // loading: true,
+    Spendings: [],
+    cat: [],
+    spending: []
     }
   };
-  //     // state = { Spendings: []}
-  // constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //         Spendings: []
-  //     }
-  // // state = { Spendings: []};
-  // }
 
   state = { Spendings: [] };
 
-  // getUser() {
-  //   var trial = "";
-  //   trial = fire.auth().currentUser.email;
-  //   return trial;
-  // }
-
-  //  const user = fire.auth().currentUser.email;
   componentDidMount() {
-    // fire.auth().onAuthStateChanged(function(user) {
-    //   if (user) {
-    //     this.setState({ user });
-    //   } else {
-    //     this.setState({ user: null });
-    //   }
-
-    //   if (this.state.loading) {
-    //     this.setState({ loading: false });
-    //   }
-    // });
-    // const user = fire.auth().currentUser.email;
-    var Spendings = [];
-    // const user = fire.auth().currentUser;
-    // console.log(this.getUser());
-    // var docRef = db.collection("sample_data").doc("daniel.kwong.h@gmail.com");
+    // var Spendings = [];
+    var categories_copy = [];
+    var spending_copy = [];
+    var found = 0;
     fire
       .firestore()
       .collection("sample_data")
@@ -56,40 +31,74 @@ export class SpendingLog extends Component {
         querySnapshot.forEach(function(doc) {
           // console.log(doc.id);
           if (doc.id == fire.auth().currentUser.email) {
-            console.log("nice");
-            Spendings.push({
-              cat: doc.data().cat,
-              amount: doc.data().role
-            });
+            // console.log("nice");
+            // this.setState
+            spending_copy.spending = doc.data().spending;
+            // spending_copy.push({
+              // spending: doc.data().spending
+            // });
+            categories_copy.cat = doc.data().cats;
+            // categories_copy.push({
+              // cat: doc.data().cats
+            // });
+            // Spendings.push({
+            //   cat: doc.data().cats, 
+            //   // amount: doc.data().role,
+            //   spending: doc.data().spending
+            // });
+            found = 1;
           }
         });
-        this.setState({ Spendings });
+                if (found == 0) {
+                  this.setState({
+                    cat: ["NONE"],
+                    spending: ["NONE"]
+                  });
+                } else 
+        this.setState({ 
+          // Spendings: Spendings,
+        cat: categories_copy.cat,
+        spending: spending_copy.spending });
         // this.setState({Spendings});
       })
+
       .catch(function(error) {
         // alert("Error fetching user data");
         console.log("Error fetching data: ", error);
       });
-    console.log(Spendings);
-    this.state = {
-      Spendings: Spendings
-    };
+    // console.log(Spendings);
+    // this.state = {
+    //   Spendings: Spendings
+    // };
     // this.state.Spendings = Spendings;
     //  console.log("Data: " + Spendings);
+    // console.log(Spendings);
+    console.log(categories_copy);
+    console.log(spending_copy);
   }
   // }
+
+
+
   render() {
     //  console.log("State: " {this.state.Spendings});
     return (
       // alert("SUP"),
       <div>
-        {/* <MDBCard> */}
-        {/* <h4>Spending Log</h4> */}
-        {/* alert({this.state.Spendings}); */}
-        {this.state.Spendings.map(v => {
-          return <p>Amount: {v.amount}</p>;
+        {this.state.cat.map(v => {
+          return (
+            // <li>
+            // {" "}
+            <p>Category: {v}</p>
+          );
         })}
-        {/* </MDBCard> */}
+        {this.state.spending.map(v => {
+          return (
+            // <li>
+            // {" "}
+            <p>Spending: {v}</p>
+          );
+        })}
       </div>
     );
   }
