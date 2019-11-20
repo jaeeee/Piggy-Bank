@@ -32,12 +32,14 @@ export class SpendingLog extends Component {
           if (doc.id == fire.auth().currentUser.email) {
             // console.log("nice");
             // this.setState
-            spending_copy.push({
-              spending: doc.data().spending
-            });
-            categories_copy.push({
-              cat: doc.data().cats
-            });
+            spending_copy.spending = doc.data().spending;
+            // spending_copy.push({
+              // spending: doc.data().spending
+            // });
+            categories_copy.cat = doc.data().cats;
+            // categories_copy.push({
+              // cat: doc.data().cats
+            // });
             // Spendings.push({
             //   cat: doc.data().cats, 
             //   // amount: doc.data().role,
@@ -47,8 +49,8 @@ export class SpendingLog extends Component {
         });
         this.setState({ 
           // Spendings: Spendings,
-        cat: categories_copy,
-        spending: spending_copy });
+        cat: categories_copy.cat,
+        spending: spending_copy.spending });
         // this.setState({Spendings});
       })
       .catch(function(error) {
@@ -78,14 +80,14 @@ export class SpendingLog extends Component {
           return (
             // <li>
             // {" "}
-            <p>Category: {v.cat}</p>
+            <p>Category: {v}</p>
           );
         })}
         {this.state.spending.map(v => {
           return (
             // <li>
             // {" "}
-            <p>Spending: {v.spending}</p>
+            <p>Spending: {v}</p>
           );
         })}
       </div>
