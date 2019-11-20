@@ -56,10 +56,11 @@ export class SpendingLog extends Component {
         querySnapshot.forEach(function(doc) {
           // console.log(doc.id);
           if (doc.id == fire.auth().currentUser.email) {
-            console.log("nice");
+            // console.log("nice");
             Spendings.push({
-              cat: doc.data().cat,
-              amount: doc.data().role
+              cat: doc.data().cats,
+              // amount: doc.data().role,
+              spending: doc.data().spending
             });
           }
         });
@@ -76,6 +77,7 @@ export class SpendingLog extends Component {
     };
     // this.state.Spendings = Spendings;
     //  console.log("Data: " + Spendings);
+    console.log(Spendings);
   }
   // }
   render() {

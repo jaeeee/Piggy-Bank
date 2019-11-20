@@ -7,6 +7,7 @@ import fire from "./config/firebase";
 import {db} from './config/firebase';
 import SpendingLog from './SpendingLog';
 import {Card, Button, Accordion} from 'react-bootstrap';
+import Expenses from './Expenses';
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -106,12 +107,14 @@ function Accordion_OG(props) {
                </Card.Header>
                <Accordion.Collapse eventKey="1">
                  <Card.Body>
+                   {/* <Expenses/> */}
                    <SpendingLog />
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
            </Accordion>
            <br></br>
+           <Expenses />
            {/* <h3>Spending Log</h3> */}
            {/* <Accordion
             title="Spending Log"
