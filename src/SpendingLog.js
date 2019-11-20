@@ -9,8 +9,8 @@ export class SpendingLog extends Component {
     // user: null,
     // loading: true,
     Spendings: [],
-    cat: [],
-    spending: []
+    // cat: [],
+    // spending: []
     }
   };
 
@@ -58,18 +58,27 @@ export class SpendingLog extends Component {
     //  console.log("State: " {this.state.Spendings});
     return (
       // alert("SUP"),
-      <div>                                                 
+      <div>
         {/* <MDBCard> */}
         {/* <h4>Spending Log</h4> */}
         {/* alert({this.state.Spendings}); */}
-        {this.state.Spendings.map(v => {
-          return <p>Category: {v.cat} <br></br>Spending: {v.spending}</p>
-        })}
-    {/* tryThis(); */}
-    {/* {this.tryThis()}   */}
-        
+        <ul>
+          {this.state.Spendings.map(v => {
+            return (
+              <li>
+                {" "}
+                <p>
+                  v.cat.map(item, index)
+                  Category: {v.cat} <br></br>Spending: {v.spending}
+                </p>
+              </li>
+            );
+          })}
+          {/* tryThis(); */}
+          {/* {this.tryThis()}   */}
 
-        {/* </MDBCard> */}
+          {/* </MDBCard> */}
+        </ul>
       </div>
     );
   }
