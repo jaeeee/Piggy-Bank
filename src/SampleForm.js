@@ -51,7 +51,7 @@ class SampleForm extends React.Component {
   addUser = () => {
     const user = fire.auth().currentUser.email;
     const tempname = this.state.formValues.name;
-    const temprole = this.state.formValues.role
+    const temprole = this.state.formValues.role;
     const data = {
       ...this.state.formValues,
       uid: new Date().getTime()
@@ -236,7 +236,7 @@ class SampleForm extends React.Component {
               <div className="form-group">
                 <label>Amount Spent</label>
                 <input
-                  type="text"
+                  type="number"
                   name="role"
                   className={`form-control ${
                     formErrors.role ? "is-invalid" : ""
