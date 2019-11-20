@@ -9,15 +9,17 @@ export class SpendingLog extends Component {
     // user: null,
     // loading: true,
     Spendings: [],
-    // cat: [],
-    // spending: []
+    cat: [],
+    spending: []
     }
   };
 
   state = { Spendings: [] };
 
   componentDidMount() {
-    var Spendings = [];
+    // var Spendings = [];
+    var categories_copy = [];
+    var spending_copy = [];
     fire
       .firestore()
       .collection("sample_data")
@@ -30,55 +32,62 @@ export class SpendingLog extends Component {
           if (doc.id == fire.auth().currentUser.email) {
             // console.log("nice");
             // this.setState
-            Spendings.push({
-              cat: doc.data().cats,
-              // amount: doc.data().role,
+            spending_copy.push({
               spending: doc.data().spending
             });
+            categories_copy.push({
+              cat: doc.data().cats
+            });
+            // Spendings.push({
+            //   cat: doc.data().cats, 
+            //   // amount: doc.data().role,
+            //   spending: doc.data().spending
+            // });
           }
         });
-        this.setState({ Spendings });
+        this.setState({ 
+          // Spendings: Spendings,
+        cat: categories_copy,
+        spending: spending_copy });
         // this.setState({Spendings});
       })
       .catch(function(error) {
         // alert("Error fetching user data");
         console.log("Error fetching data: ", error);
       });
-    console.log(Spendings);
-    this.state = {
-      Spendings: Spendings
-    };
+    // console.log(Spendings);
+    // this.state = {
+    //   Spendings: Spendings
+    // };
     // this.state.Spendings = Spendings;
     //  console.log("Data: " + Spendings);
-    console.log(Spendings);
+    // console.log(Spendings);
+    console.log(categories_copy);
+    console.log(spending_copy);
   }
   // }
+
+
 
   render() {
     //  console.log("State: " {this.state.Spendings});
     return (
       // alert("SUP"),
       <div>
-        {/* <MDBCard> */}
-        {/* <h4>Spending Log</h4> */}
-        {/* alert({this.state.Spendings}); */}
-        <ul>
-          {this.state.Spendings.map(v => {
-            return (
-              <li>
-                {" "}
-                <p>
-                  v.cat.map(item, index)
-                  Category: {v.cat} <br></br>Spending: {v.spending}
-                </p>
-              </li>
-            );
-          })}
-          {/* tryThis(); */}
-          {/* {this.tryThis()}   */}
-
-          {/* </MDBCard> */}
-        </ul>
+        {this.state.cat.map(v => {
+          return (
+            // <li>
+            // {" "}
+            <p>Category: {v.cat}</p>
+          );
+        })}
+        {this.state.spending.map(v => {
+          return (
+            // <li>
+            // {" "}
+            <p>Spending: {v.spending}</p>
+          );
+        })}
       </div>
     );
   }
