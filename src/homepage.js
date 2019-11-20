@@ -8,6 +8,7 @@ import {db} from './config/firebase';
 import SpendingLog from './SpendingLog';
 import {Card, Button, Accordion} from 'react-bootstrap';
 import Expenses from './Expenses';
+import Budget from './Budget';
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -66,6 +67,7 @@ function Accordion_OG(props) {
         //  console.log(fire.auth().currentUser);
        return (
          <div>
+           <Budget />
            <Accordion_OG
              title="Overview"
              content="
