@@ -138,7 +138,7 @@ export class Budget extends Component {
          render() {
            return (
              <div>
-               Current budget: {this.state.display_budget}
+               Current budget: <b>${this.state.display_budget}</b>
                <form onSubmit={this.setBudget}>
                  <div class="mdl-textfield mdl-js-textfield">
                    <input
