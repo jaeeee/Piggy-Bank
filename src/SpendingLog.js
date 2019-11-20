@@ -20,6 +20,7 @@ export class SpendingLog extends Component {
     // var Spendings = [];
     var categories_copy = [];
     var spending_copy = [];
+    var found = 0;
     fire
       .firestore()
       .collection("sample_data")
@@ -45,14 +46,22 @@ export class SpendingLog extends Component {
             //   // amount: doc.data().role,
             //   spending: doc.data().spending
             // });
+            found = 1;
           }
         });
+                if (found == 0) {
+                  this.setState({
+                    cat: ["NONE"],
+                    spending: ["NONE"]
+                  });
+                } else 
         this.setState({ 
           // Spendings: Spendings,
         cat: categories_copy.cat,
         spending: spending_copy.spending });
         // this.setState({Spendings});
       })
+
       .catch(function(error) {
         // alert("Error fetching user data");
         console.log("Error fetching data: ", error);
