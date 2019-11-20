@@ -89,7 +89,7 @@ export class SpendingLog extends Component {
     const items = []
     const zipped = this.state.cat.map((x, i) => [x, this.state.spending[i]])
     for (const [index, value] of zipped.entries()) {
-      items.push(<li>Category:{value[0]}, Spending: ${value[1]}</li>)
+      items.push(<li>Category: {value[0]}, Spending: ${value[1]}</li>)
     }
     console.log(items);
     return (
