@@ -10,6 +10,8 @@ import {Card, Button, Accordion} from 'react-bootstrap';
 import Expenses from './Expenses';
 import Budget from './Budget';
 import Calculator from './Calculator';
+import PieChart from "react-minimal-pie-chart";
+
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -112,6 +114,13 @@ function Accordion_OG(props) {
                  <Card.Body>
                    {/* <Expenses/> */}
                    <SpendingLog />
+                   <PieChart
+                     data={[
+                       { title: "One", value: 10, color: "#E38627" },
+                       { title: "Two", value: 15, color: "#C13C37" },
+                       { title: "Three", value: 20, color: "#6A2135" }
+                     ]}
+                   />
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
@@ -131,15 +140,13 @@ function Accordion_OG(props) {
              </Card>
            </Accordion>
            <br></br>
-           <Expenses />
-           {/* <h3>Spending Log</h3> */}
+           <Expenses />{/* <h3>Spending Log</h3> */}
            {/* <Accordion
             title="Spending Log"
             <SpendingLog />
             /> */}
            {/* // <SpendingLog /> */}
            {/* /> */}
-
            {/* <SampleForm /> */}
          </div>
        );

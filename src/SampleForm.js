@@ -226,6 +226,7 @@ class SampleForm extends React.Component {
               <div className="form-group">
                 <label>Category of Spending</label>
                 <input
+                  class="mdl-textfield__input"
                   type="text"
                   name="name"
                   className={`form-control ${
@@ -233,7 +234,7 @@ class SampleForm extends React.Component {
                   }`}
                   placeholder="Enter category name"
                   value={formValues.name}
-                  onChange={this.handleChangeName }
+                  onChange={this.handleChangeName}
                 />
                 <div className="invalid-feedback">{formErrors.name}</div>
               </div>
@@ -255,7 +256,7 @@ class SampleForm extends React.Component {
                 type="submit"
                 className="btn btn-primary btn-block"
                 disabled={isSubmitting}
-                name = "name"
+                name="name"
                 value={formValues.name}
                 onClick={this.handleAppendCat}
               >
