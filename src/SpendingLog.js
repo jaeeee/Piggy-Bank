@@ -50,6 +50,7 @@ export class SpendingLog extends Component {
             //   spending: doc.data().spending
             // });
             found = 1;
+            return;
           }
         });
                 if (found == 0) {
