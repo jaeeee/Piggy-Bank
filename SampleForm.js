@@ -250,6 +250,7 @@ class SampleForm extends React.Component {
                 <label>Amount Spent</label>
                 <input
                   type="number"
+                  min="0"
                   name="role"
                   className={`form-control ${
                     formErrors.role ? "is-invalid" : ""
