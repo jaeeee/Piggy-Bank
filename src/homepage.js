@@ -12,7 +12,7 @@ import Budget from './Budget';
 import Calculator from './Calculator';
 import PieChart from "react-minimal-pie-chart";
 import {Line, Doughnut} from 'react-chartjs-2';
-
+import LineGraph from './LineGraph';
 
 
 function Accordion_OG(props) {
@@ -34,7 +34,10 @@ function Accordion_OG(props) {
     );
   }
 
+  
+
   return (
+    
     <div className="accordion_section">
       <button className={`accordion ${setActive}`} onClick={toggleAccordion}>
         <p className="accordion_title">{props.title}</p>
@@ -60,12 +63,39 @@ function Accordion_OG(props) {
       // fuck_you: "",
       };
     }
- 
+    // var user = firebase.auth().currentUser;
+    // console.log(fire.auth().currentUser);
+    // console.log("hi");
    render(){
-  
+    //  if (fire.auth().currentUser != null) {
+    //    console.log(fire.auth().currentUser.email);
+    //  }
+    //  this.state.fuck_you = (fire.auth().currentUser.email);
+    //  const FUCK_YOU = fire.auth().currentUser.email;
+        //  console.log(fire.auth().currentUser);
        return (
          <div>
            <Budget />
+           <LineGraph />
+           {/* <Accordion_OG
+             title="Overview"
+             content="
+                <p>
+                  You spent too much money today <br/>
+                  thats not good <br/>
+                  spend less <br/>
+                  tomorrow 
+                </p>"
+           /> */}
+           {/* <Accordion_OG
+             title="Wallet"
+             content="
+                <p>
+                 Look at my money $$$ <br/>
+                 $1,000,000 <br/>
+                 I'm rich!!!
+                </p>"
+           /> */}
            <Accordion>
              <Card>
                <Card.Header>
@@ -90,88 +120,42 @@ function Accordion_OG(props) {
                  <Card.Body>
                    {/* <Expenses/> */}
                    <SpendingLog />
-                   {/* <PieChart
+                   <PieChart
                      data={[
                        { title: "One", value: 10, color: "#E38627" },
                        { title: "Two", value: 15, color: "#C13C37" },
                        { title: "Three", value: 20, color: "#6A2135" }
                      ]}
-                   /> */}
+                   />
                    
-                   <Doughnut
-                    data={{
-                    
-                      labels: [ 
-                        'Home & Utilities',
-                        'Auto & Gasoline', 
-                        'Loans', 
-                        'Shopping', 
-                        'Miscellaneous',
-                      ],
-                      datasets:[
-                        {
-                          data:[
-                            /*homeAndUti*/200,
-                            /*autoAndGas*/300,
-                            /*loans*/400,
-                            /*shopping*/500,
-                            /*misc*/600,
-                          ],
-                          backgroundColor:[
-                            'rgba(53, 117, 219, .6)',
-                            'rgba(119, 53, 219, .6)',
-                            'rgba(219, 183, 53, .6)',
-                            'rgba(219, 53, 95, .6)',
-                            'rgba(53, 219, 200, .6)',
-              
-                          ],
-                        },
-                      ],
-                    }}
-                    width={100}
-                    height={100}
-                    
-                    options={{
-                      animation:{
-                        animateScale: false,
-                      },
-                      
-                      animationEnabled: false,
-                      animation: false,  
-                     title:{
-                       display:true,
-                       text:"Spending of Last 30 days",
-                       fontSize: 20
-                     },
-                     layout: {
-                       padding: {
-                         left: 50,
-                         right: 50,
-                         top: 0,
-                         bottom: 0
-                       }
-                     },
-                    }}
-              /> 
-              
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
              <Card>
                <Card.Header>
                  <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                    Calculator
+                   Calculator
                  </Accordion.Toggle>
                </Card.Header>
                <Accordion.Collapse eventKey="2">
                  <Card.Body>
                    <Calculator />
+                   {/* <Expenses/> */}
+                   {/* <SpendingLog /> */}
                  </Card.Body>
                </Accordion.Collapse>
              </Card>
            </Accordion>
            <br></br>
            <Expenses />
+           {/* <h3>Spending Log</h3> */}
+           {/* <Accordion
+            title="Spending Log"
+            <SpendingLog />
+            /> */}
+           {/* // <SpendingLog /> */}
+           {/* /> */}
+           {/* <SampleForm /> */}
          </div>
        );
    }
