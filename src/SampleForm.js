@@ -105,11 +105,9 @@ class SampleForm extends React.Component {
               cats: fire.firestore.FieldValue.arrayUnion(tempName)
             });
           }
-
         }).catch(function(error) {
         console.log("Error getting document:", error);
         this.setState({ isSubmitting: false });
-
         });*/
 
     /*if(checker){
@@ -126,7 +124,6 @@ class SampleForm extends React.Component {
           console.log("Error updating document:", error);
           this.setState({ isSubmitting: false });
         });
-
     } else{
       userRef.set(data)
       .then(() => {
@@ -138,7 +135,6 @@ class SampleForm extends React.Component {
         console.log("Error creating document:", error);
         this.setState({ isSubmitting: false });
       });
-
     }*/
 
     /*
@@ -254,6 +250,7 @@ class SampleForm extends React.Component {
                 <label>Amount Spent</label>
                 <input
                   type="number"
+                  min="0"
                   name="role"
                   className={`form-control ${
                     formErrors.role ? "is-invalid" : ""
