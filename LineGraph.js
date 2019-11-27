@@ -8,7 +8,7 @@ let fourSpent, threeSpent, twoSpent, oneSpent, currSpent = 0;  //use spending fr
 
 class LineGraph extends Component{
 
-    componentDidMount() {
+    /*componentDidMount() {
         fire
           .firestore()
           .collection("sample_data")
@@ -44,7 +44,7 @@ class LineGraph extends Component{
             // alert("Error fetching user data");
             console.log("Error fetching data: ", error);
           });
-      }
+      }*/
 
     constructor(props){
 
@@ -125,7 +125,7 @@ class LineGraph extends Component{
                         left: 0,
                         right: 0,
                         top: 0,
-                        bottom: 0
+                        bottom: 10
                     }
                    },
                   }}
