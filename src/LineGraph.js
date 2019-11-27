@@ -4,7 +4,7 @@ import { db } from "./config/firebase";
 import fire from "./config/firebase";
 
 //want to show balance taken from database after being set
-let fourSpent, threeSpent, twoSpent, oneSpent, currSpent = 0;  //use spending from spending log
+let fourSpent = 200, threeSpent = 320, twoSpent = 50, oneSpent = 70, currSpent = 0;  //use spending from spending log
 
 class LineGraph extends Component{
 
@@ -85,7 +85,7 @@ class LineGraph extends Component{
                 currSpent,
               ],
               backgroundColor:[
-                'rgba(252, 230, 252, 0)'
+                'rgba(224, 54, 20, 0.2)'
               ],
               borderColor: [
                 'rgba(224, 54, 20,1)'
