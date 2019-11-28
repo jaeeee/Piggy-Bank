@@ -26,13 +26,13 @@ class SignUp extends Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   signup(e) {
     e.preventDefault();
-    console.log("passed signup");
+    // console.log("passed signup");
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
