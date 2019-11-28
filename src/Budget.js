@@ -33,7 +33,7 @@ export class Budget extends Component {
     // });
 
     let userRef = db
-      .collection("sample_data")
+      .collection("users")
       .doc(fire.auth().currentUser.email);
 
     //   console.log(tempname);
@@ -57,7 +57,7 @@ export class Budget extends Component {
     var found = 0;
     fire
       .firestore()
-      .collection("sample_data")
+      .collection("users")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
@@ -118,7 +118,7 @@ export class Budget extends Component {
     var found = 0;
     fire
       .firestore()
-      .collection("sample_data")
+      .collection("users")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {

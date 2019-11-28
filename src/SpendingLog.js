@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import fire from "./config/firebase";
 import { db } from "./config/firebase";
-import Expenses from './Expenses';
+import Expenses from "./Expenses";
 
 export class SpendingLog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    Spendings: [],
-    cat: [],
-    spending: [],
-    zipped: []
-    }
+      Spendings: [],
+      cat: [],
+      spending: [],
+      zipped: []
+    };
     // this.testingLOL = this.testingLOL.bind(this);
-  };
+  }
 
   state = { Spendings: [] };
 
@@ -34,34 +34,35 @@ export class SpendingLog extends Component {
             return;
           }
         });
-                if (found == 0) {
-                  this.setState({
-                    cat: ["NONE"],
-                    spending: ["NONE"]
-                  });
-                } else
-        this.setState({
-        cat: categories_copy.cat,
-        spending: spending_copy.spending });
+        if (found == 0) {
+          this.setState({
+            cat: ["NONE"],
+            spending: ["NONE"]
+          });
+        } else
+          this.setState({
+            cat: categories_copy.cat,
+            spending: spending_copy.spending
+          });
       })
       .catch(function(error) {
         console.log("Error fetching data: ", error);
       });
-            // this.testingLOL();
+    // this.testingLOL();
   }
 
   render() {
-    const items = []
-    const zipped = this.state.cat.map((x, i) => [x, this.state.spending[i]])
+    const items = [];
+    const zipped = this.state.cat.map((x, i) => [x, this.state.spending[i]]);
     for (const [index, value] of zipped.entries()) {
-      items.push(<li>Category: {value[0]}, Spending: ${value[1]}</li>)
+      items.push(
+        <li>
+          Category: {value[0]}, Spending: ${value[1]}
+        </li>
+      );
     }
     console.log(items);
-    return (
-      <div>
-        {items}
-      </div>
-    );
+    return <div>{items}</div>;
   }
 }
 
