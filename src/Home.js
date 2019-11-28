@@ -31,7 +31,7 @@ class Home extends Component {
     // this.setState.testing = fire.auth().currentUser.email;
       // this.state.testing = "dmfiaogpa";
       // console.log(this.grabName());
-      this.state.testing = this.grabName();
+      // this.state.testing = this.grabName();
     return (
 
       // {/* No header, and the drawer stays open on larger screens (fixed drawer). */}
