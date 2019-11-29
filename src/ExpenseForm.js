@@ -44,12 +44,8 @@ class ExpenseForm extends React.Component{
     handleChange = prop => event => {
         //setValues({ ...values, [prop]: event.target.value })
         this.setState({
-            [event.target.name]: event.target.value,
+            [prop]: event.target.value,
         });
-        console.log(this.state.name);
-        console.log(this.state.amount);
-        console.log(this.state.category);
-        console.log(this.state.date);
     }
 
     NewExpenseForm(){
@@ -78,16 +74,18 @@ class ExpenseForm extends React.Component{
             category: '',
             date: '',
         });
-        const handleChange = prop => event => {
-            //setValues({ ...values, [prop]: event.target.value })
-            this.setState({
-                [prop]: event.target.value,
-            });
+       /* const handleChange = prop => event => {
+            setValues({ ...values, [prop]: event.target.value })
+            if(prop === 'name'){
+                this.setState({
+                    name: event.target.value,
+                });
+            }
             console.log(this.state.name);
             console.log(this.state.amount);
             console.log(this.state.category);
             console.log(this.state.date);
-        }
+        }*/
         return(
             <div>
                 <FormControl className={classes.margin, classes.textField}>
@@ -150,6 +148,12 @@ class ExpenseForm extends React.Component{
             let userRef = db.collection("users").doc(fire.auth().currentUser.email);
             userRef.update({
                 expenses: firebase.firestore.FieldValue.arrayUnion(purchase)
+            });
+            this.setState({
+                name: '',
+                amount: '',
+                category: '',
+                date: '',
             });
             setOpen(false);
         }
