@@ -33,7 +33,7 @@ export class Budget extends Component {
     // });
 
     let userRef = db
-      .collection("sample_data")
+      .collection("users")
       .doc(fire.auth().currentUser.email);
 
     //   console.log(tempname);
@@ -57,7 +57,7 @@ export class Budget extends Component {
     var found = 0;
     fire
       .firestore()
-      .collection("sample_data")
+      .collection("users")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
@@ -118,7 +118,7 @@ export class Budget extends Component {
     var found = 0;
     fire
       .firestore()
-      .collection("sample_data")
+      .collection("users")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
@@ -143,6 +143,13 @@ export class Budget extends Component {
       });
   }
 
+  onKeyPress(event) {
+    const keyCode = event.keyCode || event.which;
+    const keyValue = String.fromCharCode(keyCode);
+    if (/\+|-/.test(keyValue))
+      event.preventDefault();
+  }
+  
   render() {
     return (
       <div>
@@ -152,7 +159,9 @@ export class Budget extends Component {
           <div class="mdl-textfield mdl-js-textfield">
             <input
               class="mdl-textfield__input"
+              onKeyPress={this.onKeyPress.bind(this)} 
               type="number"
+              //min = "0"
               name="budget"
               placeholder="Set your budget"
               onChange={this.updateInput}

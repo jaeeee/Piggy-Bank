@@ -11,6 +11,8 @@ import Expenses from './Expenses';
 import Budget from './Budget';
 import Calculator from './Calculator';
 import PieChart from "react-minimal-pie-chart";
+import {Line, Doughnut} from 'react-chartjs-2';
+import LineGraph from './LineGraph';
 
 
 function Accordion_OG(props) {
@@ -32,7 +34,10 @@ function Accordion_OG(props) {
     );
   }
 
+  
+
   return (
+    
     <div className="accordion_section">
       <button className={`accordion ${setActive}`} onClick={toggleAccordion}>
         <p className="accordion_title">{props.title}</p>
@@ -71,6 +76,7 @@ function Accordion_OG(props) {
        return (
          <div>
            <Budget />
+           <LineGraph />
            {/* <Accordion_OG
              title="Overview"
              content="
@@ -121,6 +127,7 @@ function Accordion_OG(props) {
                        { title: "Three", value: 20, color: "#6A2135" }
                      ]}
                    />
+                   
                  </Card.Body>
                </Accordion.Collapse>
              </Card>

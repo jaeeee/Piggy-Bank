@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-            console.log("hi");
+            // console.log("hi");
             console.log(this.state.user);
     return( 
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
