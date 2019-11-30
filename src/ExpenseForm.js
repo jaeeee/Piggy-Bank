@@ -40,7 +40,7 @@ class ExpenseForm extends React.Component{
     createExpense(name, amount, category, date){
 		return {name, amount, category, date};
 	}
-    
+
     handleChange = prop => event => {
         //setValues({ ...values, [prop]: event.target.value })
         this.setState({
@@ -146,8 +146,21 @@ class ExpenseForm extends React.Component{
             var purchase = [];
             purchase = this.createExpense(this.state.name, this.state.amount, this.state.category, this.state.date);
             let userRef = db.collection("users").doc(fire.auth().currentUser.email);
+            console.log(purchase, "Is going through", fire.auth().currentUser.email)
             userRef.update({
                 expenses: firebase.firestore.FieldValue.arrayUnion(purchase)
+            })
+            .then(function(){
+              console.log("updating DB")
+            })
+            .catch(function(error){
+              console.log("Error caused by no doc existing for db. Creating new categories: ", error)
+              userRef.set({
+                    expenses: purchase
+                }, { merge: true })
+                .catch(function(error){
+                  console.log("Somethings really wrong: ", error)
+                });
             });
             this.setState({
                 name: '',
@@ -186,7 +199,7 @@ class ExpenseForm extends React.Component{
                     <this.ExpenseFormDialog />
                 </div>
         );
-    }    
-    
+    }
+
 }
 export default ExpenseForm;

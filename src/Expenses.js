@@ -52,6 +52,10 @@ class Expenses extends React.Component {
 			} else
 			this.setState({
 				expenses: expenses_copy
+				.catch(function(error){
+					console.log("Issue with expense table initializing: ", error)
+					window.location = "/"
+				})
 			});
 		})
 		.catch(function(error) {
@@ -78,6 +82,10 @@ class Expenses extends React.Component {
 			} else
 			this.setState({
 				expenses: expenses_copy
+				.catch(function(error){
+					console.log("Issue with expense table initializing: ", error)
+					window.location = "/"
+				})
 			});
 		})
 		.catch(function(error) {
@@ -120,7 +128,6 @@ class Expenses extends React.Component {
 			</div>
 		);
 	}
-
 	tableListener(){
 		let userRef = db.collection("users").doc(fire.auth().currentUser.email);
 		let expensesRef = userRef.expenses;
