@@ -1,4 +1,5 @@
 import React from "react";
+import { db } from "./config/firebase";
 import fire from "./config/firebase";
 import ExpenseForm from "./ExpenseForm"
 // import Calculator from './layout/Calculator/Calculator';
@@ -25,17 +26,64 @@ class Expenses extends React.Component {
 		}
 		this.ExpenseTable = this.ExpenseTable.bind(this);
 		this.Accordion = this.Accordion.bind(this);
+		this.tableListener = this.tableListener.bind(this);
 	}
 
 	createExpense(name, amount, category, date){
 		return {name, amount, category, date};
 	}
-	addExpense(name, amount, category, date){
-		if(this.expenses[0].name === 'Example'){
-			this.expenses = [this.createExpense(name, amount, category, date)];
-		}else{
-			this.expenses.push(this.createExpense(name, amount, category, date));
-		}
+
+	componentDidMount(){
+		var expenses_copy = [];
+		var found = 0;
+		fire
+		.firestore()
+		.collection("users")
+		.get()
+		.then(querySnapshot => {
+			querySnapshot.forEach(function(doc) {
+			if (doc.id === fire.auth().currentUser.email) {
+				expenses_copy = doc.data().expenses;
+				found = 1;
+			}
+			});
+			if (found === 0) {
+				console.log("expenses don't exist");
+			} else
+			this.setState({
+				expenses: expenses_copy
+			});
+		})
+		.catch(function(error) {
+			// alert("Error fetching user data");
+			console.log("Error fetching data: ", error);
+		});
+	}
+	componentDidUpdate(){
+		var expenses_copy = [];
+		var found = 0;
+		fire
+		.firestore()
+		.collection("users")
+		.get()
+		.then(querySnapshot => {
+			querySnapshot.forEach(function(doc) {
+			if (doc.id === fire.auth().currentUser.email) {
+				expenses_copy = doc.data().expenses;
+				found = 1;
+			}
+			});
+			if (found === 0) {
+				console.log("expenses don't exist");
+			} else
+			this.setState({
+				expenses: expenses_copy
+			});
+		})
+		.catch(function(error) {
+			// alert("Error fetching user data");
+			console.log("Error fetching data: ", error);
+		});
 	}
 
 	Accordion(){
@@ -72,6 +120,17 @@ class Expenses extends React.Component {
 			</div>
 		);
 	}
+
+	tableListener(){
+		let userRef = db.collection("users").doc(fire.auth().currentUser.email);
+		let expensesRef = userRef.expenses;
+		expensesRef.on('value', function(snapshot){
+			this.setState({
+				expenses: snapshot.val()
+			});
+		});
+	}
+
 	ExpenseTable(){
 		const useStyles = makeStyles({
 			root: {
@@ -82,14 +141,21 @@ class Expenses extends React.Component {
 				minWidth: 650,
 			},
 		});
-		
-		this.expenses = [this.createExpense('Whole Foods', 45, 'Groceries', '11/6/2019')];
-		this.expenses.push(this.createExpense('Movie', 30, 'Entertainment', '10/31/2019'));
-		this.expenses.push(this.createExpense('Disneyland', 300, 'Leisure', '11/10/2019'));
+		//var exList = []
+		//exList = this.state.expenses;
+		//this.expenses.push(this.createExpense('Movie', 30, 'Entertainment', '10/31/2019'));
+		//this.expenses.push(this.createExpense('Disneyland', 300, 'Leisure', '11/10/2019'));
 		// addExpense('Whole Foods', 45, 'Groceries', '11/6/2019');
 		// addExpense('Movie', 30, 'Entertainment', '10/31/2019');
 		// addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
 		const classes = useStyles();
+		//let userRef = db.collection("users").doc(fire.auth().currentUser.email);
+		/*let expensesRef = db.ref('users/' + fire.auth().currentUser.email + 'expenses');
+		expensesRef.on('value', function(snapshot){
+			this.setState({
+				expenses: snapshot.val()
+			});
+		});*/
 		return (
 			<Paper className={classes.root}>
 				<Table className={classes.table} aria-label="Expenses">
@@ -102,7 +168,7 @@ class Expenses extends React.Component {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{this.expenses.map(expenses => (
+						{this.state.expenses.map(expenses => (
 							<TableRow key = {expenses.index}>
 								<TableCell component="th" scope="row">
 									{expenses.name}
