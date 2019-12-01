@@ -127,6 +127,23 @@ class LineGraph extends Component{
       });
     // this.testingLOL();
   }*/
+  setGraphData = () => {
+    let arrSpent = []
+    let arrDate = []
+    for(let i = 0; i < this.state.expenses.length; i++){
+      let currSpent = parseFloat(this.state.expenses[i].amount);
+      let rawDate = this.state.expenses[i].date;
+      let currDate = rawDate.charAt(5) + rawDate.charAt(6) + "/" + rawDate.charAt(8) + rawDate.charAt(9)
+      arrSpent.push(currSpent);
+      arrDate.push(currDate);
+    }
+    //console.log(arrSpent);
+    //console.log(arrDate);
+    this.state.lineData.labels = arrDate;
+    this.state.lineData.datasets[0].data = arrSpent;
+    //console.log("stateData: ", this.state.lineData.datasets[0].data)
+
+  }
 
   componentDidMount() {
     let currentComp = this;
@@ -147,7 +164,10 @@ class LineGraph extends Component{
                       expenses: doc.data().expenses
                     });
                     console.log(currentComp.state.expenses)
-                    found = 1
+                    console.log("Going through userRef snapshot")
+
+                    currentComp.setGraphData();
+
                   }
                   catch(error){
                     console.log("We getting an error: ", error)
@@ -157,10 +177,7 @@ class LineGraph extends Component{
                 })
 
           if (found == 1) {
-            currentComp.setState({
-              expenses: tempExpense
-            });
-            console.log(tempExpense)
+            //console.log("does hit this")
           }
           else{
             currentComp.setState({
@@ -168,7 +185,10 @@ class LineGraph extends Component{
             });
           }
 
+
       }
+
+
 
     });
   };
