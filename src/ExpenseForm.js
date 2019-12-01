@@ -149,6 +149,7 @@ class ExpenseForm extends React.Component{
             console.log(purchase, "Is going through", fire.auth().currentUser.email)
             userRef.update({
                 expenses: firebase.firestore.FieldValue.arrayUnion(purchase)
+
             })
             .then(function(){
               console.log("updating DB")

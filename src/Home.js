@@ -20,9 +20,10 @@ class Home extends Component {
       testing: "",
     };
     this.logout = this.logout.bind(this);
+    console.log("Got to homepage");
     // this.grabName = this.grabName.bind(this);
   }
-  
+
   logout() {
     fire.auth().signOut();
   }
@@ -36,7 +37,7 @@ class Home extends Component {
 
       // {/* No header, and the drawer stays open on larger screens (fixed drawer). */}
       <div>
-        
+
         {/* <Navbar /> */}
         <MDBContainer>
           <MDBCard>

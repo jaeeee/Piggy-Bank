@@ -84,13 +84,11 @@ class SampleForm extends React.Component {
     })
     .then(function(){
       console.log("User data added to doc");
-      window.location = "/";
     })
     .catch(function(error) {
       console.log("Error getting document:", error )
       userRef.set(data)
       .then(function(){
-        window.location = "/"
       })
       .catch(function(error){
         console.log("There is something really going wrong", error);
