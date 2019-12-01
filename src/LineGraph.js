@@ -134,8 +134,18 @@ class LineGraph extends Component{
       let currSpent = parseFloat(this.state.expenses[i].amount);
       let rawDate = this.state.expenses[i].date;
       let currDate = rawDate.charAt(5) + rawDate.charAt(6) + "/" + rawDate.charAt(8) + rawDate.charAt(9)
-      arrSpent.push(currSpent);
-      arrDate.push(currDate);
+      let temp = arrDate.indexOf(currDate)
+      //console.log("yes")
+      //console.log(temp)
+      if(temp != -1){
+        arrSpent[temp] = arrSpent[temp] + currSpent;
+        arrSpent[temp] = parseFloat(arrSpent[temp].toPrecision(4));
+        //console.log("Going through at index: ", temp)
+      }
+      else{
+        arrSpent.push(currSpent);
+        arrDate.push(currDate);
+      }
     }
     //console.log(arrSpent);
     //console.log(arrDate);
