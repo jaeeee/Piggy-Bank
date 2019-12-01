@@ -28,7 +28,7 @@ class ExpenseForm extends React.Component{
             name: '',
             amount: '',
             category: '',
-            date: '',
+            date: 0,
         }
         //this.state = this.state.bind(this);
         this.NewExpenseForm = this.NewExpenseForm.bind(this);
@@ -100,6 +100,8 @@ class ExpenseForm extends React.Component{
                     <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
                     <Input
                         id="standard-adornment-amount"
+                        type= "number"
+                        step = ".01"
                         value={this.state.amount}
                         onChange={this.handleChange('amount')}
                         startAdornment={<InputAdornment position="start">$</InputAdornment>}

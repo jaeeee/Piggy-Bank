@@ -143,7 +143,10 @@ class LineGraph extends Component{
             includeMetadataChanges: true
         }, function(doc) {
                   try{
-                    tempExpense = doc.data().expenses
+                    currentComp.setState({
+                      expenses: doc.data().expenses
+                    });
+                    console.log(currentComp.state.expenses)
                     found = 1
                   }
                   catch(error){
@@ -158,7 +161,6 @@ class LineGraph extends Component{
               expenses: tempExpense
             });
             console.log(tempExpense)
-            found = 0
           }
           else{
             currentComp.setState({

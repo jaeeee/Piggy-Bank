@@ -3,7 +3,7 @@ import firebase from 'firebase';
   // Your web app's Firebase configuration
 
   // ORIGINAL PIGGY BANK DATABASE (use when storage is not full)
-   var firebaseConfig = {
+   /*var firebaseConfig = {
      apiKey: "AIzaSyDm-9VzoXGLZji26XDghH9gx_n52rgmsHY",
      authDomain: "piggy-bank-71144.firebaseapp.com",
      databaseURL: "https://piggy-bank-71144.firebaseio.com",
@@ -11,13 +11,13 @@ import firebase from 'firebase';
      storageBucket: "piggy-bank-71144.appspot.com",
      messagingSenderId: "677504131374",
      appId: "1:677504131374:web:7d80a2b5b5a3b094ed5abf"
-   };
+   };*/
 
 
 
    // BACKUP PIGGY DATABASE
-   /*
-   var firebaseConfig = {
+
+   /*var firebaseConfig = {
      apiKey: "AIzaSyBNGQ94b3sh_CA0Xud_2RKTDZcrmCSV1aQ",
      authDomain: "piggy-backup.firebaseapp.com",
      databaseURL: "https://piggy-backup.firebaseio.com",
@@ -29,8 +29,8 @@ import firebase from 'firebase';
    };*/
 
   //  //BACKUP PIGGY DATABASE 2
-  /*
-  var firebaseConfig = {
+
+  /*var firebaseConfig = {
      apiKey: "AIzaSyB-3c-A7D9wL760suIlG1rpuaoHyCMnkcA",
      authDomain: "piggybankbackup2.firebaseapp.com",
      databaseURL: "https://piggybankbackup2.firebaseio.com",
@@ -42,15 +42,15 @@ import firebase from 'firebase';
    };*/
 
   //BACKUP PIGGY 3
-  // var firebaseConfig = {
-  //   apiKey: "AIzaSyBcdCvaA4MwFmUTjUcuPdsbqvCt-bNTJXw",
-  //   authDomain: "piggy-back3.firebaseapp.com",
-  //   databaseURL: "https://piggy-back3.firebaseio.com",
-  //   projectId: "piggy-back3",
-  //   storageBucket: "piggy-back3.appspot.com",
-  //   messagingSenderId: "875501784070",
-  //   appId: "1:875501784070:web:f4819338804975fc678787"
-  // };
+   var firebaseConfig = {
+     apiKey: "AIzaSyBcdCvaA4MwFmUTjUcuPdsbqvCt-bNTJXw",
+     authDomain: "piggy-back3.firebaseapp.com",
+     databaseURL: "https://piggy-back3.firebaseio.com",
+     projectId: "piggy-back3",
+     storageBucket: "piggy-back3.appspot.com",
+     messagingSenderId: "875501784070",
+     appId: "1:875501784070:web:f4819338804975fc678787"
+   };
 
   //BACKUP PIGGY 4
   /*var firebaseConfig = {

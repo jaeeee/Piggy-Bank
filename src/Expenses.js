@@ -34,7 +34,7 @@ class Expenses extends React.Component {
 	}
 
 	componentDidMount(){
-		var expenses_copy = [];
+		/*var expenses_copy = [];
 		var found = 0;
 		fire
 		.firestore()
@@ -61,10 +61,10 @@ class Expenses extends React.Component {
 		.catch(function(error) {
 			// alert("Error fetching user data");
 			console.log("Error fetching data: ", error);
-		});
+		});*/
 	}
 	componentDidUpdate(){
-		var expenses_copy = [];
+		/*var expenses_copy = [];
 		var found = 0;
 		fire
 		.firestore()
@@ -86,12 +86,12 @@ class Expenses extends React.Component {
 					console.log("Issue with expense table initializing: ", error)
 					window.location = "/"
 				})
-			});
+			});f
 		})
 		.catch(function(error) {
 			// alert("Error fetching user data");
 			console.log("Error fetching data: ", error);
-		});
+		});*/
 	}
 
 	Accordion(){

@@ -18,7 +18,8 @@ export class SpendingLog extends Component {
   state = { Spendings: [] };
 
   componentDidMount() {
-    var categories_copy = [];
+    //******COMMENTED OUT FOR NOW TO TEST IF DB WONT EXCEED QUOTA************
+    /*var categories_copy = [];
     var spending_copy = [];
     var found = 0;
     fire
@@ -48,7 +49,7 @@ export class SpendingLog extends Component {
       .catch(function(error) {
         console.log("Error fetching data: ", error);
       });
-    // this.testingLOL();
+    // this.testingLOL();*/
   }
 
   render() {
