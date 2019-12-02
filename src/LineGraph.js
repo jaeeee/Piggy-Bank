@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Line} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2'
 import { db } from "./config/firebase";
 import fire from "./config/firebase";
 
@@ -34,7 +35,7 @@ class LineGraph extends Component{
         this.state = { value: '', pastInput: 1, decimal: false,
           expenses:[],
         //for the line and pie charts
-        lineData:{
+        graphData:[{
           labels: [
             (fourWeeks.getUTCMonth() + 1) + '/' + fourWeeks.getUTCDate(),
             (threeWeeks.getUTCMonth() + 1) + '/' + threeWeeks.getUTCDate(),
@@ -60,8 +61,36 @@ class LineGraph extends Component{
               ],
             },
 
-          ]
+          ],
         },
+        {
+          datasets:[
+            {
+              data:[
+                fourSpent,
+                threeSpent,
+                twoSpent,
+                oneSpent,
+                currSpent,
+              ],
+              backgroundColor:[
+                'rgba(255, 0, 0, .75)'
+              ],
+              borderColor: [
+                '#fff'
+              ],
+            },
+
+          ],
+          labels: [
+            (fourWeeks.getUTCMonth() + 1) + '/' + fourWeeks.getUTCDate(),
+            (threeWeeks.getUTCMonth() + 1) + '/' + threeWeeks.getUTCDate(),
+            (twoWeeks.getUTCMonth() + 1) + '/' + twoWeeks.getUTCDate(),
+            (lastWeek.getUTCMonth() + 1) + '/' + lastWeek.getUTCDate(),
+            (currDate.getUTCMonth() + 1) + '/' + currDate.getUTCDate()
+          ],
+        }
+      ],
 
     };
 
@@ -127,32 +156,105 @@ class LineGraph extends Component{
       });
     // this.testingLOL();
   }*/
-  setGraphData = () => {
+
+  /*hslToRgb(h, s, l) { // convert hsl values to RGB
+    var r, g, b;
+
+    if (s == 0) {
+      r = g = b = l; // achromatic
+    } else {
+      function hue2rgb(p, q, t) {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1/6) return p + (q - p) * 6 * t;
+        if (t < 1/2) return q;
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+      }
+
+      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      var p = 2 * l - q;
+
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+    }
+
+    return [ r * 255, g * 255, b * 255 ];
+  }*/
+
+
+  selectColor = (colorInd) => {
+      let arr = ['rgba(255, 0, 0, .75)', 'rgba(255, 128, 0, .75)', 'rgba(255, 255, 0, .75)',
+      'rgba(128, 255, 0, .75)', 'rgba(0, 255, 0, .75)', 'rgba(0, 255, 128, .75)',
+      'rgba(0, 255, 255, .75)', 'rgba(0, 128, 255, .75)', 'rgba(0, 0, 255, .75)',
+      'rgba(127, 0, 255, .75)', 'rgba(255, 0, 255, .75)', 'rgba(255, 0, 127, .75)',
+      'rgba(128, 128, 128, .75)', 'rgba(223, 223, 223, .75)', 'rgba(25, 25, 25, .75)',
+    ]
+
+    return (arr[colorInd])
+
+  }
+
+
+  setLineGraphData = () => {
     let arrSpent = []
     let arrDate = []
     for(let i = 0; i < this.state.expenses.length; i++){
       let currSpent = parseFloat(this.state.expenses[i].amount);
       let rawDate = this.state.expenses[i].date;
-      let currDate = rawDate.charAt(5) + rawDate.charAt(6) + "/" + rawDate.charAt(8) + rawDate.charAt(9)
-      let temp = arrDate.indexOf(currDate)
+      let currDate = rawDate.charAt(5) + rawDate.charAt(6) + "/" + rawDate.charAt(8) + rawDate.charAt(9);
+      let sameDate = arrDate.indexOf(currDate);
       //console.log("yes")
       //console.log(temp)
-      if(temp != -1){
-        arrSpent[temp] = arrSpent[temp] + currSpent;
-        arrSpent[temp] = parseFloat(arrSpent[temp].toPrecision(4));
+      if(sameDate != -1){
+        arrSpent[sameDate] = arrSpent[sameDate] + currSpent;
+        arrSpent[sameDate] = parseFloat(arrSpent[sameDate].toPrecision(4));
         //console.log("Going through at index: ", temp)
       }
+
       else{
         arrSpent.push(currSpent);
-        arrDate.push(currDate);
+        arrDate.push(currDate); // for LineGraph Dates
       }
     }
     //console.log(arrSpent);
     //console.log(arrDate);
-    this.state.lineData.labels = arrDate;
-    this.state.lineData.datasets[0].data = arrSpent;
+    this.state.graphData[0].labels = arrDate;
+    this.state.graphData[0].datasets[0].data = arrSpent;
     //console.log("stateData: ", this.state.lineData.datasets[0].data)
 
+  }
+
+
+  setDoughnutGraphData = () =>{
+    let arrSpent = []
+    let arrCategory = []
+    let arrColor = []
+    for(let i = 0; i < this.state.expenses.length; i++){
+      let currSpent = parseFloat(this.state.expenses[i].amount);
+      let currCategory = this.state.expenses[i].category;
+      let sameCategory = arrCategory.indexOf(currCategory);
+
+      if(sameCategory != -1){
+        arrSpent[sameCategory] = arrSpent[sameCategory] + currSpent;
+        arrSpent[sameCategory] = parseFloat(arrSpent[sameCategory].toPrecision(4));
+        //console.log("Going through at index: ", temp)
+      }
+
+      else{
+        arrSpent.push(currSpent);
+        arrCategory.push(currCategory); // for PieGraph Sections
+        let currColor = this.selectColor(arrColor.length);
+        arrColor.push(currColor);
+      }
+    }
+    //console.log(arrSpent);
+    //console.log(arrDate);
+    this.state.graphData[1].labels = arrCategory;
+    this.state.graphData[1].datasets[0].data = arrSpent;
+    console.log(arrColor)
+    this.state.graphData[1].datasets[0].backgroundColor = arrColor;
   }
 
   componentDidMount() {
@@ -176,7 +278,8 @@ class LineGraph extends Component{
                     console.log(currentComp.state.expenses)
                     console.log("Going through userRef snapshot")
 
-                    currentComp.setGraphData();
+                    currentComp.setLineGraphData();
+                    currentComp.setDoughnutGraphData();
 
                   }
                   catch(error){
@@ -210,7 +313,7 @@ class LineGraph extends Component{
         return(
             <div>
             <Line
-                  data={this.state.lineData}
+                  data={this.state.graphData[0]}
                   width={500}
                   height={200}
                   options={{
@@ -218,7 +321,7 @@ class LineGraph extends Component{
 
                    title:{
                      display:true,
-                     text:"Monthly Spending History" ,
+                     text:"Monthly Spending History Per Day" ,
                      fontSize: 20
                    },
                    legend:{
@@ -235,8 +338,36 @@ class LineGraph extends Component{
                    },
                   }}
               />
-            </div>
+            <div >
+              <Doughnut
+                      data={this.state.graphData[1]}
+                      width = {100}
+                      height = {350}
+                      options={{
+                        responsive: true,
+                        maintainAspectRatio: false,
 
+                       title:{
+                         display:true,
+                         text:"Monthly Spending History Per Category" ,
+                         fontSize: 20
+                       },
+                       legend:{
+                         display:true,
+                         position:'top'
+                       },
+                       layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 10
+                        }
+                       },
+                      }}
+                  />
+              </div>
+          </div>
 
         );
     }
