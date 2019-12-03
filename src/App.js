@@ -71,7 +71,7 @@ class App extends Component {
               <Link to="/">Home</Link>
               {/* <a href="#">Line Graph</a> */}
               <Link to="/expenses">Expenses</Link>
-              <Link to="/linegraph">Line Graph</Link>
+              <Link to="/linegraph">Statistics</Link>
               {/* <Link to="/projects">Projects</Link> */}
               {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
