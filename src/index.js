@@ -11,7 +11,7 @@ ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById("root") || document.createElement("div")
+  document.getElementById('root') || document.createElement('div')
 );
 
 // If you want your app to work offline and load faster, you can change
