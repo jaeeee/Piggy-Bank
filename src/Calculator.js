@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import './Calculator.css';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 
 class Calculator extends Component{
@@ -20,6 +29,9 @@ class Calculator extends Component{
     render(){
         return(
             <div>
+                <MDBContainer>
+          <MDBCard>
+            <MDBCardBody>
                 <main className="mt-5">
                     <div className="row">
                         <CalculatorScreen text={this.state.mathString} />
@@ -54,6 +66,9 @@ class Calculator extends Component{
 						<CalculatorButton elem="%" cols="2" mathFunc ={this.appendOperator}/>
 					</div>
                 </main>
+                </MDBCardBody>
+                </MDBCard>
+                </MDBContainer>
             </div>
         );
     }
