@@ -75,14 +75,15 @@ class App extends Component {
               <Link to="/calculator">Calculator</Link>
               {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
-            <Drawer title="Piggy Banks">
-              <Navigation>
-                <Link to="/expenses">Expenses</Link>
-                <Link to="/linegraph">Statistics</Link>
-                <Link to="/calculator">Calculator</Link>
-              </Navigation>
-            </Drawer>
           </Header>
+          <Drawer>
+            <Navigation>
+              <Link to="/">Home</Link>
+              <Link to="/expenses">Expenses</Link>
+              <Link to="/linegraph">Statistics</Link>
+              <Link to="/calculator">Calculator</Link>
+            </Navigation>
+          </Drawer>
           <Content>
             <div className="page-content" />
             <div className="App">{this.state.user ? <Main /> : <Login />}</div>
