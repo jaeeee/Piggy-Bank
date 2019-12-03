@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Piggy-Bank/static/css/main.fca1aa06.chunk.css",
+    "main.js": "/Piggy-Bank/static/js/main.753a82fd.chunk.js",
+    "main.js.map": "/Piggy-Bank/static/js/main.753a82fd.chunk.js.map",
+    "runtime-main.js": "/Piggy-Bank/static/js/runtime-main.727c4e84.js",
+    "runtime-main.js.map": "/Piggy-Bank/static/js/runtime-main.727c4e84.js.map",
+    "static/css/2.b085e5ec.chunk.css": "/Piggy-Bank/static/css/2.b085e5ec.chunk.css",
+    "static/js/2.f35fde65.chunk.js": "/Piggy-Bank/static/js/2.f35fde65.chunk.js",
+    "static/js/2.f35fde65.chunk.js.map": "/Piggy-Bank/static/js/2.f35fde65.chunk.js.map",
+    "index.html": "/Piggy-Bank/index.html",
+    "precache-manifest.6310e3ae50c7df9df98f52f1544a853b.js": "/Piggy-Bank/precache-manifest.6310e3ae50c7df9df98f52f1544a853b.js",
+    "service-worker.js": "/Piggy-Bank/service-worker.js",
+    "static/css/2.b085e5ec.chunk.css.map": "/Piggy-Bank/static/css/2.b085e5ec.chunk.css.map",
+    "static/css/main.fca1aa06.chunk.css.map": "/Piggy-Bank/static/css/main.fca1aa06.chunk.css.map",
+    "static/media/mdb.css": "/Piggy-Bank/static/media/arrow_right.8ef6a08c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.727c4e84.js",
+    "static/css/2.b085e5ec.chunk.css",
+    "static/js/2.f35fde65.chunk.js",
+    "static/css/main.fca1aa06.chunk.css",
+    "static/js/main.753a82fd.chunk.js"
+  ]
+}
