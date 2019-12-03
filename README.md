@@ -1,4 +1,4 @@
-# Piggy Bank 
+# Piggy Bank [![Build Status](https://travis-ci.com/jaeeee/Piggy-Bank.svg?branch=master)](https://travis-ci.com/jaeeee/Piggy-Bank)
 
 The software project is a web based implementation of a budgeting app. It will allow users to view their spending habits while giving suggestions on how to better spend and budget their hard earned money. Our focus is to streamline the budgeting and saving process as much as possible, from the minimalistic UI to the easy budgeting calculator.
 
