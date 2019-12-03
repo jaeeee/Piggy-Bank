@@ -50,45 +50,49 @@ class App extends Component {
             // console.log("hi");
             console.log(this.state.user);
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh"
-        }}
-      >
-        <Layout fixedHeader>
-          <Header
-            title={
-              <span>
-                <span style={{ color: "#ddd" }}>Piggy Bank </span>
-                {/* <strong>2020</strong> */}
-              </span>
-            }
-          ></Header>
-          <Drawer>
-            <Navigation>
-              {/* yuh */}
-              <Link to="/">Home</Link>
-              {/* <Link to="/expenses">Expenses</Link> */}
-              <Link to="/linegraph">Statistics</Link>
-              <Link to="/spendingcalc">Savings Estimator</Link>
-              <Link to="/calculator">Calculator</Link>
-              <Link to="/currency">Live Exchange Rates</Link>
-            </Navigation>
-          </Drawer>
-          <Content>
-            <div className="page-content" />
-            <div className="App">{this.state.user ? <Main /> : <Login />}</div>
-          </Content>
-          <Footer class="page-footer font-small blue ">
-            <FooterSection
-              type="middle"
-              logo="© 2019-2020 Team 0: https://github.com/jaeeee/Piggy-Bank"
-            ></FooterSection>
-          </Footer>
-        </Layout>
+      <div id="root">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh"
+          }}
+        >
+          <Layout fixedHeader>
+            <Header
+              title={
+                <span>
+                  <span style={{ color: "#ddd" }}>Piggy Bank </span>
+                  {/* <strong>2020</strong> */}
+                </span>
+              }
+            ></Header>
+            <Drawer>
+              <Navigation>
+                {/* yuh */}
+                <Link to="/">Home</Link>
+                {/* <Link to="/expenses">Expenses</Link> */}
+                <Link to="/linegraph">Statistics</Link>
+                <Link to="/spendingcalc">Savings Estimator</Link>
+                <Link to="/calculator">Calculator</Link>
+                <Link to="/currency">Live Exchange Rates</Link>
+              </Navigation>
+            </Drawer>
+            <Content>
+              <div className="page-content" />
+              <div className="App">
+                {this.state.user ? <Main /> : <Login />}
+              </div>
+            </Content>
+            <Footer class="page-footer font-small blue ">
+              <FooterSection
+                type="middle"
+                logo="© 2019-2020 Team 0: https://github.com/jaeeee/Piggy-Bank"
+              ></FooterSection>
+            </Footer>
+          </Layout>
+        </div>
       </div>
     );
   }
