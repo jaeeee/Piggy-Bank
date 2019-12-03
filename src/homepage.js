@@ -13,6 +13,8 @@ import Calculator from "./Calculator";
 import PieChart from "react-minimal-pie-chart";
 import { Line, Doughnut } from "react-chartjs-2";
 import LineGraph from "./LineGraph";
+import {BrowserRouter as Router} from "react-router-dom";
+
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -62,7 +64,7 @@ class Homepage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // fuck_you: "",
+      // : "",
     };
   }
   // var user = firebase.auth().currentUser;
@@ -78,7 +80,6 @@ class Homepage extends React.Component {
     return (
       <div>
         <Budget />
-        <LineGraph />
         {/* <Accordion_OG
              title="Overview"
              content="
@@ -86,7 +87,7 @@ class Homepage extends React.Component {
                   You spent too much money today <br/>
                   thats not good <br/>
                   spend less <br/>
-                  tomorrow 
+                  tomorrow
                 </p>"
            /> */}
         {/* <Accordion_OG
@@ -114,7 +115,7 @@ class Homepage extends React.Component {
   }
 }
 
-ReactDOM.render(<Homepage />, document.getElementById("root"));
+ReactDOM.render(<Router><Homepage /></Router>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

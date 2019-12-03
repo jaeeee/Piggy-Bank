@@ -17,6 +17,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { withRouter } from 'react-router-dom';
 // import "mdbreact/dist/css/mdb.css";
 import {
   MDBContainer,
@@ -217,4 +218,4 @@ class Expenses extends React.Component {
 		);
 	}
 }
-export default Expenses;
+export default withRouter(Expenses);
