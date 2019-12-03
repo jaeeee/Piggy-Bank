@@ -1,4 +1,13 @@
 import React from "react";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 var totalcalc;
 var totalmonths;
@@ -86,74 +95,87 @@ class SpendingCalc extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-	  
-	  
-        <div className='form-group'>
-          <label htmlFor='amountneed'>How much will you need?</label>
-          <input
-            amountneed='amountneed'
-            className={`form-control ${this.state.amError ? 'is-invalid' : ''}`}
-            id='amountneed'
-            placeholder='1000'
-			type="number"
-            value={this.state.amountneed}
-            onChange={this.handleAMChange}
-            onBlur={this.validateAM}
-          />
-          <div className='invalid-feedback'>{this.state.amError}</div>
-        </div>
-		
-		
-        <div className='form-group'>
-          <label htmlFor='currentsave'>How much do you currently have saved?</label>
-          <input
-            currentsave='currentsave'
-            className={`form-control ${this.state.csError ? 'is-invalid' : ''}`}
-            id='currentsave'
-            placeholder='1000'
-			type="number"
-            value={this.state.currentsave}
-            onChange={this.handleCSChange}
-            onBlur={this.validateCS}
-          />
-          <div className='invalid-feedback'>{this.state.csError}</div>
-        </div>
-		
-        <div className='form-group'>
-          <label htmlFor='yearstosave'>How many years?</label>
-          <input
-            yearstosave='yearstosave'
-            className={`form-control ${this.state.yrError ? 'is-invalid' : ''}`}
-            id='yearstosave'
-            placeholder='0'
-			type="number"
-            value={this.state.yearstosave}
-            onChange={this.handleYRChange}
-            onBlur={this.validateYR}
-          />
-          <div className='invalid-feedback'>{this.state.yrError}</div>
-        </div>
-		
-        <div className='form-group'>
-          <label htmlFor='monthstosave'>How many months?</label>
-          <input
-            monthstosave='monthstosave'
-            className={`form-control ${this.state.moError ? 'is-invalid' : ''}`}
-            id='monthstosave'
-            placeholder='0'
-			type="number"
-            value={this.state.monthstosave}
-            onChange={this.handleMOChange}
-            onBlur={this.validateMO}
-          />
-          <div className='invalid-feedback'>{this.state.moError}</div>
-        </div>
+      <MDBContainer>
+        <MDBCard>
+          <MDBCardBody>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="amountneed">How much will you need?</label>
+                <input
+                  amountneed="amountneed"
+                  className={`form-control ${
+                    this.state.amError ? "is-invalid" : ""
+                  }`}
+                  id="amountneed"
+                  placeholder="1000"
+                  type="number"
+                  value={this.state.amountneed}
+                  onChange={this.handleAMChange}
+                  onBlur={this.validateAM}
+                />
+                <div className="invalid-feedback">{this.state.amError}</div>
+              </div>
 
-        <button type='submit' className='btn btn-success btn-block'>
-          Submit
-        </button>
-      </form>
+              <div className="form-group">
+                <label htmlFor="currentsave">
+                  How much do you currently have saved?
+                </label>
+                <input
+                  currentsave="currentsave"
+                  className={`form-control ${
+                    this.state.csError ? "is-invalid" : ""
+                  }`}
+                  id="currentsave"
+                  placeholder="1000"
+                  type="number"
+                  value={this.state.currentsave}
+                  onChange={this.handleCSChange}
+                  onBlur={this.validateCS}
+                />
+                <div className="invalid-feedback">{this.state.csError}</div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="yearstosave">How many years?</label>
+                <input
+                  yearstosave="yearstosave"
+                  className={`form-control ${
+                    this.state.yrError ? "is-invalid" : ""
+                  }`}
+                  id="yearstosave"
+                  placeholder="0"
+                  type="number"
+                  value={this.state.yearstosave}
+                  onChange={this.handleYRChange}
+                  onBlur={this.validateYR}
+                />
+                <div className="invalid-feedback">{this.state.yrError}</div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="monthstosave">How many months?</label>
+                <input
+                  monthstosave="monthstosave"
+                  className={`form-control ${
+                    this.state.moError ? "is-invalid" : ""
+                  }`}
+                  id="monthstosave"
+                  placeholder="0"
+                  type="number"
+                  value={this.state.monthstosave}
+                  onChange={this.handleMOChange}
+                  onBlur={this.validateMO}
+                />
+                <div className="invalid-feedback">{this.state.moError}</div>
+              </div>
+
+              <button type="submit" className="btn btn-success btn-block">
+                Submit
+              </button>
+            </form>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBContainer>
     );
   }
 }

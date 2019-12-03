@@ -72,6 +72,7 @@ class App extends Component {
               {/* <a href="#">Line Graph</a> */}
               <Link to="/expenses">Expenses</Link>
               <Link to="/linegraph">Statistics</Link>
+              <Link to="/spendingcalc">Savings Estimator</Link>
               <Link to="/calculator">Calculator</Link>
               {/* <Link to="/contact">Contact</Link> */}
             </Navigation>
@@ -81,6 +82,7 @@ class App extends Component {
               <Link to="/">Home</Link>
               <Link to="/expenses">Expenses</Link>
               <Link to="/linegraph">Statistics</Link>
+              <Link to="/spendingcalc">Savings Estimator</Link>
               <Link to="/calculator">Calculator</Link>
             </Navigation>
           </Drawer>
