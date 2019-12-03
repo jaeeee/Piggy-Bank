@@ -21,3 +21,43 @@
 .App-link {
   color: #09d3ac;
 }
+
+.table,
+th,
+td {
+  border: none;
+}
+
+.currencyTable {
+   /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* color: white; */
+  /* align-items:center; */
+  /* align-self: center; */
+  /* width: 50%; */
+  /* background-color: #090c1f; */
+  border-collapse: collapse;
+  font-size: 32px;
+  /* border-radius: 15px; */
+  /* -moz-border-radius: 15px; */
+  overflow: hidden;
+  /* color: red; */
+}
+
+.currencyTable td {
+  padding: 15px;
+}
+
+.currencyTable th {
+  padding: 20px;
+  /* color: white; */
+  /* border-bottom: 2px solid white; */
+}
+
+.currencyTable td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}

@@ -14,6 +14,7 @@ import PieChart from "react-minimal-pie-chart";
 import { Line, Doughnut } from "react-chartjs-2";
 import LineGraph from "./LineGraph";
 import {BrowserRouter as Router} from "react-router-dom";
+import Converter from './Converter';
 
 
 function Accordion_OG(props) {
@@ -80,6 +81,7 @@ class Homepage extends React.Component {
     return (
       <div>
         <Budget />
+        <Converter />
         {/* <Accordion_OG
              title="Overview"
              content="
