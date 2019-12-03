@@ -9,7 +9,7 @@ import Navbar from "./Navbar";
 import SignUp from "./Signup";
 // import homepage from "./homepage";
 import 'bootstrap-css-only/css/bootstrap.min.css';
-import { Layout, Header, Navigation, Drawer, Content } from "react-mdl";
+import { Layout, Header, Navigation, Drawer, Content, Footer, FooterSection, FooterLinkList } from "react-mdl";
 import {
   BrowserRouter as Router,
   Route,
@@ -66,9 +66,7 @@ class App extends Component {
                 {/* <strong>2020</strong> */}
               </span>
             }
-          >
-           
-          </Header>
+          ></Header>
           <Drawer>
             <Navigation>
               <Link to="/">Home</Link>
@@ -83,6 +81,12 @@ class App extends Component {
             <div className="page-content" />
             <div className="App">{this.state.user ? <Main /> : <Login />}</div>
           </Content>
+          <Footer class="page-footer font-small blue ">
+            <FooterSection
+              type="middle"
+              logo="© 2019-2020 Team 0: https://github.com/jaeeee/Piggy-Bank"
+            ></FooterSection>
+          </Footer>
         </Layout>
       </div>
     );
