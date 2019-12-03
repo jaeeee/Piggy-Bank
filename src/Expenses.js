@@ -206,14 +206,14 @@ class Expenses extends React.Component {
 		// Console.log({this.state.DATA});
 		return (
 			<div>
-				 <MDBContainer>
-          <MDBCard>
-            <MDBCardBody>
+				 {/* <MDBContainer> */}
+          {/* <MDBCard> */}
+            {/* <MDBCardBody> */}
 				<this.Accordion />
 				<ExpenseForm />
-				</MDBCardBody>
-				</MDBCard>
-				</MDBContainer>
+				{/* </MDBCardBody> */}
+				{/* </MDBCard> */}
+				{/* </MDBContainer> */}
 			</div>
 		);
 	}

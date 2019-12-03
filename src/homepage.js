@@ -81,7 +81,8 @@ class Homepage extends React.Component {
     return (
       <div>
         <Budget />
-        <Converter />
+        <Expenses />
+        {/* <Converter /> */}
         {/* <Accordion_OG
              title="Overview"
              content="
