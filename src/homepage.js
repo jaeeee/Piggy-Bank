@@ -76,7 +76,7 @@ function Accordion_OG(props) {
        return (
          <div>
            <Budget />
-           {/* <LineGraph /> */}
+           <LineGraph />
            {/* <Accordion_OG
              title="Overview"
              content="

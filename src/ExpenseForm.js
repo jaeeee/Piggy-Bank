@@ -86,48 +86,58 @@ class ExpenseForm extends React.Component{
             console.log(this.state.category);
             console.log(this.state.date);
         }*/
-        return(
-            <div>
-                <FormControl className={classes.margin, classes.textField}>
-                    <InputLabel htmlFor="standard-adornment-name">Name</InputLabel>
-                    <Input
-                        id="standard-adornment-name"
-                        value={this.state.name}
-                        onChange={this.handleChange('name')}
-                    />
-                </FormControl>
-                <FormControl className={classes.margin, classes.textField}>
-                    <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
-                    <Input
-                        id="standard-adornment-amount"
-                        type= "number"
-                        step = ".01"
-                        value={this.state.amount}
-                        onChange={this.handleChange('amount')}
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                    />
-                </FormControl>
-                <FormControl className={classes.margin, classes.textField}>
-                    <InputLabel htmlFor="standard-adornment-category">Category</InputLabel>
-                    <Input
-                        id="standard-adornment-category"
-                        value={this.state.category}
-                        onChange={this.handleChange('category')}
-                    />
-                </FormControl>
-                <TextField
-                    id="date"
-                    label="Date of Expense"
-                    type="date"
-                    placeholder="YYYY-MM-DD"
-                    className={classes.textField}
-                    value={this.state.date}
-                    onChange={this.handleChange('date')}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-            </div>
+        return (
+          <div>
+            <FormControl className={(classes.margin, classes.textField)}>
+              <InputLabel htmlFor="standard-adornment-name">Name</InputLabel>
+              <Input
+                id="standard-adornment-name"
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+              />
+            </FormControl>
+            <FormControl className={(classes.margin, classes.textField)}>
+              <InputLabel htmlFor="standard-adornment-amount">
+                Amount
+              </InputLabel>
+              <Input
+                id="standard-adornment-amount"
+                type="number"
+                step=".01"
+                value={this.state.amount}
+                onChange={this.handleChange("amount")}
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl className={(classes.margin, classes.textField)}>
+              <InputLabel htmlFor="standard-adornment-category">
+                Category
+              </InputLabel>
+              <Input
+                id="standard-adornment-category"
+                value={this.state.category}
+                onChange={this.handleChange("category")}
+              />
+              {/* <TextField id="standard-adornment-category" label="Category" value={this.state.category} onChange={this.handleChange("category")}>
+                <MenuItem value="10">Ten</MenuItem>
+                <MenuItem value="20">Twenty</MenuItem>
+              </TextField> */}
+            </FormControl>
+            <TextField
+              id="date"
+              label="Date of Expense"
+              type="date"
+              placeholder="YYYY-MM-DD"
+              className={classes.textField}
+              value={this.state.date}
+              onChange={this.handleChange("date")}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          </div>
         );
     }
     ExpenseFormDialog(){
