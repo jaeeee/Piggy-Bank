@@ -17,6 +17,16 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+// import "mdbreact/dist/css/mdb.css";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 class Expenses extends React.Component {
 	constructor(props) {
@@ -195,8 +205,14 @@ class Expenses extends React.Component {
 		// Console.log({this.state.DATA});
 		return (
 			<div>
+				 <MDBContainer>
+          <MDBCard>
+            <MDBCardBody>
 				<this.Accordion />
 				<ExpenseForm />
+				</MDBCardBody>
+				</MDBCard>
+				</MDBContainer>
 			</div>
 		);
 	}

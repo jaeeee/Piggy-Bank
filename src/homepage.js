@@ -76,7 +76,7 @@ function Accordion_OG(props) {
        return (
          <div>
            <Budget />
-           <LineGraph />
+           {/* <LineGraph /> */}
            {/* <Accordion_OG
              title="Overview"
              content="
@@ -147,7 +147,7 @@ function Accordion_OG(props) {
              </Card>
            </Accordion>
            <br></br>
-           <Expenses />
+           {/* <Expenses /> */}
            {/* <h3>Spending Log</h3> */}
            {/* <Accordion
             title="Spending Log"

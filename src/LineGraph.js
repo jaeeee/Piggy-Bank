@@ -3,6 +3,15 @@ import {Line} from 'react-chartjs-2';
 import {Doughnut} from 'react-chartjs-2'
 import { db } from "./config/firebase";
 import fire from "./config/firebase";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 //want to show balance taken from database after being set
 let fourSpent = 200, threeSpent = 320, twoSpent = 50, oneSpent = 70, currSpent = 0;  //use spending from spending log
@@ -310,65 +319,70 @@ class LineGraph extends Component{
 
     render(){
 
-        return(
-            <div>
-            <Line
-                  data={this.state.graphData[0]}
-                  width={500}
-                  height={200}
-                  options={{
-                    responsive: true,
+        return (
+          <div>
+            <MDBContainer>
+              <MDBCard>
+                <MDBCardBody>
+                  <Line
+                    data={this.state.graphData[0]}
+                    width={500}
+                    height={200}
+                    options={{
+                      responsive: true,
 
-                   title:{
-                     display:true,
-                     text:"Monthly Spending History Per Day" ,
-                     fontSize: 20
-                   },
-                   legend:{
-                     display:true,
-                     position:'top'
-                   },
-                   layout: {
-                    padding: {
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 10
-                    }
-                   },
-                  }}
-              />
-            <div >
-              <Doughnut
+                      title: {
+                        display: true,
+                        text: "Monthly Spending History Per Day",
+                        fontSize: 20
+                      },
+                      legend: {
+                        display: true,
+                        position: "top"
+                      },
+                      layout: {
+                        padding: {
+                          left: 0,
+                          right: 0,
+                          top: 0,
+                          bottom: 10
+                        }
+                      }
+                    }}
+                  />
+                  <div>
+                    <Doughnut
                       data={this.state.graphData[1]}
-                      width = {100}
-                      height = {350}
+                      width={100}
+                      height={350}
                       options={{
                         responsive: true,
                         maintainAspectRatio: false,
 
-                       title:{
-                         display:true,
-                         text:"Monthly Spending History Per Category" ,
-                         fontSize: 20
-                       },
-                       legend:{
-                         display:true,
-                         position:'top'
-                       },
-                       layout: {
-                        padding: {
+                        title: {
+                          display: true,
+                          text: "Monthly Spending History Per Category",
+                          fontSize: 20
+                        },
+                        legend: {
+                          display: true,
+                          position: "top"
+                        },
+                        layout: {
+                          padding: {
                             left: 0,
                             right: 0,
                             top: 0,
                             bottom: 10
+                          }
                         }
-                       },
                       }}
-                  />
-              </div>
+                    />
+                  </div>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBContainer>
           </div>
-
         );
     }
 
