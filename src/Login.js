@@ -58,10 +58,10 @@ class Login extends Component {
   render() {
     return (
         <MDBContainer>
-          <MDBRow>
-            <MDBCol md="12">
+          {/* <MDBRow> */}
+            {/* <MDBCol md="12"> */}
               <MDBCard
-                style={{ width: "44rem", height: "24rem", padding: "50px" }}
+                style={{ width: "80rem", height: "25rem", padding: "50px" }}
               >
                 <form>
                   <p className="h5 text-center mb-4">Sign in</p>
@@ -102,8 +102,8 @@ class Login extends Component {
                   </div>
                 </form>
               </MDBCard>
-            </MDBCol>
-          </MDBRow>
+            {/* </MDBCol> */}
+          {/* </MDBRow> */}
         </MDBContainer>
           );
   }
