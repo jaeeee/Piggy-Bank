@@ -10,6 +10,10 @@ Web-based application using React and Firebase.
 
 User accounts will be stored in a database attached to their information such as money in accounts and the different spending categories.
 
+## **Testing** 
+
+All commits that are pushed to the master branch are tested using Travis CI. The image next to the Piggy Bank header on this README file displays the current state of the build, it will tell you whether or not the build is passing or not.
+
 ## UML Chart
 
 **![](UML.png)**
