@@ -53,7 +53,7 @@ import firebase from 'firebase';
    }*/;
 
   //BACKUP PIGGY 4
-  var firebaseConfig = {
+  /*var firebaseConfig = {
     apiKey: "AIzaSyBYex1zr2ofgcb-URB1jLEELCZmhpPSIx8",
     authDomain: "piggybankbackup4.firebaseapp.com",
     databaseURL: "https://piggybankbackup4.firebaseio.com",
@@ -61,10 +61,10 @@ import firebase from 'firebase';
     storageBucket: "piggybankbackup4.appspot.com",
     messagingSenderId: "678932646779",
     appId: "1:678932646779:web:7fd798f64138e0db63cbde"
-  };
+  };*/
 
   //BACKUP PIGGY 5
-  /*var firebaseConfig = {
+  var firebaseConfig = {
     apiKey: "AIzaSyD3P-Q1xAbQTYTPkD4mYnHDdEjl6dv2k1I",
     authDomain: "piggybankbackup5.firebaseapp.com",
     databaseURL: "https://piggybankbackup5.firebaseio.com",
@@ -72,7 +72,7 @@ import firebase from 'firebase';
     storageBucket: "piggybankbackup5.appspot.com",
     messagingSenderId: "364062625328",
     appId: "1:364062625328:web:1fab3cbafa6cd01d2067f5"
-  };**/
+  };
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

@@ -3,6 +3,7 @@ import {Line} from 'react-chartjs-2';
 import {Doughnut} from 'react-chartjs-2'
 import { db } from "./config/firebase";
 import fire from "./config/firebase";
+import { withRouter } from 'react-router-dom';
 import {
   MDBContainer,
   MDBRow,
@@ -12,6 +13,7 @@ import {
   MDBCard,
   MDBCardBody
 } from "mdbreact";
+import {BrowserRouter as Router} from "react-router-dom";
 
 //want to show balance taken from database after being set
 let fourSpent = 200, threeSpent = 320, twoSpent = 50, oneSpent = 70, currSpent = 0;  //use spending from spending log
@@ -262,7 +264,7 @@ class LineGraph extends Component{
     //console.log(arrDate);
     this.state.graphData[1].labels = arrCategory;
     this.state.graphData[1].datasets[0].data = arrSpent;
-    console.log(arrColor)
+    //console.log(arrColor) //Add back after testing
     this.state.graphData[1].datasets[0].backgroundColor = arrColor;
   }
 
@@ -292,7 +294,7 @@ class LineGraph extends Component{
 
                   }
                   catch(error){
-                    console.log("We getting an error: ", error)
+                    console.log("We getting an error: ", error)// ADD back later
                     found = 0
                   }
 
@@ -321,6 +323,7 @@ class LineGraph extends Component{
 
         return (
           <div>
+            <Router>
             <MDBContainer>
               <MDBCard>
                 <MDBCardBody>
@@ -382,10 +385,11 @@ class LineGraph extends Component{
                 </MDBCardBody>
               </MDBCard>
             </MDBContainer>
+            </Router>
           </div>
         );
     }
 
 }
 
-export default LineGraph;
+export default withRouter(LineGraph);
