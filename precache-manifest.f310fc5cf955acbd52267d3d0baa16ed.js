@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4806fb63050c4a0d399cbd1e50feef4e",
+    "revision": "fb73f174ca69ca62b4a4c8c86e1cce62",
     "url": "/Piggy-Bank/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Piggy-Bank/static/css/2.e1bf915b.chunk.css"
   },
   {
-    "revision": "e6d22ebbbf09b4be9a68",
+    "revision": "1b29f808206f61523285",
     "url": "/Piggy-Bank/static/css/main.d7f0972c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Piggy-Bank/static/js/2.aff7d881.chunk.js"
   },
   {
-    "revision": "e6d22ebbbf09b4be9a68",
-    "url": "/Piggy-Bank/static/js/main.d0d66efa.chunk.js"
+    "revision": "1b29f808206f61523285",
+    "url": "/Piggy-Bank/static/js/main.8bd86ce8.chunk.js"
   },
   {
     "revision": "d97f7b328a516802eb12",
