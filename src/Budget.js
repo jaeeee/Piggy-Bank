@@ -161,7 +161,9 @@ export class Budget extends Component {
               class="mdl-textfield__input"
               onKeyPress={this.onKeyPress.bind(this)} 
               type="number"
-              //min = "0"
+              min = "0"
+              max = "999999"
+              step = ".01"
               name="budget"
               placeholder="Set your budget"
               onChange={this.updateInput}

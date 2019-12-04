@@ -68,66 +68,114 @@ class ExpenseForm extends React.Component{
             },
         }));
         const classes = useStyles();
-        const [values, setValues] = React.useState({
-            name: '',
-            amount: '',
-            category: '',
-            date: '',
-        });
-       /* const handleChange = prop => event => {
-            setValues({ ...values, [prop]: event.target.value })
-            if(prop === 'name'){
-                this.setState({
-                    name: event.target.value,
-                });
-            }
-            console.log(this.state.name);
-            console.log(this.state.amount);
-            console.log(this.state.category);
-            console.log(this.state.date);
-        }*/
-        return(
-            <div>
-                <FormControl className={classes.margin, classes.textField}>
-                    <InputLabel htmlFor="standard-adornment-name">Name</InputLabel>
-                    <Input
-                        id="standard-adornment-name"
-                        value={this.state.name}
-                        onChange={this.handleChange('name')}
-                    />
-                </FormControl>
-                <FormControl className={classes.margin, classes.textField}>
-                    <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
-                    <Input
-                        id="standard-adornment-amount"
-                        type= "number"
-                        step = ".01"
-                        value={this.state.amount}
-                        onChange={this.handleChange('amount')}
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                    />
-                </FormControl>
-                <FormControl className={classes.margin, classes.textField}>
-                    <InputLabel htmlFor="standard-adornment-category">Category</InputLabel>
-                    <Input
-                        id="standard-adornment-category"
-                        value={this.state.category}
-                        onChange={this.handleChange('category')}
-                    />
-                </FormControl>
-                <TextField
-                    id="date"
-                    label="Date of Expense"
-                    type="date"
-                    placeholder="YYYY-MM-DD"
-                    className={classes.textField}
-                    value={this.state.date}
-                    onChange={this.handleChange('date')}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-            </div>
+
+        const categories = [
+            {
+                value: 'Bills & Utilities'
+            },
+            {
+                value: 'Entertainment'
+            },
+            {
+                value: 'Food & Drink'
+            },
+            {
+                value: 'Groceries'
+            },
+            {
+                value: 'Gas'
+            },
+            {
+                value: 'Shopping'
+            },
+            {
+                value: 'Automotive'
+            },
+            {
+                value: 'Education'
+            },
+            {
+                value: 'Health & Wellness'
+            },
+            {
+                value: 'Gifts & Donations'
+            },
+            {
+                value: 'Personal'
+            },
+            {
+                value: 'Travel'
+            },
+            {
+                value: 'Home'
+            },
+        ];
+
+        return (
+          <div>
+            <FormControl className={(classes.margin, classes.textField)}>
+              <InputLabel htmlFor="standard-adornment-name">Name</InputLabel>
+              <Input
+                id="standard-adornment-name"
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+              />
+            </FormControl>
+            <FormControl className={(classes.margin, classes.textField)}>
+              <InputLabel htmlFor="standard-adornment-amount">
+                Amount
+              </InputLabel>
+              <Input
+                id="standard-adornment-amount"
+                type="number"
+                step=".01"
+                min = "0"
+                max = "999999"
+                value={this.state.amount}
+                onChange={this.handleChange("amount")}
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+              />
+            </FormControl>
+            <TextField
+                id="standard-select-category-native"
+                select
+                label="Category"
+                className={classes.textField}
+                value={this.state.category}
+                onChange={this.handleChange("category")}
+                SelectProps={{
+                    native: true,
+                    MenuProps: {
+                        className: classes.menu,
+                    },
+                }}
+                margin="normal"
+            >
+              {categories.map(option => (
+                  <option key={option.value} value={option.value}>
+                      {option.value}
+                  </option>
+              ))}
+            </TextField>
+              {/* <TextField id="standard-adornment-category" label="Category" value={this.state.category} onChange={this.handleChange("category")}>
+                <MenuItem value="10">Ten</MenuItem>
+                <MenuItem value="20">Twenty</MenuItem>
+              </TextField> */}
+            <TextField
+              id="date"
+              label="Date of Expense"
+              type="date"
+              placeholder="YYYY-MM-DD"
+              className={classes.textField}
+              value={this.state.date}
+              onChange={this.handleChange("date")}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          </div>
         );
     }
     ExpenseFormDialog(){
