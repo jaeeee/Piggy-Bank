@@ -327,6 +327,7 @@ class LineGraph extends Component{
             <MDBContainer>
               <MDBCard>
                 <MDBCardBody>
+                  <h3>Your Statistics</h3>
                   <Line
                     data={this.state.graphData[0]}
                     width={500}

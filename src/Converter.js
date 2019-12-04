@@ -94,6 +94,7 @@ class Converter extends Component {
           <MDBContainer>
             <MDBCard>
               <MDBCardBody>
+                <h3>Live Exchange Rates</h3>
                 {/* <div className="App-body"> */}
                 <table className="currencyTable">
                   <thead>
