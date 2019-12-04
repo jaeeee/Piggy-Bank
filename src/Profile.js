@@ -161,14 +161,14 @@ export class Profile extends Component {
                        />
                        <div className="text-center py-4 mt-3">
                          <MDBBtn
-                           color="green"
+                           color="success"
                            type="button"
                            onClick={this.updateInfo}
                          >
                            Update Info
                          </MDBBtn>
                          <MDBBtn
-                           color="red"
+                           color="danger"
                            type="button"
                            onClick={this.logout}
                          >
