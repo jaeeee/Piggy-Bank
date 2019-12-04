@@ -55,6 +55,11 @@ export class Budget extends Component {
     this.setState({
       budget: ""
     });
+    // if (this.state.currbudget < 0) {
+    //   alert("You are under budget, be careful!");
+    // } else {
+    //   // do nothing
+    // }
     // console.log("Set budget is complete");
   };
 
@@ -196,14 +201,21 @@ export class Budget extends Component {
         <br />
         Remaining Budget After Expenses:{" "}
         <b>
-          
           {this.state.currbudget < 0 ? (
             <font color="red">${this.state.currbudget}</font>
-          ) 
-           : (
+          ) : (
             <font color="green">${this.state.currbudget}</font>
           )}
         </b>
+        <br></br>
+        <b>
+          {this.state.currbudget < 0 ? (
+            <font color="red">You are under budget, try to re-evaluate your spending.</font>
+          ) : (
+            <font color="green">You are within budget, keep it up!</font>
+          )}
+        </b>
+        <br></br>
         <form onSubmit={this.setBudget}>
           <div class="mdl-textfield mdl-js-textfield">
             <input
