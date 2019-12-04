@@ -8,7 +8,9 @@ export class Budget extends Component {
     super();
     this.state = {
       budget: "",
+      currbudget: "0",
       display_budget: "",
+      expenses: [],
       name: ""
     };
   }
@@ -31,55 +33,92 @@ export class Budget extends Component {
     // db.settings({
     //   // timestampsInSnapshots: true
     // });
+    let tempBudget = this.state.budget;
+    let userRef = db.collection("users").doc(fire.auth().currentUser.email);
 
-    let userRef = db
-      .collection("users")
-      .doc(fire.auth().currentUser.email);
-
-    //   console.log(tempname);
     userRef.update({
-      budget: this.state.budget
+        budget: tempBudget
+    })
+    .then(function(){
+      console.log("updating DB")
+    })
+    .catch(function(error){
+      console.log("Error caused by no doc existing for db. Creating new categories: ", error)
+      userRef.set({
+            budget: tempBudget
+        }, { merge: true })
+        .catch(function(error){
+          console.log("Somethings really wrong: ", error)
+        });
     });
+
     this.setState({
       budget: ""
     });
     // console.log("Set budget is complete");
   };
 
-  componentDidMount() {
-    // fire.auth().updateCurrentUser();
-        // var name_fromdb = fire.auth().currentUser.email;
-        // this.setState({
-          // name: name_fromdb
-        // });
-            // console.log(name_fromdb);
-    var budget_copy = 0;
-    var found = 0;
-    fire
-      .firestore()
-      .collection("users")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(function(doc) {
-          if (doc.id == fire.auth().currentUser.email) {
-            budget_copy = doc.data().budget;
-            found = 1;
-          }
-        });
-        if (found == 0) {
-          this.setState({
-            display_budget: "undefined"
-          });
-        } else
-          this.setState({
-            display_budget: budget_copy
-          });
-      })
+  splitByMonth = () => {
+    console.log(this.state.expenses);
+    let date = new Date();
+    let todayMonthYear = date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1).toString();
+    console.log(todayMonthYear);
+    let totalMonthExpenses = 0;
 
-      .catch(function(error) {
-        // alert("Error fetching user data");
-        console.log("Error fetching data: ", error);
-      });
+    for(let i = 0; i < this.state.expenses.length; i++){
+      let currMonthCat = this.state.expenses[i].date.substr(0,7);
+      if(todayMonthYear == currMonthCat){
+        totalMonthExpenses = totalMonthExpenses + parseFloat(this.state.expenses[i].amount)
+      }
+    let yes = (parseFloat(this.state.display_budget) - totalMonthExpenses).toString();
+    console.log(yes);
+    console.log(this.state.display_budget);
+    console.log(totalMonthExpenses);
+    this.setState({
+      currbudget: yes
+    })
+
+    }
+  }
+
+  componentDidMount() {
+            let currentComp = this;
+
+            fire.auth().onAuthStateChanged(function(user) {
+              if(user){
+                var found = 0;
+                var userRef = db.collection("users").doc(fire.auth().currentUser.email);
+                var username = fire.auth().currentUser.email;
+
+                userRef.onSnapshot({
+                    // Listen for document metadata changes
+                    includeMetadataChanges: true
+                }, function(doc) {
+                          try{
+                            currentComp.setState({
+                              display_budget: doc.data().budget,
+                              expenses: doc.data().expenses
+                            });
+                            currentComp.splitByMonth()
+                          }
+                          catch(error){
+                            console.log("We getting an error: ", error)// ADD back later
+                            found = 0
+                          }
+
+                        })
+
+                  if (found == 1) {
+                    //console.log("does hit this")
+                  }
+                  else{
+                    currentComp.setState({
+                      display_budget: "None",
+                      expenses: ["None"]
+                    });
+                  }
+                }
+              });
   }
 
   render() {
@@ -149,17 +188,18 @@ export class Budget extends Component {
     if (/\+|-/.test(keyValue))
       event.preventDefault();
   }
-  
+
   render() {
     return (
       <div>
         {/* Welcome back {this.state.name} <br></br> */}
-        Current budget: <b>${this.state.display_budget}</b>
+        Total Budget for this month: <b>${this.state.display_budget}</b><br/>
+        Remaining Budget After Expenses: <b>${this.state.currbudget}</b>
         <form onSubmit={this.setBudget}>
           <div class="mdl-textfield mdl-js-textfield">
             <input
               class="mdl-textfield__input"
-              onKeyPress={this.onKeyPress.bind(this)} 
+              onKeyPress={this.onKeyPress.bind(this)}
               type="number"
               min = "0"
               max = "999999"
