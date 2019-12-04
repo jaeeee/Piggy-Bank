@@ -32,6 +32,7 @@ class Calculator extends Component{
                 <MDBContainer>
           <MDBCard>
             <MDBCardBody>
+                <h3>Calculator</h3>
                 <main className="mt-5">
                     <div className="row">
                         <CalculatorScreen text={this.state.mathString} />

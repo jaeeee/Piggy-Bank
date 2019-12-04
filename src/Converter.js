@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 //import logo from "./logo.svg";
 // import "./App.css";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 class Converter extends Component {
   constructor(props) {
@@ -81,28 +90,35 @@ class Converter extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-          <div>
-              
-          {/* <div className="App-body"> */}
-            <table className="currencyTable">
-              <thead>
-                <tr>
-                  <th>&nbsp;</th>
-                  <th>BUY</th>
-                  <th>EXCHANGE RATE</th>
-                  <th>SELL</th>
-                </tr>
-              </thead>
-              {this.createTable()}
-            </table>
-            <p>
-              {/* * base currency is GBP */}
-              <br />Data fetched from&nbsp;
-              <a href="https://exchangeratesapi.io/">
-                https://exchangeratesapi.io/
-              </a>
-              &nbsp;
-            </p>
+        <div>
+          <MDBContainer>
+            <MDBCard>
+              <MDBCardBody>
+                <h3>Live Exchange Rates</h3>
+                {/* <div className="App-body"> */}
+                <table className="currencyTable">
+                  <thead>
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th>BUY</th>
+                      <th>EXCHANGE RATE</th>
+                      <th>SELL</th>
+                    </tr>
+                  </thead>
+                  {this.createTable()}
+                </table>
+                <p>
+                  {/* * base currency is GBP */}
+                  <br />
+                  Data fetched from&nbsp;
+                  <a href="https://exchangeratesapi.io/">
+                    https://exchangeratesapi.io/
+                  </a>
+                  &nbsp;
+                </p>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBContainer>
         </div>
       );
     }

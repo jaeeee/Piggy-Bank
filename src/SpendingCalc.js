@@ -98,6 +98,7 @@ class SpendingCalc extends React.Component {
       <MDBContainer>
         <MDBCard>
           <MDBCardBody>
+            <h3>Savings Estimator</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label htmlFor="amountneed">How much will you need?</label>

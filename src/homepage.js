@@ -68,40 +68,13 @@ class Homepage extends React.Component {
       // : "",
     };
   }
-  // var user = firebase.auth().currentUser;
-  // console.log(fire.auth().currentUser);
-  // console.log("hi");
   render() {
-    //  if (fire.auth().currentUser != null) {
-    //    console.log(fire.auth().currentUser.email);
-    //  }
-    //  this.state.fuck_you = (fire.auth().currentUser.email);
-    //  const FUCK_YOU = fire.auth().currentUser.email;
-    //  console.log(fire.auth().currentUser);
     return (
       <div>
         <Budget />
-        <Converter />
-        {/* <Accordion_OG
-             title="Overview"
-             content="
-                <p>
-                  You spent too much money today <br/>
-                  thats not good <br/>
-                  spend less <br/>
-                  tomorrow
-                </p>"
-           /> */}
-        {/* <Accordion_OG
-             title="Wallet"
-             content="
-                <p>
-                 Look at my money $$$ <br/>
-                 $1,000,000 <br/>
-                 I'm rich!!!
-                </p>"
-           /> */}
-        {/*    */}
+        {/* <Converter /> */}
+        <Expenses />
+        {/*   
         {/* <Expenses /> */}
         {/* <h3>Spending Log</h3> */}
         {/* <Accordion

@@ -249,6 +249,8 @@ class SampleForm extends React.Component {
                 <input
                   type="number"
                   min="0"
+                  max = "999999"
+                  step = ".01"
                   name="role"
                   className={`form-control ${
                     formErrors.role ? "is-invalid" : ""

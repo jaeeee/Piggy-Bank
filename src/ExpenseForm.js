@@ -27,10 +27,9 @@ class ExpenseForm extends React.Component{
         this.state = {
             name: '',
             amount: '',
-            category: '',
+            category: 'Bills & Utilities',
             date: 0,
         }
-        //this.state = this.state.bind(this);
         this.NewExpenseForm = this.NewExpenseForm.bind(this);
         this.ExpenseFormDialog = this.ExpenseFormDialog.bind(this);
         this.createExpense = this.createExpense.bind(this);
@@ -42,7 +41,6 @@ class ExpenseForm extends React.Component{
 	}
 
     handleChange = prop => event => {
-        //setValues({ ...values, [prop]: event.target.value })
         this.setState({
             [prop]: event.target.value,
         });
@@ -68,24 +66,49 @@ class ExpenseForm extends React.Component{
             },
         }));
         const classes = useStyles();
-        const [values, setValues] = React.useState({
-            name: '',
-            amount: '',
-            category: '',
-            date: '',
-        });
-       /* const handleChange = prop => event => {
-            setValues({ ...values, [prop]: event.target.value })
-            if(prop === 'name'){
-                this.setState({
-                    name: event.target.value,
-                });
-            }
-            console.log(this.state.name);
-            console.log(this.state.amount);
-            console.log(this.state.category);
-            console.log(this.state.date);
-        }*/
+
+        const categories = [
+            {
+                value: 'Bills & Utilities'
+            },
+            {
+                value: 'Entertainment'
+            },
+            {
+                value: 'Food & Drink'
+            },
+            {
+                value: 'Groceries'
+            },
+            {
+                value: 'Gas'
+            },
+            {
+                value: 'Shopping'
+            },
+            {
+                value: 'Automotive'
+            },
+            {
+                value: 'Education'
+            },
+            {
+                value: 'Health & Wellness'
+            },
+            {
+                value: 'Gifts & Donations'
+            },
+            {
+                value: 'Personal'
+            },
+            {
+                value: 'Travel'
+            },
+            {
+                value: 'Home'
+            },
+        ];
+
         return (
           <div>
             <FormControl className={(classes.margin, classes.textField)}>
@@ -104,6 +127,8 @@ class ExpenseForm extends React.Component{
                 id="standard-adornment-amount"
                 type="number"
                 step=".01"
+                min = "0"
+                max = "999999"
                 value={this.state.amount}
                 onChange={this.handleChange("amount")}
                 startAdornment={
@@ -111,20 +136,31 @@ class ExpenseForm extends React.Component{
                 }
               />
             </FormControl>
-            <FormControl className={(classes.margin, classes.textField)}>
-              <InputLabel htmlFor="standard-adornment-category">
-                Category
-              </InputLabel>
-              <Input
-                id="standard-adornment-category"
+            <TextField
+                id="standard-select-category-native"
+                select
+                label="Category"
+                className={classes.textField}
                 value={this.state.category}
                 onChange={this.handleChange("category")}
-              />
+                SelectProps={{
+                    native: true,
+                    MenuProps: {
+                        className: classes.menu,
+                    },
+                }}
+                margin="normal"
+            >
+              {categories.map(option => (
+                  <option key={option.value} value={option.value}>
+                      {option.value}
+                  </option>
+              ))}
+            </TextField>
               {/* <TextField id="standard-adornment-category" label="Category" value={this.state.category} onChange={this.handleChange("category")}>
                 <MenuItem value="10">Ten</MenuItem>
                 <MenuItem value="20">Twenty</MenuItem>
               </TextField> */}
-            </FormControl>
             <TextField
               id="date"
               label="Date of Expense"
@@ -180,7 +216,7 @@ class ExpenseForm extends React.Component{
             this.setState({
                 name: '',
                 amount: '',
-                category: '',
+                category: 'Bills & Utilities',
                 date: '',
             });
             setOpen(false);
