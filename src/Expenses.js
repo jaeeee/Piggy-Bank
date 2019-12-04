@@ -17,83 +17,59 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { withRouter } from 'react-router-dom';
+// import "mdbreact/dist/css/mdb.css";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody
+} from "mdbreact";
 
 class Expenses extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			expenses: []
+			expenses: [],
+			found: false,
 		}
-		this.ExpenseTable = this.ExpenseTable.bind(this);
+		this.UserExpenseTable = this.UserExpenseTable.bind(this);
+		this.ExampleExpenseTable = this.ExampleExpenseTable.bind(this);
 		this.Accordion = this.Accordion.bind(this);
-		this.tableListener = this.tableListener.bind(this);
 	}
 
 	createExpense(name, amount, category, date){
 		return {name, amount, category, date};
 	}
+	componentDidMount() {
+		let currentComp = this;
 
-	componentDidMount(){
-		/*var expenses_copy = [];
-		var found = 0;
-		fire
-		.firestore()
-		.collection("users")
-		.get()
-		.then(querySnapshot => {
-			querySnapshot.forEach(function(doc) {
-			if (doc.id === fire.auth().currentUser.email) {
-				expenses_copy = doc.data().expenses;
-				found = 1;
-			}
-			});
-			if (found === 0) {
-				console.log("expenses don't exist");
-			} else
-			this.setState({
-				expenses: expenses_copy
-				.catch(function(error){
-					console.log("Issue with expense table initializing: ", error)
-					window.location = "/"
-				})
-			});
-		})
-		.catch(function(error) {
-			// alert("Error fetching user data");
-			console.log("Error fetching data: ", error);
-		});*/
-	}
-	componentDidUpdate(){
-		/*var expenses_copy = [];
-		var found = 0;
-		fire
-		.firestore()
-		.collection("users")
-		.get()
-		.then(querySnapshot => {
-			querySnapshot.forEach(function(doc) {
-			if (doc.id === fire.auth().currentUser.email) {
-				expenses_copy = doc.data().expenses;
-				found = 1;
-			}
-			});
-			if (found === 0) {
-				console.log("expenses don't exist");
-			} else
-			this.setState({
-				expenses: expenses_copy
-				.catch(function(error){
-					console.log("Issue with expense table initializing: ", error)
-					window.location = "/"
-				})
-			});f
-		})
-		.catch(function(error) {
-			// alert("Error fetching user data");
-			console.log("Error fetching data: ", error);
-		});*/
-	}
+		fire.auth().onAuthStateChanged(function(user) {
+			if(user){
+				var userRef = db.collection("users").doc(fire.auth().currentUser.email);
+				var username = fire.auth().currentUser.email;
 
+				userRef.onSnapshot({
+					// Listen for document metadata changes
+					includeMetadataChanges: true
+				}, function(doc) {
+					if(doc.data().expenses === undefined){
+						currentComp.setState({
+							found: false
+						});
+					}else{
+						currentComp.setState({
+							expenses: doc.data().expenses,
+							found: true,
+						});
+					}
+				});
+			}
+		});
+	}
 	Accordion(){
 		const useStyles = makeStyles(theme => ({
 			root: {
@@ -106,6 +82,13 @@ class Expenses extends React.Component {
 		}));
 
 		const classes = useStyles();
+		
+		let table;
+		if(this.state.found){
+			table = <this.UserExpenseTable />;
+		}else{
+			table = <this.ExampleExpenseTable />;
+		}
 
 		return (
 			<div className={classes.root}>
@@ -121,24 +104,15 @@ class Expenses extends React.Component {
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails>
 						<Typography>
-							<this.ExpenseTable />
+							{table}
 						</Typography>
 					</ExpansionPanelDetails>
 				</ExpansionPanel>
 			</div>
 		);
 	}
-	tableListener(){
-		let userRef = db.collection("users").doc(fire.auth().currentUser.email);
-		let expensesRef = userRef.expenses;
-		expensesRef.on('value', function(snapshot){
-			this.setState({
-				expenses: snapshot.val()
-			});
-		});
-	}
 
-	ExpenseTable(){
+	ExampleExpenseTable(){
 		const useStyles = makeStyles({
 			root: {
 				width: '100%',
@@ -148,21 +122,50 @@ class Expenses extends React.Component {
 				minWidth: 650,
 			},
 		});
-		//var exList = []
-		//exList = this.state.expenses;
-		//this.expenses.push(this.createExpense('Movie', 30, 'Entertainment', '10/31/2019'));
-		//this.expenses.push(this.createExpense('Disneyland', 300, 'Leisure', '11/10/2019'));
-		// addExpense('Whole Foods', 45, 'Groceries', '11/6/2019');
-		// addExpense('Movie', 30, 'Entertainment', '10/31/2019');
-		// addExpense('Disneyland', 300, 'Leisure', '11/10/2019');
+		var examples = [];
+		examples = [this.createExpense('Stater Bros', 50, 'Groceries', '11/25/2019')]
+		examples.push(this.createExpense('Movie', 30, 'Entertainment', '11/18/2019'));
+		examples.push(this.createExpense('Disneyland', 300, 'Entertainment', '11/10/2019'));
 		const classes = useStyles();
-		//let userRef = db.collection("users").doc(fire.auth().currentUser.email);
-		/*let expensesRef = db.ref('users/' + fire.auth().currentUser.email + 'expenses');
-		expensesRef.on('value', function(snapshot){
-			this.setState({
-				expenses: snapshot.val()
-			});
-		});*/
+		return (
+			<Paper className={classes.root}>
+				<Table className={classes.table} aria-label="Example Expenses">
+					<TableHead>
+						<TableRow>
+							<TableCell>Example Expenses</TableCell>
+							<TableCell align="right">Amount</TableCell>
+							<TableCell align="right">Category</TableCell>
+							<TableCell align="right">Date</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{examples.map(examples => (
+							<TableRow key = {examples.index}>
+								<TableCell component="th" scope="row">
+									{examples.name}
+								</TableCell>
+								<TableCell align="right">{examples.amount}</TableCell>
+								<TableCell align="right">{examples.category}</TableCell>
+								<TableCell align="right">{examples.date}</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			</Paper>
+		);
+	}
+
+	UserExpenseTable(){
+		const useStyles = makeStyles({
+			root: {
+				width: '100%',
+				overflowX: 'auto',
+			},
+			table: {
+				minWidth: 650,
+			},
+		});
+		const classes = useStyles();
 		return (
 			<Paper className={classes.root}>
 				<Table className={classes.table} aria-label="Expenses">
@@ -192,13 +195,18 @@ class Expenses extends React.Component {
 	}
 
 	render(){
-		// Console.log({this.state.DATA});
 		return (
 			<div>
+				 {/* <MDBContainer> */}
+          {/* <MDBCard> */}
+            {/* <MDBCardBody> */}
 				<this.Accordion />
 				<ExpenseForm />
+				{/* </MDBCardBody> */}
+				{/* </MDBCard> */}
+				{/* </MDBContainer> */}
 			</div>
 		);
 	}
 }
-export default Expenses;
+export default withRouter(Expenses);

@@ -27,10 +27,9 @@ class ExpenseForm extends React.Component{
         this.state = {
             name: '',
             amount: '',
-            category: '',
+            category: 'Bills & Utilities',
             date: 0,
         }
-        //this.state = this.state.bind(this);
         this.NewExpenseForm = this.NewExpenseForm.bind(this);
         this.ExpenseFormDialog = this.ExpenseFormDialog.bind(this);
         this.createExpense = this.createExpense.bind(this);
@@ -42,7 +41,6 @@ class ExpenseForm extends React.Component{
 	}
 
     handleChange = prop => event => {
-        //setValues({ ...values, [prop]: event.target.value })
         this.setState({
             [prop]: event.target.value,
         });
@@ -216,7 +214,7 @@ class ExpenseForm extends React.Component{
             this.setState({
                 name: '',
                 amount: '',
-                category: '',
+                category: 'Bills & Utilities',
                 date: '',
             });
             setOpen(false);
