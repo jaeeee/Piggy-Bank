@@ -168,7 +168,7 @@ export class Profile extends Component {
                            Update Info
                          </MDBBtn>
                          <MDBBtn
-                           color="danger"
+                        //    color="danger"
                            type="button"
                            onClick={this.logout}
                          >
