@@ -13,9 +13,8 @@ import Calculator from "./Calculator";
 import PieChart from "react-minimal-pie-chart";
 import { Line, Doughnut } from "react-chartjs-2";
 import LineGraph from "./LineGraph";
-import {BrowserRouter as Router} from "react-router-dom";
-import Converter from './Converter';
-
+import { BrowserRouter as Router } from "react-router-dom";
+import Converter from "./Converter";
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -66,11 +65,63 @@ class Homepage extends React.Component {
     super(props);
     this.state = {
       // : "",
+      focus: ""
     };
+  }
+  componentDidMount() {
+    // this.authListener();
+    let currentComp = this;
+
+    fire.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var found = 0;
+        var userRef = db.collection("users").doc(fire.auth().currentUser.email);
+        var username = fire.auth().currentUser.email;
+        userRef.onSnapshot(
+          {
+            includeMetadataChanges: true
+          },
+          function(doc) {
+            try {
+              //    if (this._isMounted) {
+
+              currentComp.setState({
+                // budget: doc.data().budget,
+                focus: doc.data().focus
+              });
+              // }
+            } catch (error) {
+              console.log("We getting an error: ", error); // ADD back later
+              found = 0;
+            }
+          }
+        );
+
+        if (found == 1) {
+          //console.log("does hit this")
+        } else {
+          currentComp.setState({
+            focus: ["N/A"]
+          });
+        }
+      }
+    });
   }
   render() {
     return (
       <div>
+        {this.state.focus ? (
+          <div>
+            Your focus:{" "}
+            <b>
+              <mark>{this.state.focus}</mark>
+            </b>{" "}
+          </div>
+        ) : (
+          <div>
+            <mark>You currently do not have a focus, set one in your profile page!</mark>
+          </div>
+        )}
         <Budget />
         {/* <Converter /> */}
         <Expenses />
@@ -90,7 +141,12 @@ class Homepage extends React.Component {
   }
 }
 
-ReactDOM.render(<Router><Homepage /></Router>, document.getElementById("root"));
+ReactDOM.render(
+  <Router>
+    <Homepage />
+  </Router>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

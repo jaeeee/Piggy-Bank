@@ -20,6 +20,8 @@ export class Profile extends Component {
            this.logout = this.logout.bind(this);
            this.state = {
              budget: "",
+             bio: "",
+             focus: "",
              //  display_budget: "",
              name: ""
            };
@@ -61,6 +63,8 @@ export class Profile extends Component {
 
                      currentComp.setState({
                        budget: doc.data().budget,
+                       bio: doc.data().bio,
+                       focus: doc.data().focus,
                        name: doc.data().name
                      });
                     // }
@@ -94,6 +98,8 @@ export class Profile extends Component {
         var docRef = db.collection("users").doc(fire.auth().currentUser.email);
         docRef.update({
             name: this.state.name,
+            bio: this.state.bio,
+            focus: this.state.focus,
             budget: this.state.budget
         })
         //    fire
@@ -159,16 +165,42 @@ export class Profile extends Component {
                          success="right"
                          //  disabled
                        />
+                       <MDBInput
+                         value={this.state.bio}
+                         onChange={this.handleChange}
+                         label="Bio"
+                         icon="envelope"
+                         group
+                         name="bio"
+                         type="textarea"
+                         //  validate
+                         error="wrong"
+                         success="right"
+                         //  disabled
+                       />
+                       <MDBInput
+                         value={this.state.focus}
+                         onChange={this.handleChange}
+                         label="What's your focus?"
+                         icon="envelope"
+                         group
+                         name="focus"
+                         type="textarea"
+                         //  validate
+                         error="wrong"
+                         success="right"
+                         //  disabled
+                       />
                        <div className="text-center py-4 mt-3">
                          <MDBBtn
-                           color="success"
+                           color="primary"
                            type="button"
                            onClick={this.updateInfo}
                          >
                            Update Info
                          </MDBBtn>
                          <MDBBtn
-                        //    color="danger"
+                           //    color="danger"
                            type="button"
                            onClick={this.logout}
                          >
