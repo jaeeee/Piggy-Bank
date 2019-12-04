@@ -8,12 +8,14 @@ import LineGraph from './LineGraph';
 import Calculator from './Calculator';
 import SpendingCalc from './SpendingCalc';
 import Converter from './Converter';
+import Profile from './Profile';
 // import ExpenseForm from './ExpenseForm';
 
 
 const Main = () => (
   <Switch>
     <Route exact path="/" component={Home} />
+    <Route path="/profile" component={Profile}/>
     {/* <Route path="/expenses" component={Expenses} /> */}
     <Route path="/currency" component={Converter} />
     <Route path="/linegraph" component={LineGraph} />
