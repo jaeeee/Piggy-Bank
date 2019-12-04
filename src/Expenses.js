@@ -70,7 +70,6 @@ class Expenses extends React.Component {
 			}
 		});
 	}
-
 	Accordion(){
 		const useStyles = makeStyles(theme => ({
 			root: {
