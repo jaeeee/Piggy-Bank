@@ -44,7 +44,7 @@ class LineGraph extends Component{
 
         //everything under is for the wallet balance input except chartData
         this.state = { value: '', pastInput: 1, decimal: false,
-          expenses:[],
+          expenses:[], monthCat: {}, monthList: [],
         //for the line and pie charts
         graphData:[{
           labels: [
@@ -194,6 +194,23 @@ class LineGraph extends Component{
     return [ r * 255, g * 255, b * 255 ];
   }*/
 
+  splitByMonth = () => {
+    let tempMonthCatArr = [];
+    for(let i = 0; i < this.state.expenses.length; i++){
+      let currMonthCat = this.state.expenses[i].date.substr(0,7);
+      if(!(currMonthCat in this.state.monthCat)){
+        this.state.monthCat[currMonthCat] = [this.state.expenses[i]];
+        this.state.monthList.push(currMonthCat);
+      }
+      else{
+          this.state.monthCat[currMonthCat].push(this.state.expenses[i]);
+      }
+      console.log(this.state.monthCat);
+      console.log(this.state.monthList);
+    }
+  }
+
+
 
   selectColor = (colorInd) => {
       let arr = ['rgba(255, 0, 0, .75)', 'rgba(255, 128, 0, .75)', 'rgba(255, 255, 0, .75)',
@@ -238,13 +255,16 @@ class LineGraph extends Component{
   }
 
 
+
+
   setDoughnutGraphData = () =>{
-    let arrSpent = []
-    let arrCategory = []
-    let arrColor = []
-    for(let i = 0; i < this.state.expenses.length; i++){
-      let currSpent = parseFloat(this.state.expenses[i].amount);
-      let currCategory = this.state.expenses[i].category;
+    let tempMonthCat = this.state.monthCat[this.state.monthList[1]];
+    let arrSpent = [];
+    let arrCategory = [];
+    let arrColor = [];
+    for(let i = 0; i < tempMonthCat.length; i++){
+      let currSpent = parseFloat(tempMonthCat[i].amount);
+      let currCategory = tempMonthCat[i].category;
       let sameCategory = arrCategory.indexOf(currCategory);
 
       if(sameCategory != -1){
@@ -269,6 +289,7 @@ class LineGraph extends Component{
   }
 
   componentDidMount() {
+
     let currentComp = this;
 
     fire.auth().onAuthStateChanged(function(user) {
@@ -288,6 +309,8 @@ class LineGraph extends Component{
                     });
                     console.log(currentComp.state.expenses)
                     console.log("Going through userRef snapshot")
+
+                    currentComp.splitByMonth();
 
                     currentComp.setLineGraphData();
                     currentComp.setDoughnutGraphData();
