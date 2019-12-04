@@ -54,7 +54,7 @@ class LineGraph extends Component{
         //everything under is for the wallet balance input except chartData
         this.state = { value: '', pastInput: 1, decimal: false,
           expenses:[], monthCat: {}, monthList: [], currMonth: "2019-12",
-          currMonthIndex: 0,
+          currMonthIndex: 0, count: 0, noDups: [],
         //for the line and pie charts
         graphData:[{
           labels: [
@@ -209,24 +209,26 @@ class LineGraph extends Component{
       this.setDoughnutGraphData(index);
     }
 
-    // (document).select('.select').val = "test";
-
   };
 
+
   splitByMonth = () => {
-    let tempMonthCatArr = [];
-    for(let i = 0; i < this.state.expenses.length; i++){
-      let currMonthCat = this.state.expenses[i].date.substr(0,7);
-      if(!(currMonthCat in this.state.monthCat)){
-        this.state.monthCat[currMonthCat] = [this.state.expenses[i]];
-        this.state.monthList.push(currMonthCat);
+      let tempMonthCatArr = [];
+      for(let i = 0; i < this.state.expenses.length; i++){
+        let currMonthCat = this.state.expenses[i].date.substr(0,7);
+        if(!(currMonthCat in this.state.monthCat)){
+          this.state.monthCat[currMonthCat] = [this.state.expenses[i]];
+          this.state.monthList.push(currMonthCat);
+        }
+        else{
+            this.state.monthCat[currMonthCat].push(this.state.expenses[i]);
+        }
+        console.log(this.state.monthCat);
+        console.log(this.state.monthList);
       }
-      else{
-          this.state.monthCat[currMonthCat].push(this.state.expenses[i]);
-      }
-      console.log(this.state.monthCat);
-      console.log(this.state.monthList);
-    }
+
+      return;
+
   }
 
 
@@ -265,8 +267,30 @@ class LineGraph extends Component{
     this.state.graphData[0].datasets[0].data = arrSpent;
   }
 
+  checkDuplicatesLine = (tempMonthCat) => {
+    let arr = [];
+    for(let i = 0; i < tempMonthCat.length; i++){
+      let found = false;
+      for(let j = 0; j < i; j++){
+        if(tempMonthCat[i].amount == tempMonthCat[j].amount && tempMonthCat[i].name == tempMonthCat[j].name){
+          found = true;
+          break;
+        }
+      }
+      if(!(found)){
+        arr.push(tempMonthCat[i]);
+      }
+
+    }
+    this.state.noDups = arr;
+    console.log(this.state.noDups);
+  }
+
   setLineGraphData = (monthInd) => {
     let tempMonthCat = this.state.monthCat[this.state.monthList[monthInd]];
+    this.checkDuplicatesLine(tempMonthCat);
+    tempMonthCat = this.state.noDups;
+    console.log(tempMonthCat);
     let arrSpent = []
     let arrDate = []
     for(let i = 0; i < tempMonthCat.length; i++){
@@ -274,6 +298,8 @@ class LineGraph extends Component{
       let rawDate =  tempMonthCat[i].date;
       let currDate = rawDate.charAt(5) + rawDate.charAt(6) + "/" + rawDate.charAt(8) + rawDate.charAt(9);
       let sameDate = arrDate.indexOf(currDate);
+
+
       //console.log("yes")
       //console.log(temp)
       if(sameDate != -1){
@@ -289,6 +315,7 @@ class LineGraph extends Component{
     }
     console.log(arrSpent);
     console.log(arrDate);
+
     this.sortDates(arrSpent,arrDate);
 
     //console.log("stateData: ", this.state.lineData.datasets[0].data)
@@ -300,6 +327,8 @@ class LineGraph extends Component{
 
   setDoughnutGraphData = (monthInd) =>{
     let tempMonthCat = this.state.monthCat[this.state.monthList[monthInd]];
+    this.checkDuplicatesLine(tempMonthCat);
+    tempMonthCat = this.state.noDups;
     let arrSpent = [];
     let arrCategory = [];
     let arrColor = [];
@@ -348,13 +377,14 @@ class LineGraph extends Component{
                     currentComp.setState({
                       expenses: doc.data().expenses
                     });
-                    console.log(currentComp.state.expenses)
-                    console.log("Going through userRef snapshot")
+                    console.log(currentComp.state.expenses);
+                    console.log("Going through userRef snapshot");
 
-                    currentComp.splitByMonth();
+                    currentComp.splitByMonth()
+                    return;
 
-                    currentComp.setLineGraphData(0);
-                    currentComp.setDoughnutGraphData(0);
+                    //currentComp.setLineGraphData(0);
+                    //currentComp.setDoughnutGraphData(0);
 
                   }
                   catch(error){
@@ -407,14 +437,13 @@ class LineGraph extends Component{
                           {option}
                         </MenuItem>
                       ))}
-                    </Select> 
-                   <br></br>
+                    </Select>
+                    {/* <MDBBtn color="success" type="button">load data</MDBBtn> */}
+                    <br></br>
                     <MDBBtn color="primary" type="button" onClick={this.handleChangeSelect}>load data</MDBBtn>
                   </form>
                   <br></br>
                 </FormControl>
-                <br></br>
-                
                 <Line
                   data={this.state.graphData[0]}
                   width={500}
