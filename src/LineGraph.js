@@ -244,7 +244,7 @@ class LineGraph extends Component{
   sortDates = (arrSpent, arrDate) => {
 
     for(let i = 0; i < arrDate.length - 1; i++){
-      for(let j = 1; i < arrDate.length; i++){
+      for(let j = i+1; j < arrDate.length; j++){
         if(parseInt(arrDate[j].substr(3,4)) < parseInt(arrDate[i].substr(3,4))){
           let temp = arrDate[j];
           arrDate[j] = arrDate[i];
