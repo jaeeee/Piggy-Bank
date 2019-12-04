@@ -386,85 +386,88 @@ class LineGraph extends Component{
         return (
           <div>
             <Router>
-            <MDBContainer>
+              {/* <MDBContainer>
               <MDBCard>
-                <MDBCardBody>
-                  <h3>Your Statistics</h3>
-                  <div>
-                    <FormControl >
-                        <InputLabel id="demo-simple-select-label">Month</InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          value={this.state.currMonth}
-                          onChange={this.handleChangeSelect}
-                        >
-                          {this.state.monthList.map(option => (
-                              <MenuItem key={option} value={option}>
-                                  {option}
-                              </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    <Line
-                      data={this.state.graphData[0]}
-                      width={500}
-                      height={200}
-                      options={{
-                        responsive: true,
+                <MDBCardBody> */}
+              {/* <h3>Your Statistics</h3> */}
+              <div>
+                <FormControl>
+                  <form>
+                    <InputLabel id="demo-simple-select-label">Month</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={this.state.currMonth}
+                      onChange={this.handleChangeSelect}
+                    >
+                      {this.state.monthList.map(option => (
+                        <MenuItem key={option} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Select> 
+                    {/* <MDBBtn color="success" type="button">load data</MDBBtn> */}
+                  </form>
+                </FormControl>
+                <Line
+                  data={this.state.graphData[0]}
+                  width={500}
+                  height={200}
+                  options={{
+                    responsive: true,
 
-                        title: {
-                          display: true,
-                          text: "Monthly Spending History Per Day",
-                          fontSize: 20
-                        },
-                        legend: {
-                          display: true,
-                          position: "top"
-                        },
-                        layout: {
-                          padding: {
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 10
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <Doughnut
-                      data={this.state.graphData[1]}
-                      width={100}
-                      height={350}
-                      options={{
-                        responsive: true,
-                        maintainAspectRatio: false,
+                    title: {
+                      display: true,
+                      text: "Monthly Spending History Per Day",
+                      fontSize: 20
+                    },
+                    legend: {
+                      display: true,
+                      position: "top"
+                    },
+                    layout: {
+                      padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 10
+                      }
+                    }
+                  }}
+                />
+              </div>
+              <div>
+                <Doughnut
+                  data={this.state.graphData[1]}
+                  width={100}
+                  height={350}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
 
-                        title: {
-                          display: true,
-                          text: "Monthly Spending History Per Category",
-                          fontSize: 20
-                        },
-                        legend: {
-                          display: true,
-                          position: "top"
-                        },
-                        layout: {
-                          padding: {
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 10
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                </MDBCardBody>
+                    title: {
+                      display: true,
+                      text: "Monthly Spending History Per Category",
+                      fontSize: 20
+                    },
+                    legend: {
+                      display: true,
+                      position: "top"
+                    },
+                    layout: {
+                      padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 10
+                      }
+                    }
+                  }}
+                />
+              </div>
+              {/* </MDBCardBody>
               </MDBCard>
-            </MDBContainer>
+            </MDBContainer> */}
             </Router>
           </div>
         );

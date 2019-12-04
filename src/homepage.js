@@ -15,6 +15,7 @@ import { Line, Doughnut } from "react-chartjs-2";
 import LineGraph from "./LineGraph";
 import { BrowserRouter as Router } from "react-router-dom";
 import Converter from "./Converter";
+// import LineGraph from './LineGraph';
 
 function Accordion_OG(props) {
   // tester: fire.auth().currentUser.email
@@ -119,12 +120,17 @@ class Homepage extends React.Component {
           </div>
         ) : (
           <div>
-            <mark>You currently do not have a focus, set one in your profile page!</mark>
+            <mark>
+              You currently do not have a focus, set one in your profile page!
+            </mark>
           </div>
         )}
         <Budget />
         {/* <Converter /> */}
         <Expenses />
+        <br></br>
+        {/* <br></br> */}
+        <LineGraph />
         {/*   
         {/* <Expenses /> */}
         {/* <h3>Spending Log</h3> */}
