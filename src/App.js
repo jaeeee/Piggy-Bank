@@ -120,7 +120,7 @@ class App extends Component {
                 {/* yuh */}
                 <Link to="/">Home</Link>
                 {/* <Link to="/expenses">Expenses</Link> */}
-                <Link to="/linegraph">Statistics</Link>
+                {/* <Link to="/linegraph">Statistics</Link> */}
                 <Link to="/spendingcalc">Savings Estimator</Link>
                 <Link to="/calculator">Calculator</Link>
                 <Link to="/currency">Live Exchange Rates</Link>
