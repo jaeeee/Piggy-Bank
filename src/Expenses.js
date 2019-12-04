@@ -91,25 +91,32 @@ class Expenses extends React.Component {
 		}
 
 		return (
-			<div className={classes.root}>
-				<ExpansionPanel>
-					<ExpansionPanelSummary
-						expandIcon={<ExpandMoreIcon />}
-						aria-controls="panel1a-content"
-						id="panel1a-header"
-					>
-						<Typography className={classes.heading}>
-							This Month's Expenses
-						</Typography>
-					</ExpansionPanelSummary>
-					<ExpansionPanelDetails>
-						<Typography>
-							{table}
-						</Typography>
-					</ExpansionPanelDetails>
-				</ExpansionPanel>
-			</div>
-		);
+      <div className={classes.root}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>
+              Your Expense Log
+            </Typography>
+          </ExpansionPanelSummary>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            //   height: "30vh"
+            }}
+          >
+            <ExpansionPanelDetails>
+              <Typography>{table}</Typography>
+            </ExpansionPanelDetails>
+          </div>
+        </ExpansionPanel>
+      </div>
+    );
 	}
 
 	ExampleExpenseTable(){
