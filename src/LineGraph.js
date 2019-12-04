@@ -4,6 +4,15 @@ import {Doughnut} from 'react-chartjs-2'
 import { db } from "./config/firebase";
 import fire from "./config/firebase";
 import { withRouter } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { array } from "prop-types";
+
+
 import {
   MDBContainer,
   MDBRow,
@@ -44,7 +53,8 @@ class LineGraph extends Component{
 
         //everything under is for the wallet balance input except chartData
         this.state = { value: '', pastInput: 1, decimal: false,
-          expenses:[], monthCat: {}, monthList: [],
+          expenses:[], monthCat: {}, monthList: [], currMonth: "2019-12",
+          currMonthIndex: 0,
         //for the line and pie charts
         graphData:[{
           labels: [
@@ -193,6 +203,19 @@ class LineGraph extends Component{
 
     return [ r * 255, g * 255, b * 255 ];
   }*/
+  handleChangeSelect = ({ target }) => {
+    this.setState({
+      currMonth: target.value
+    })
+
+    let index = this.state.monthList.indexOf(this.state.currMonth);
+
+    if(index != -1){
+      this.setLineGraphData(index);
+      this.setDoughnutGraphData(index);
+    }
+    
+  };
 
   splitByMonth = () => {
     let tempMonthCatArr = [];
@@ -225,12 +248,13 @@ class LineGraph extends Component{
   }
 
 
-  setLineGraphData = () => {
+  setLineGraphData = (monthInd) => {
+    let tempMonthCat = this.state.monthCat[this.state.monthList[monthInd]];
     let arrSpent = []
     let arrDate = []
-    for(let i = 0; i < this.state.expenses.length; i++){
-      let currSpent = parseFloat(this.state.expenses[i].amount);
-      let rawDate = this.state.expenses[i].date;
+    for(let i = 0; i < tempMonthCat.length; i++){
+      let currSpent = parseFloat(tempMonthCat[i].amount);
+      let rawDate =  tempMonthCat[i].date;
       let currDate = rawDate.charAt(5) + rawDate.charAt(6) + "/" + rawDate.charAt(8) + rawDate.charAt(9);
       let sameDate = arrDate.indexOf(currDate);
       //console.log("yes")
@@ -257,8 +281,8 @@ class LineGraph extends Component{
 
 
 
-  setDoughnutGraphData = () =>{
-    let tempMonthCat = this.state.monthCat[this.state.monthList[1]];
+  setDoughnutGraphData = (monthInd) =>{
+    let tempMonthCat = this.state.monthCat[this.state.monthList[monthInd]];
     let arrSpent = [];
     let arrCategory = [];
     let arrColor = [];
@@ -312,8 +336,8 @@ class LineGraph extends Component{
 
                     currentComp.splitByMonth();
 
-                    currentComp.setLineGraphData();
-                    currentComp.setDoughnutGraphData();
+                    currentComp.setLineGraphData(0);
+                    currentComp.setDoughnutGraphData(0);
 
                   }
                   catch(error){
@@ -351,32 +375,49 @@ class LineGraph extends Component{
               <MDBCard>
                 <MDBCardBody>
                   <h3>Your Statistics</h3>
-                  <Line
-                    data={this.state.graphData[0]}
-                    width={500}
-                    height={200}
-                    options={{
-                      responsive: true,
+                  <div>
+                    <FormControl >
+                        <InputLabel id="demo-simple-select-label">Month</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={this.state.currMonth}
+                          onChange={this.handleChangeSelect}
+                        >
+                          {this.state.monthList.map(option => (
+                              <MenuItem key={option} value={option}>
+                                  {option}
+                              </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    <Line
+                      data={this.state.graphData[0]}
+                      width={500}
+                      height={200}
+                      options={{
+                        responsive: true,
 
-                      title: {
-                        display: true,
-                        text: "Monthly Spending History Per Day",
-                        fontSize: 20
-                      },
-                      legend: {
-                        display: true,
-                        position: "top"
-                      },
-                      layout: {
-                        padding: {
-                          left: 0,
-                          right: 0,
-                          top: 0,
-                          bottom: 10
+                        title: {
+                          display: true,
+                          text: "Monthly Spending History Per Day",
+                          fontSize: 20
+                        },
+                        legend: {
+                          display: true,
+                          position: "top"
+                        },
+                        layout: {
+                          padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 10
+                          }
                         }
-                      }
-                    }}
-                  />
+                      }}
+                    />
+                  </div>
                   <div>
                     <Doughnut
                       data={this.state.graphData[1]}
