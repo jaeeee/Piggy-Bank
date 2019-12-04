@@ -241,6 +241,27 @@ class LineGraph extends Component{
 
   }
 
+  sortDates = (arrSpent, arrDate) => {
+
+    for(let i = 0; i < arrDate.length - 1; i++){
+      for(let j = 1; i < arrDate.length; i++){
+        if(parseInt(arrDate[j].substr(3,4)) < parseInt(arrDate[i].substr(3,4))){
+          let temp = arrDate[j];
+          arrDate[j] = arrDate[i];
+          arrDate[i] = temp;
+
+          temp = arrSpent[j];
+          arrSpent[j] = arrSpent[i];
+          arrSpent[i] = temp;
+        }
+      }
+    }
+    console.log(arrSpent);
+    console.log(arrDate);
+
+    this.state.graphData[0].labels = arrDate;
+    this.state.graphData[0].datasets[0].data = arrSpent;
+  }
 
   setLineGraphData = (monthInd) => {
     let tempMonthCat = this.state.monthCat[this.state.monthList[monthInd]];
@@ -264,10 +285,10 @@ class LineGraph extends Component{
         arrDate.push(currDate); // for LineGraph Dates
       }
     }
-    //console.log(arrSpent);
-    //console.log(arrDate);
-    this.state.graphData[0].labels = arrDate;
-    this.state.graphData[0].datasets[0].data = arrSpent;
+    console.log(arrSpent);
+    console.log(arrDate);
+    this.sortDates(arrSpent,arrDate);
+
     //console.log("stateData: ", this.state.lineData.datasets[0].data)
 
   }
