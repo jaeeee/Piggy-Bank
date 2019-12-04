@@ -9,7 +9,7 @@ import Navbar from "./Navbar";
 import SignUp from "./Signup";
 // import homepage from "./homepage";
 import 'bootstrap-css-only/css/bootstrap.min.css';
-import { Layout, Header, Navigation, Drawer, Content, Footer, FooterSection, FooterLinkList } from "react-mdl";
+import { Avatar, Layout, Header, Navigation, Drawer, Content, Footer, FooterSection, FooterLinkList } from "react-mdl";
 import {
   BrowserRouter as Router,
   Route,
@@ -67,7 +67,12 @@ class App extends Component {
                   {/* <strong>2020</strong> */}
                 </span>
               }
-            ></Header>
+            >
+              <Navigation>
+                {/* <Avatar>OP</Avatar> */}
+                {this.state.user ? <Link to="/profile">PROFILE</Link> : <br></br>}
+              </Navigation>
+            </Header>
             <Drawer>
               <Navigation>
                 {/* yuh */}
