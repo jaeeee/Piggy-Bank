@@ -119,7 +119,7 @@ export class Profile extends Component {
                <MDBCardBody>
                  <MDBCard>
                    <MDBContainer>
-                     <h3>My Profile</h3>
+                     <h3>User Profile</h3>
                      <form>
                        <MDBInput
                          value={this.state.name}
