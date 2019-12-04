@@ -18,19 +18,57 @@ import {
   Redirect
 } from "react-router-dom";
 import 'mdbreact/dist/css/mdb.css';
+import {db} from './config/firebase';
 import Chevron from "./Chevron";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: null,
+      name: ""
     };
     this.authListener = this.authListener.bind(this);
   }
 
   componentDidMount() {
     this.authListener();
+    let currentComp = this;
+
+    fire.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var found = 0;
+        var userRef = db.collection("users").doc(fire.auth().currentUser.email);
+        var username = fire.auth().currentUser.email;
+        userRef.onSnapshot(
+          {
+            includeMetadataChanges: true
+          },
+          function(doc) {
+            try {
+              //    if (this._isMounted) {
+
+              currentComp.setState({
+                // budget: doc.data().budget,
+                name: doc.data().name
+              });
+              // }
+            } catch (error) {
+              console.log("We getting an error: ", error); // ADD back later
+              found = 0;
+            }
+          }
+        );
+
+        if (found == 1) {
+          //console.log("does hit this")
+        } else {
+          currentComp.setState({
+            name: ["N/A"]
+          });
+        }
+      }
+    });
   }
 
   authListener() {
@@ -70,7 +108,7 @@ class App extends Component {
             >
               <Navigation>
                 {/* <Avatar>OP</Avatar> */}
-                {this.state.user ? <Link to="/profile">PROFILE</Link> : <br></br>}
+            {this.state.user ? <Link to="/profile">{this.state.name} </Link> : <div></div>}
               </Navigation>
             </Header>
             <Drawer>

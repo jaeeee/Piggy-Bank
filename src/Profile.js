@@ -17,11 +17,16 @@ export class Profile extends Component {
            super();
            this.updateInfo = this.updateInfo.bind(this);
            this.handleChange = this.handleChange.bind(this);
+           this.logout = this.logout.bind(this);
            this.state = {
              budget: "",
              //  display_budget: "",
              name: ""
            };
+         }
+
+         logout() {
+             fire.auth().signOut();
          }
 
          handleChange(e) {
@@ -156,11 +161,18 @@ export class Profile extends Component {
                        />
                        <div className="text-center py-4 mt-3">
                          <MDBBtn
-                           color="red"
+                           color="green"
                            type="button"
                            onClick={this.updateInfo}
                          >
                            Update Info
+                         </MDBBtn>
+                         <MDBBtn
+                           color="red"
+                           type="button"
+                           onClick={this.logout}
+                         >
+                           Logout
                          </MDBBtn>
                          {/* <MDBBtn color="blue" type="submit" onClick="close">
                            Close
