@@ -43,15 +43,15 @@ import firebase from 'firebase';
 
   //BACKUP PIGGY 3
 
-   var firebaseConfig = {
-     apiKey: "AIzaSyBcdCvaA4MwFmUTjUcuPdsbqvCt-bNTJXw",
-     authDomain: "piggy-back3.firebaseapp.com",
-     databaseURL: "https://piggy-back3.firebaseio.com",
-     projectId: "piggy-back3",
-     storageBucket: "piggy-back3.appspot.com",
-     messagingSenderId: "875501784070",
-     appId: "1:875501784070:web:f4819338804975fc678787"
-   };
+//    var firebaseConfig = {
+//      apiKey: "AIzaSyBcdCvaA4MwFmUTjUcuPdsbqvCt-bNTJXw",
+//      authDomain: "piggy-back3.firebaseapp.com",
+//      databaseURL: "https://piggy-back3.firebaseio.com",
+//      projectId: "piggy-back3",
+//      storageBucket: "piggy-back3.appspot.com",
+//      messagingSenderId: "875501784070",
+//      appId: "1:875501784070:web:f4819338804975fc678787"
+//    };
 
   //  var firebaseConfig = {
   //    apiKey: "AIzaSyBcdCvaA4MwFmUTjUcuPdsbqvCt-bNTJXw",
