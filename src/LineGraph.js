@@ -4,6 +4,15 @@ import {Doughnut} from 'react-chartjs-2'
 import { db } from "./config/firebase";
 import fire from "./config/firebase";
 import { withRouter } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { array } from "prop-types";
+
+
 import {
   MDBContainer,
   MDBRow,
@@ -257,6 +266,7 @@ class LineGraph extends Component{
 
         super(props);
 
+
         this.state = {
           
         //for the line and pie charts
@@ -401,6 +411,36 @@ class LineGraph extends Component{
 
     return [ r * 255, g * 255, b * 255 ];
   }*/
+  handleChangeSelect = ({ target }) => {
+    this.setState({
+      currMonth: target.value
+    })
+
+    let index = this.state.monthList.indexOf(this.state.currMonth);
+
+    if(index != -1){
+      this.setLineGraphData(index);
+      this.setDoughnutGraphData(index);
+    }
+    
+  };
+
+  splitByMonth = () => {
+    let tempMonthCatArr = [];
+    for(let i = 0; i < this.state.expenses.length; i++){
+      let currMonthCat = this.state.expenses[i].date.substr(0,7);
+      if(!(currMonthCat in this.state.monthCat)){
+        this.state.monthCat[currMonthCat] = [this.state.expenses[i]];
+        this.state.monthList.push(currMonthCat);
+      }
+      else{
+          this.state.monthCat[currMonthCat].push(this.state.expenses[i]);
+      }
+      console.log(this.state.monthCat);
+      console.log(this.state.monthList);
+    }
+  }
+
 
 
   // selectColor = (colorInd) => {

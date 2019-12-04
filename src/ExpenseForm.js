@@ -194,10 +194,12 @@ class ExpenseForm extends React.Component{
             var purchase = [];
             purchase = this.createExpense(this.state.name, this.state.amount, this.state.category, this.state.date);
             let userRef = db.collection("users").doc(fire.auth().currentUser.email);
-            console.log(purchase, "Is going through", fire.auth().currentUser.email)
+            console.log(purchase, "Is going through", fire.auth().currentUser.email);
+            let monthField = this.state.date.substring(0, 7);
+
+            console.log(monthField);
             userRef.update({
                 expenses: firebase.firestore.FieldValue.arrayUnion(purchase)
-
             })
             .then(function(){
               console.log("updating DB")
