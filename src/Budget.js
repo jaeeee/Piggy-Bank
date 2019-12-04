@@ -121,36 +121,36 @@ export class Budget extends Component {
               });
   }
 
-  render() {
-    return (
-      <div>
-        <p>{this.state.display_budget}</p>
-        <form onSubmit={this.setBudget}>
-          <div class="mdl-textfield mdl-js-textfield">
-            <input
-              class="mdl-textfield__input"
-              type="number"
-              step = ".01"
-              name="budget"
-              placeholder="Set your budget"
-              onChange={this.updateInput}
-              value={this.state.budget}
-              required
-            />
-          </div>
-          <button
-            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored  "
-            type="submit"
-          >
-            Save
-          </button>
-          <br></br>
-          {/* <input type="email" name="email" placeholder="Full name" /> */}
-        </form>
-      </div>
-    );
-    //  }
-  }
+  // render() {
+  //   return (
+  //     <div>
+  //       <p>{this.state.display_budget}</p>
+  //       <form onSubmit={this.setBudget}>
+  //         <div class="mdl-textfield mdl-js-textfield">
+  //           <input
+  //             class="mdl-textfield__input"
+  //             type="number"
+  //             step = ".01"
+  //             name="budget"
+  //             placeholder="Set your budget"
+  //             onChange={this.updateInput}
+  //             value={this.state.budget}
+  //             required
+  //           />
+  //         </div>
+  //         <button
+  //           class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored  "
+  //           type="submit"
+  //         >
+  //           Save
+  //         </button>
+  //         <br></br>
+  //         {/* <input type="email" name="email" placeholder="Full name" /> */}
+  //       </form>
+  //     </div>
+  //   );
+  //   //  }
+  // }
 
   componentDidUpdate() {
     var budget_copy = 0;
@@ -193,17 +193,26 @@ export class Budget extends Component {
     return (
       <div>
         {/* Welcome back {this.state.name} <br></br> */}
-        Total Budget for this month: <b>${this.state.display_budget}</b><br/>
-        Remaining Budget After Expenses: <b>${this.state.currbudget}</b>
+        Total Budget for this month: <b>${this.state.display_budget}</b>
+        <br />
+        Remaining Budget After Expenses:{" "}
+        <b>
+          
+          {this.state.currbudget < 0 ? (
+            <font color="red">${this.state.currbudget}</font>
+          ) : (
+            <font color="green">${this.state.currbudget}</font>
+          )}
+        </b>
         <form onSubmit={this.setBudget}>
           <div class="mdl-textfield mdl-js-textfield">
             <input
               class="mdl-textfield__input"
               onKeyPress={this.onKeyPress.bind(this)}
               type="number"
-              min = "0"
-              max = "999999"
-              step = ".01"
+              min="0"
+              max="999999"
+              step=".01"
               name="budget"
               placeholder="Set your budget"
               onChange={this.updateInput}
