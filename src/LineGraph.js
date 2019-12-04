@@ -209,6 +209,8 @@ class LineGraph extends Component{
       this.setDoughnutGraphData(index);
     }
 
+    // (document).select('.select').val = "test";
+
   };
 
   splitByMonth = () => {
@@ -406,9 +408,13 @@ class LineGraph extends Component{
                         </MenuItem>
                       ))}
                     </Select> 
-                    {/* <MDBBtn color="success" type="button">load data</MDBBtn> */}
+                   <br></br>
+                    <MDBBtn color="primary" type="button" onClick={this.handleChangeSelect}>load data</MDBBtn>
                   </form>
+                  <br></br>
                 </FormControl>
+                <br></br>
+                
                 <Line
                   data={this.state.graphData[0]}
                   width={500}
