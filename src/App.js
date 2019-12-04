@@ -108,7 +108,11 @@ class App extends Component {
             >
               <Navigation>
                 {/* <Avatar>OP</Avatar> */}
-            {this.state.user ? <Link to="/profile">{this.state.name} </Link> : <div></div>}
+                {this.state.user ? (
+                  <Link to="/profile">{this.state.name} </Link>
+                ) : (
+                  <div></div>
+                )}
               </Navigation>
             </Header>
             <Drawer>
