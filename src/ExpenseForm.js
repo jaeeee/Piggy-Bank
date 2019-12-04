@@ -127,6 +127,8 @@ class ExpenseForm extends React.Component{
                 id="standard-adornment-amount"
                 type="number"
                 step=".01"
+                min = "0"
+                max = "999999"
                 value={this.state.amount}
                 onChange={this.handleChange("amount")}
                 startAdornment={
