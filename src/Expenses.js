@@ -179,7 +179,7 @@ class Expenses extends React.Component {
 					<TableHead>
 						<TableRow>
 							<TableCell>Expense</TableCell>
-							<TableCell align="right">Amount</TableCell>
+							<TableCell align="right">Amount ($)</TableCell>
 							<TableCell align="right">Category</TableCell>
 							<TableCell align="right">Date</TableCell>
 						</TableRow>

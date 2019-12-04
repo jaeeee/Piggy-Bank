@@ -77,7 +77,6 @@ export class Budget extends Component {
     this.setState({
       currbudget: yes
     })
-
     }
   }
 
@@ -200,7 +199,8 @@ export class Budget extends Component {
           
           {this.state.currbudget < 0 ? (
             <font color="red">${this.state.currbudget}</font>
-          ) : (
+          ) 
+           : (
             <font color="green">${this.state.currbudget}</font>
           )}
         </b>
