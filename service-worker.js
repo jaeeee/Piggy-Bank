@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Piggy-Bank/precache-manifest.f310fc5cf955acbd52267d3d0baa16ed.js"
+  "/Piggy-Bank/precache-manifest.5d5f5646bb758e577aa0dd052a8e5813.js"
 );
 
 self.addEventListener('message', (event) => {
